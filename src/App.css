@@ -76,15 +76,11 @@
   margin-top: 8px;
 }
 
-.hero-tag {
-  margin-top: 16px;
-  font-family: var(--mono);
-  font-size: 14px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 1px solid var(--accent-border);
-  border-radius: 999px;
-  padding: 6px 16px;
+.hero-companion {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
 }
 
 .cta {

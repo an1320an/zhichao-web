@@ -1,5 +1,6 @@
 import './App.css'
 import idleFace from '/mascot/idle.webp'
+import companionBanner from '/hero-companion-banner.webp'
 import petGrowthIcon from '/features/feature-pet-growth.webp'
 import aiChatIcon from '/features/feature-ai-chat.webp'
 import examIcon from '/features/feature-exam.webp'
@@ -103,7 +104,7 @@ function App() {
           <p className="hero-sub">
             不是 AI 刷题软件，不是 AI 聊天机器人，是<strong>陪伴式医学学习伴侣</strong>。
           </p>
-          <p className="hero-tag">用户 ←── 陪伴 ──→ 朵朵（宠物）</p>
+          <img src={companionBanner} alt="用户与朵朵彼此陪伴" className="hero-companion" />
           <a className="cta" href="#features">了解更多</a>
         </section>
 
