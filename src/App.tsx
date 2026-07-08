@@ -117,10 +117,10 @@ const cocreateRoles = [
 
 const contributors = [
   {
-    name: '小潘潘',
+    name: '知许',
     title: 'HuaiPet 第一批共创成员',
     contribution: '宣传协助、内测反馈',
-    thanks: '感谢小潘潘在 HuaiPet 早期内测阶段参与共创，协助宣传、反馈体验，并和我们一起打磨这个陪伴医学人成长的 AI 学习搭子。',
+    thanks: '感谢知许在 HuaiPet 早期内测阶段参与共创，协助宣传、反馈体验，并和我们一起打磨这个陪伴医学人成长的 AI 学习搭子。',
   },
 ]
 
