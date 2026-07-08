@@ -85,7 +85,7 @@ const faq = [
   },
   {
     q: '支持哪些平台？',
-    a: 'Android 移动端已开启邀请制内测，Windows 桌面端还在开发中。想参与内测的话，通过抖音 @槐序学长 或 QQ 群联系我们获取邀请码。',
+    a: 'Android 移动端已开启邀请制内测，Windows 桌面端还在开发中。想参与内测的话，通过抖音 @槐序学长 或 QQ 2014302010 联系我们获取邀请码。',
   },
   {
     q: '我的数据安全吗？',
@@ -188,7 +188,7 @@ function App() {
           <p className="download-note">
             内测需要邀请码才能注册，通过
             <a href="https://v.douyin.com/4vpWBY5MsL0/" target="_blank" rel="noopener noreferrer"> 抖音 · 槐序学长 </a>
-            联系我们获取邀请码。
+            或 QQ 2014302010 联系我们获取邀请码。
           </p>
         </section>
 
@@ -277,6 +277,15 @@ function App() {
           </svg>
           抖音：槐序学长
         </a>
+        <p className="social-link">
+          <svg viewBox="0 0 24 24" className="social-icon" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M12 2C7.03 2 3.5 5.5 3.5 10.5c0 2.13.8 3.9 1.98 5.24-.1.62-.4 1.6-1.15 2.7a.5.5 0 0 0 .5.77c1.6-.3 2.75-.9 3.4-1.32.9.3 1.9.46 2.77.46 4.97 0 8.5-3.5 8.5-8.5S16.97 2 12 2z"
+            />
+          </svg>
+          QQ：2014302010
+        </p>
         <p>
           联系邮箱：<a href="mailto:an1320an@gmail.com">an1320an@gmail.com</a>
         </p>
