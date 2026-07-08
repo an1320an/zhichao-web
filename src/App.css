@@ -173,11 +173,25 @@
 
 .download,
 .about,
-.faq {
+.faq,
+.cocreate {
   max-width: 1024px;
   margin: 0 auto;
   padding: 56px 24px;
   text-align: center;
+}
+
+.cocreate-intro,
+.cocreate-offer,
+.cocreate-contact {
+  max-width: 640px;
+  margin: 0 auto 24px;
+  font-size: 15px;
+  line-height: 170%;
+}
+
+.cocreate .card-grid {
+  margin-bottom: 32px;
 }
 
 .download-note {

@@ -96,6 +96,25 @@ const platforms = [
   },
 ]
 
+const cocreateRoles = [
+  {
+    title: '剪辑 / 视频创作',
+    desc: '槐序·HuaiPet 的抖音开发日记需要人帮忙剪素材、把开发过程做成好看的内容，一起把这个项目的故事讲给更多人听。',
+  },
+  {
+    title: '插画 / 角色设计',
+    desc: '朵朵的皮肤、时装系统还在早期设计阶段，需要会画画、懂角色设计的人一起参与——从定风格、定格式，到画出第一批皮肤。',
+  },
+  {
+    title: '医学内容顾问',
+    desc: 'AI 出题、聊天陪伴涉及大量医学知识，需要有医学背景的人帮忙审核内容准确性、把关考点设计，让 AI 给出的东西真正靠谱。',
+  },
+  {
+    title: '宣传 / 拉新',
+    desc: '好产品也需要被更多人看到，需要懂社群运营、擅长宣传推广的人帮忙把 HuaiPet 带给更多医学生和医护人员。',
+  },
+]
+
 const faq = [
   {
     q: 'HuaiPet 免费吗？',
@@ -146,6 +165,7 @@ function App() {
             <a href="#philosophy">理念</a>
             <a href="#features">功能</a>
             <a href="#about">关于</a>
+            <a href="#cocreate">共创</a>
             <a href="#roadmap">路线图</a>
             <a href="#changelog">更新日志</a>
             <a href="#download" className="nav-cta">下载</a>
@@ -290,6 +310,32 @@ function App() {
           </div>
           <div className="arch-backend">后端（Fastify + SQLite）── DeepSeek API</div>
           <p className="arch-note">所有数据变更、所有 AI 调用、所有业务逻辑，统一经过后端。</p>
+        </section>
+
+        <section id="cocreate" className="cocreate">
+          <h2 className="section-title">招募共创</h2>
+          <p className="cocreate-intro">
+            槐序·HuaiPet 目前是一个人在做的独立项目，还没有任何收入——这不是一份工作，是一次"为爱发电"的邀请。
+            如果你也觉得"医学生需要一个真正陪着自己走完整条路的 AI 搭子"这件事值得做，欢迎一起加入，把它做出来。
+          </p>
+          <div className="card-grid">
+            {cocreateRoles.map((role) => (
+              <div className="card" key={role.title}>
+                <h3>{role.title}</h3>
+                <p>{role.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="cocreate-offer">
+            我们没法开工资，但可以：把你的名字放进网站"共创伙伴"名单里；让你的作品变成产品里活生生的一部分——皮肤真的会有人穿，内容真的会有人学；新功能你能第一个看到、第一个玩到。
+          </p>
+          <p className="cocreate-contact">
+            有兴趣的话，通过
+            <a href="https://v.douyin.com/4vpWBY5MsL0/" target="_blank" rel="noopener noreferrer"> 抖音 · 槐序学长 </a>
+            、QQ 2014302010 或
+            <a href="mailto:an1320an@gmail.com"> 邮箱 </a>
+            找我们聊聊。
+          </p>
         </section>
       </main>
 
