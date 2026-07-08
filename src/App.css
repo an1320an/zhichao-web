@@ -189,6 +189,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
+  margin-bottom: 32px;
 }
 
 .card {
@@ -314,10 +315,6 @@
 
 .cocreate-card {
   background: var(--bg);
-}
-
-.cocreate .card-grid {
-  margin-bottom: 32px;
 }
 
 .download-note {
