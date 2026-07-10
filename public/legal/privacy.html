@@ -57,9 +57,45 @@
       </p>
       <p>除上述情形外，我们不会将你的个人数据出售或提供给其他第三方用于营销目的。</p>
 
-      <h2>4. 第三方 SDK 清单</h2>
+      <h2>4. 第三方 SDK 与应用权限清单</h2>
       <p>
-        目前对外披露的第三方服务为上文所述的 DeepSeek（用于 AI 生成，服务端调用）。移动端客户端的完整第三方组件（SDK）清单正在整理与精简中，将在后续版本中于本节完整披露（含名称、提供方、收集的数据类型、使用目的与隐私政策链接）。
+        除上文第 3 章所述的服务端第三方服务 DeepSeek（用于 AI 生成）外，本产品移动端安装包中包含以下第三方组件（SDK）与系统权限。以下以正式发布版安装包的实际打包产物为准。
+      </p>
+
+      <p><strong>（一）第三方 SDK</strong></p>
+      <ul>
+        <li>
+          <strong>Firebase Cloud Messaging（firebase-messaging 25.0.1，提供方：Google）</strong>：作为本地通知组件 expo-notifications 的依赖被打入安装包。本产品<strong>已禁用其自动初始化、移除 FirebaseInitProvider 组件、并移除相关权限（设备消息 C2DM 接收、广告标识 AD_ID、安装来源采集）；本产品仅使用系统本地通知，从不使用 FCM 云推送或 Firebase Analytics</strong>，因此不通过该组件收集或上传你的个人信息。相关政策见
+          <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase 隐私说明</a>
+          与
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google 隐私政策</a>。
+        </li>
+        <li>
+          <strong>Expo 系列模块（提供方：Expo / 650 Industries）</strong>：包括 Expo 核心、expo-notifications（本地通知与提醒）、expo-secure-store（登录凭证的安全本地存储）、expo-image-picker（从相册选择头像图片）、expo-image-manipulator（图片处理）。这些模块用于设备本地功能，不为 Expo 自身目的上传你的个人信息。政策见
+          <a href="https://expo.dev/privacy" target="_blank" rel="noopener noreferrer">Expo 隐私政策</a>。
+        </li>
+        <li>
+          <strong>本地功能与界面组件</strong>：@react-native-async-storage/async-storage（本地数据存储）、@react-native-community/datetimepicker（日期选择）、react-native-safe-area-context、react-native-screens（界面适配与布局）。仅用于设备本地功能，不收集或上传个人信息。
+        </li>
+        <li>
+          <strong>应用运行时基础库</strong>：AndroidX、React Native、OkHttp、Kotlin 运行时等。属于应用运行的基础框架与网络库，非广告或数据分析类收集型 SDK。
+        </li>
+      </ul>
+
+      <p><strong>（二）移动端申请的系统权限及用途</strong></p>
+      <ul>
+        <li><strong>网络访问（INTERNET）</strong>：账号登录、云端同步、AI 请求等联网功能。</li>
+        <li><strong>网络状态（ACCESS_NETWORK_STATE）</strong>：检测当前网络连接状态。</li>
+        <li><strong>通知（POST_NOTIFICATIONS）</strong>：发送本地学习与任务提醒。</li>
+        <li><strong>悬浮窗（SYSTEM_ALERT_WINDOW）</strong>：显示屏幕悬浮学习伙伴窗口。</li>
+        <li><strong>读取存储（READ_EXTERNAL_STORAGE，仅 Android 12 及以下）</strong>：读取相册图片（更换头像）与选择你上传的学习资料。</li>
+        <li><strong>写入存储（WRITE_EXTERNAL_STORAGE，仅 Android 12 及以下）</strong>：保存或导出学习资料。</li>
+        <li><strong>开机广播（RECEIVE_BOOT_COMPLETED）</strong>：设备重启后恢复本地提醒计划。</li>
+        <li><strong>震动（VIBRATE）</strong>：通知震动提示。</li>
+        <li><strong>唤醒锁（WAKE_LOCK）</strong>：保持提醒与任务相关的短时唤醒。</li>
+      </ul>
+      <p>
+        我们已移除应用未实际使用的权限（如相机、生物识别、设备消息接收、广告标识、安装来源采集、图标角标等）。上述清单以正式发布版安装包实测为准，如后续版本组件或权限有增减，我们会同步更新本节。
       </p>
 
       <h2>5. 个人信息出境</h2>
