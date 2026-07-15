@@ -38,10 +38,10 @@ const philosophy = [
 const features = [
   { icon: petGrowthIcon, title: '轻量养成激励', desc: '等级 1-99，成长曲线，学历、打工、商店一应俱全。金币只能通过学习获得，不支持任何形式的付费购买' },
   { icon: aiChatIcon, title: 'AI 学习对话', desc: 'DeepSeek 驱动，能记住你的学习进度与薄弱点（AI 生成内容，仅供学习参考）' },
-  { icon: examIcon, title: '智能考试系统', desc: 'AI 出题、错题本、三种学习模式，专为医学考点设计' },
+  { icon: examIcon, title: '智能考试系统', desc: 'AI 围绕医学考点自动生成练习题、错题本、三种学习模式，供日常练习（AI 生成，仅供学习参考，以官方教材/大纲为准）' },
   { icon: forgettingCurveIcon, title: '遗忘曲线复习', desc: '1h→1d→2d→4d→7d→15d→30d，科学安排复习节奏' },
   { icon: careerIcon, title: '职业成长路线', desc: '医学生、医生、护士、药师，等级阈值触发晋升与徽章' },
-  { icon: cloudSyncIcon, title: '云端数据同步', desc: '账号、学习记录与聊天记忆存在云端，换设备也不丢（当前提供 Android 客户端）' },
+  { icon: cloudSyncIcon, title: '云端数据同步', desc: '账号、学习记录与聊天记忆存在云端，换设备也能同步（当前提供 Android 客户端）' },
 ]
 
 const roadmap = [
@@ -63,14 +63,14 @@ const roadmap = [
       '等级制职称身份系统升级',
       '视觉奖励——等级边框、晋升徽章',
       '庆祝动画——晋升烟花 + 朵朵祝贺',
-      '陪伴对话系统——学习鼓励、考前安慰、考后共情',
+      '学习节奏提醒——阶段复盘、考前复习计划',
       '更多职业身份（检验、影像、公卫、口腔、中医……）',
     ],
   },
   {
     status: '未来方向',
     items: [
-      '陪伴深化——每日问候、学习总结、考前陪伴、考后反馈',
+      '学习功能深化——阶段学习总结、考前复习计划、考后错题复盘报告',
       '成长可视化——成长时间线、知识图谱、学习报告',
       '技术基建——推送通知、离线模式、多语言',
     ],
@@ -93,7 +93,7 @@ const platformNotices: Record<string, string> = {
 }
 
 const platforms = [
-  { name: 'Windows 桌面端', desc: '透明置顶桌面悬浮窗，陪你学习、互动、休息', status: '开发中', downloadUrl: null },
+  { name: 'Windows 桌面端', desc: '透明置顶桌面悬浮窗，学习提醒与轻量互动', status: '开发中', downloadUrl: null },
   {
     name: 'Android 移动端',
     desc: '手机端学习搭子，随时复习',
@@ -114,7 +114,7 @@ const cocreateRoles = [
   },
   {
     title: '医学内容顾问',
-    desc: 'AI 出题、聊天陪伴涉及大量医学知识，需要有医学背景的人帮忙审核内容准确性、把关考点设计，让 AI 给出的东西真正靠谱。',
+    desc: 'AI 出题与解析涉及大量医学知识，希望有执业资格 / 医学背景的人帮忙抽审内容、把关考点设计，降低 AI 生成内容出错的风险（目前该岗位仍在招募中，AI 生成内容暂未经执业人员逐条审核）。',
   },
   {
     title: '宣传 / 拉新',
@@ -127,7 +127,7 @@ const contributors = [
     name: '知许',
     title: 'HuaiPet 第一批共创成员',
     contribution: '宣传协助、内测反馈',
-    thanks: '感谢知许在 HuaiPet 早期内测阶段参与共创，协助宣传、反馈体验，并和我们一起打磨这个陪伴医学人成长的 AI 学习搭子。',
+    thanks: '感谢知许在 HuaiPet 早期内测阶段参与共创，协助宣传、反馈体验，并和我们一起打磨这个给医学人用的 AI 学习工具。',
   },
 ]
 
@@ -332,8 +332,8 @@ function App() {
         <section id="about" className="about">
           <h2 className="section-title reveal">关于我们</h2>
           <p className="reveal">
-            槐序 HuaiPet 是一个正在开发中的独立项目，目标是做一个真正"陪伴"医学生和医护人员走过整条职业成长路的
-            AI 搭子——不是刷题软件，也不是普通聊天机器人。项目由个人开发者持续迭代打造，你可以在抖音
+            槐序 HuaiPet 是一个正在开发中的独立项目，目标是做一个长期好用、越用越懂你薄弱点的医学学习工具，
+            用轻量的陪伴让漫长的医学备考不那么枯燥。项目由个人开发者持续迭代打造，你可以在抖音
             <a href="https://v.douyin.com/4vpWBY5MsL0/" target="_blank" rel="noopener noreferrer"> @槐序学长 </a>
             关注最新进展，或通过邮箱
             <a href="mailto:an1320an@gmail.com"> an1320an@gmail.com </a>
@@ -346,7 +346,7 @@ function App() {
             <h2 className="section-title reveal">招募共创</h2>
             <p className="cocreate-intro">
               槐序 HuaiPet 目前是一个人在做的独立项目，还没有任何收入——这不是一份工作，是一次"为爱发电"的邀请。
-              如果你也觉得"医学生需要一个真正陪着自己走完整条路的 AI 搭子"这件事值得做，欢迎一起加入，把它做出来。
+              如果你也觉得"医学备考是场持久战，需要一个长期好用、越用越懂你薄弱点的学习工具"这件事值得做，欢迎一起加入，把它做出来。
             </p>
             <div className="card-grid">
               {cocreateRoles.map((role) => (
@@ -415,7 +415,7 @@ function App() {
         </section>
 
         <section id="architecture" className="architecture">
-          <h2 className="section-title reveal">一处陪伴，处处同步</h2>
+          <h2 className="section-title reveal">一处记录，处处同步</h2>
           <div className="arch-diagram reveal">
             <div className="arch-node">手机端</div>
             <div className="arch-node">电脑端</div>
