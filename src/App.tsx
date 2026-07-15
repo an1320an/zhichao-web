@@ -94,7 +94,7 @@ const platformNotices: Record<string, string> = {
 }
 
 const platforms = [
-  { name: 'Windows 桌面端', desc: '透明置顶桌面悬浮窗，学习提醒与轻量互动', status: '开发中', downloadUrl: null },
+  { name: 'Windows 桌面端', desc: '透明置顶桌面悬浮窗，学习提醒与轻量互动', status: '暂缓开发', downloadUrl: null },
   {
     name: 'Android 移动端',
     desc: '手机端学习搭子，随时复习',
@@ -298,7 +298,7 @@ function App() {
 
         <section id="download" className="download">
           <h2 className="section-title reveal">下载</h2>
-          <p className="download-note">Android 移动端已开启邀请制内测，Windows 桌面端还在开发中。</p>
+          <p className="download-note">Android 移动端已开启邀请制内测；Windows 桌面端已暂缓开发，团队正评估微信小程序。</p>
           {platformNotice && <p className="download-platform-notice">{platformNotice}</p>}
           <div className="card-grid">
             {platforms.map((p) => (
