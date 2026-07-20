@@ -26,6 +26,8 @@ const checks = [
   ["隐私政策覆盖前台响铃服务", sources["public/legal/privacy.html"].includes("FOREGROUND_SERVICE_SPECIAL_USE")],
   ["隐私政策覆盖全屏提醒权限", sources["public/legal/privacy.html"].includes("USE_FULL_SCREEN_INTENT")],
   ["隐私政策覆盖严格专注无障碍服务", sources["public/legal/privacy.html"].includes("BIND_ACCESSIBILITY_SERVICE")],
+  ["知识树公共池写明默认公开边界", sources["public/legal/privacy.html"].includes("个人知识树默认加入公共学习池") && sources["public/legal/terms.html"].includes("不公开原始输入或账号身份")],
+  ["知识树公共池写明撤回权", sources["public/legal/privacy.html"].includes("按单棵树撤回公共学习池") && sources["public/legal/terms.html"].includes("可在应用内将单棵知识树撤回公共池")],
   ["用户协议写明注销保留例外", sources["public/legal/terms.html"].includes("最小同意凭证")],
   ["投诉页写明注销保留例外", sources["public/legal/complaints.html"].includes("最小同意凭证")],
   ["公开文案不得笼统承诺删除全部个人数据", !Object.values(sources).some((text) => text.includes("删除你的全部个人数据"))],
