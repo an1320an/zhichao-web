@@ -99,7 +99,7 @@ const platformNotices: Record<string, string> = {
 const platforms = [
   {
     name: 'Android 移动端',
-    desc: '知潮 1.3.1 Android 安装包',
+    desc: '知潮 1.3.2 Android 安装包',
     status: '内测更新',
     downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk',
     downloadLabel: '下载知潮新包',
@@ -177,6 +177,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-07-21',
+    title: '知潮 1.3.2：错题复习、聊天交互与朵朵衣柜更新',
+    desc: '今日错题复习恢复完整选项与点击作答；从知识卡片等学习工具返回时保留原来的页面位置。重构聊天输入区的键盘避让与滚动逻辑，并为错题复习、专注、计划、足迹等快捷互动提供真实功能入口。朵朵衣柜改为双列模块卡片，新增青竹研习、云端研习、桃气小憩、秋日行动、雪夜藏书 5 套成就装扮；连同既有装扮，十套造型均补齐待机、开心、思考、休息、探头、饥饿、疲惫、学习、打工、玩耍十种状态和轻量动画。',
+  },
   {
     date: '2026-07-20',
     title: '知潮 1.3.1：公共内容共创授权与自动复核更新',
