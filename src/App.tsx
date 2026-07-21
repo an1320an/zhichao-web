@@ -99,7 +99,7 @@ const platformNotices: Record<string, string> = {
 const platforms = [
   {
     name: 'Android 移动端',
-    desc: '知潮 1.3.3 Android 安装包',
+    desc: '知潮 1.3.4 Android 安装包',
     status: '内测更新',
     downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk',
     downloadLabel: '下载知潮新包',
@@ -177,6 +177,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-07-21',
+    title: '知潮 1.3.4：聊天、衣柜与更新提醒体验修复',
+    desc: '优化聊天输入框与键盘的开合动画，减少页面跳动并确保输入框始终位于键盘上方；修复朵朵衣柜从卡片中间起手无法滑动的问题；修复重要更新在冷启动首轮同步时可能不弹窗的问题。现在在聊天里说“出道题”“来一道题”等指令，会从现有题库打开可直接选择、判题并查看解析的答题卡，作答计入学习记录。',
+  },
   {
     date: '2026-07-21',
     title: '知潮 1.3.3：题库上传改为100金币人工整理',
