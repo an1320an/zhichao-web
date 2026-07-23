@@ -103,9 +103,9 @@ const platformNotices: Record<string, string> = {
 const platforms = [
   {
     name: 'Android 移动端',
-    desc: '知潮 1.6.0 Android 安装包',
+    desc: '知潮 1.6.6 Android 安装包',
     status: '内测更新',
-    downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk?v=1.6.0',
+    downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk?v=1.6.6',
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
   },
@@ -189,6 +189,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-07-23',
+    title: '知潮 1.6.6：截图记账入口与装扮联动更新',
+    desc: '记账页保留底部“记一笔”作为唯一新增入口，右上角改为截图记账状态按钮，可一眼区分运行中、未开启或权限不完整；移除重复的中部说明卡和手动导入截图入口。更换朵朵装扮后，悬浮朵朵、贴边形态与截图识别提示会同步使用新形象；继续沿用“系统截屏后先询问、本机识别、核对草稿后保存”的隐私边界。',
+  },
   {
     date: '2026-07-23',
     title: '知潮 1.6.0：朵朵长期记忆升级',

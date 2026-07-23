@@ -53,7 +53,7 @@ const checks = [
   ["官网与协议统一登记运营主体", ["src/App.tsx", "public/legal/privacy.html", "public/legal/terms.html", "public/legal/complaints.html"].every((name) => sources[name].includes("旬阳市槐序软件工作室"))],
   ["官网与协议统一抖音账号", ["src/App.tsx", "public/legal/privacy.html", "public/legal/terms.html", "public/legal/complaints.html"].every((name) => sources[name].includes("槐序学长工作室") && sources[name].includes("https://v.douyin.com/C8lWv7zLhz8/"))],
   ["公开源码不再保留旧抖音短链", !Object.values(sources).some((text) => /Tmm7e_p2rMM|4vpWBY5MsL0|XTF17fnkqNE|N4weK8sUDmM/.test(text))],
-  ["官网发布信息统一为 1.6.0", sources["src/App.tsx"].includes("知潮 1.6.0 Android 安装包") && sources["public/invite/index.html"].includes("zhichao-mobile-release.apk?v=1.6.0")],
+  ["官网发布信息统一为 1.6.6", sources["src/App.tsx"].includes("知潮 1.6.6 Android 安装包") && sources["public/invite/index.html"].includes("zhichao-mobile-release.apk?v=1.6.6")],
   ["官网不再展示旧包卸载迁移指引", !sources["src/App.tsx"].includes("旧版用户迁移说明") && !sources["public/invite/index.html"].includes("再卸载旧版 HuaiPet")],
   ["官网提供忘记密码双通道说明", sources["src/App.tsx"].includes("忘记密码怎么办？") && sources["src/App.tsx"].includes("只提供注册邮箱")],
   ["记账政策写明周期复盘与金额隐私开关", sources["public/legal/privacy.html"].includes("日、周、月、季度、半年和年度复盘") && sources["public/legal/privacy.html"].includes("显示具体金额") && sources["public/legal/terms.html"].includes("计划提醒默认不展示具体金额")],
