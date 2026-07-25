@@ -103,9 +103,9 @@ const platformNotices: Record<string, string> = {
 const platforms = [
   {
     name: 'Android 移动端',
-    desc: '知潮 1.8.0 Android 安装包',
+    desc: '知潮 2.0.0 Android 安装包',
     status: '大版本更新',
-    downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk?v=1.8.0',
+    downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk?v=2.0.0',
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
   },
@@ -189,6 +189,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-07-26',
+    title: '知潮 2.0.0：朵朵日程、PDF 笔记与账单附件',
+    desc: '新增朵朵日程，可集中管理课程、值班和自定义安排，并支持重复规则、单次调整、ICS 导入导出与确认后写入系统日历。朵朵笔记加入 PDF 逐页浏览、手写和文字批注，以及保留 7 天、尽量恢复原位置的回收站。账单现在可长期保存最多 3 张账号私有图片附件。模拟考场扩展模块化考试分类和口腔执业两级考试，解析按选项、核心推理与易错点分层展示；首页和聊天天气更紧凑，衣柜在数据可靠时可按稀有度排序。升级后会自动展示本版五步新功能导览，设置中也能随时重看。',
+  },
   {
     date: '2026-07-24',
     title: '知潮 1.8.0：朵朵天气、功能引导与足迹体验升级',
