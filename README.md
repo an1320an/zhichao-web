@@ -1,4 +1,29 @@
-# React + TypeScript + Vite
+# 知潮官网
+
+知潮官网、公开法律页面、邀请入口和 Android APK 下载页面，基于 React、TypeScript 和 Vite。
+
+## 协作入口
+
+开始开发前必须阅读：
+
+- [`AGENTS.md`](AGENTS.md)：本仓公开文案、发布和跨仓交接规则；
+- [`../zhichao/docs/HANDOFF.md`](../zhichao/docs/HANDOFF.md)：当前正式状态、最新断点和唯一下一项；
+- [`../zhichao/docs/ZHICHAO_LONG_TERM_PRODUCT_TECH_ARCHITECTURE.md`](../zhichao/docs/ZHICHAO_LONG_TERM_PRODUCT_TECH_ARCHITECTURE.md)：长期产品与技术方向。
+
+任何 AI 或人工程序员完成实际改动后，都必须更新共享 HANDOFF。没有交接记录的任务不能标记为完成。
+
+## 常用命令
+
+```bash
+npm install
+npm run lint
+npm run audit:copy
+npm run build
+```
+
+部署官网、替换 APK、修改强制更新和发送广播只有在用户明确要求时才能执行。
+
+## Vite 说明
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
