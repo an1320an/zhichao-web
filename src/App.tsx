@@ -103,9 +103,9 @@ const platformNotices: Record<string, string> = {
 const platforms = [
   {
     name: 'Android 移动端',
-    desc: '知潮 2.0.0 Android 安装包',
+    desc: '知潮 3.0.0 Android 安装包',
     status: '大版本更新',
-    downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk?v=2.0.0',
+    downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk?v=3.0.0',
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
   },
@@ -189,6 +189,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-07-27',
+    title: '知潮 3.0.0：护理考研学习路径、题组与 AI 教练',
+    desc: '学习目录、目标、掌握度与下一步建议现在连成完整路径，护理考研按四科和真实题型边界呈现。答题支持闭合 B1、A3/A4 题组与 X 型多选，缺题时会显示实时供题状态、可用替代项，并在题组准备完成后通过通知直达。朵朵笔记的私有附件进入分块上传、哈希校验和云备份状态边界；AI 教练只读取明确的学习上下文生成只读建议，不会替你改答案、目标或计划。升级后会自动展示本版五步新功能导览，设置中也能随时重看。',
+  },
   {
     date: '2026-07-26',
     title: '知潮 2.0.0：朵朵日程、PDF 笔记与账单附件',
