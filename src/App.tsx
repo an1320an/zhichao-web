@@ -103,9 +103,9 @@ const platformNotices: Record<string, string> = {
 const platforms = [
   {
     name: 'Android 移动端',
-    desc: '知潮 3.0.0 Android 安装包',
-    status: '大版本更新',
-    downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk?v=3.0.0',
+    desc: '知潮 3.0.1 Android 安装包',
+    status: '体验修复更新',
+    downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk?v=3.0.1',
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
   },
@@ -189,6 +189,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-07-28',
+    title: '知潮 3.0.1：学习下一步、天气与答题等待体验修复',
+    desc: '学习目标补充大白话说明、日期选择和建议落地入口；题库会显示当前范围题量、章节并记住上次练习范围。天气卡片、定位精度与 24 小时预报布局更清楚；后台缺题、详细解析和知识树生成会显示真实状态，完成后通过计划通知直达。同步修复账单图片、朵朵书页手写与分享、学习笔记来源返回、考试锁定，以及手机和平板上的内容宽度和弹层布局。',
+  },
   {
     date: '2026-07-27',
     title: '知潮 3.0.0：护理考研学习路径、题组与 AI 教练',
