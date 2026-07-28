@@ -67,6 +67,33 @@ const releaseHighlights = [
   },
 ]
 
+const widgetHighlights = [
+  {
+    kind: 'weather',
+    eyebrow: '天气预报',
+    title: '安康市  ☁️  多云  33°',
+    desc: '固定地区不用定位；跟随位置只在打开知潮、回到前台或手动刷新时更新。',
+  },
+  {
+    kind: 'agenda',
+    eyebrow: '计划日程',
+    title: '今天先做这 3 件事',
+    desc: '可筛选计划、课程、值班和自定义日程，大尺寸组件还能查看未来 7 天。',
+  },
+  {
+    kind: 'study',
+    eyebrow: '学习进度',
+    title: '薄弱点变了，下一步也会变',
+    desc: '把目标、答题、模考、错题和复习证据汇总起来，在桌面给出当前最值得做的一步。',
+  },
+  {
+    kind: 'dodo',
+    eyebrow: '朵朵状态',
+    title: '今天也来看看朵朵吧',
+    desc: '等级、心情、体力、饱腹和精神状态一眼可见，点击直接回到搭子页。',
+  },
+]
+
 const roadmap = [
   {
     status: '已完成',
@@ -177,6 +204,10 @@ const faq = [
     a: '账号、学习记录与聊天内容目前保存在中国香港服务器。只有你主动开启 AI 数据授权并使用相关功能时，本次所需内容才会交给 DeepSeek 处理；授权可随时关闭。数据范围、出境情况和离线资源改进规则见隐私政策。',
   },
   {
+    q: '密码和账本安全吗？管理员能直接看到吗？',
+    a: '密码采用 bcrypt 单向哈希保存，我们无法还原或查看你的明文密码。账本、学习和聊天属于账号私有业务数据，不会公开展示，也不用于广告；它们不是“连服务器也无法解密”的端到端加密数据。只有在安全排障、履行法律义务或处理你的请求确有必要时，受权限控制的人员才可按职责处理必要数据。你可以随时导出数据或注销清理，完整范围以隐私政策为准。',
+  },
+  {
     q: '朵朵会记住我什么？可以删除吗？',
     a: '朵朵只整理对后续陪伴有用的身份、偏好、学习目标、习惯、重要日期和临时事项。身份、日期和不确定内容会先请你确认；敏感账号、密码、银行卡号、具体病历和危机原话不会进入长期记忆。你可以在 App「设置 → 记忆管理」查看、确认、编辑、置顶、忽略或删除，也可随账号数据一起导出或注销清理。',
   },
@@ -203,6 +234,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-07-28',
+    title: '知潮 3.0.3：桌面天气、动态学习建议与日程组件升级',
+    desc: '安卓桌面组件扩展为今日总览、天气预报、计划日程、学习进度、朵朵状态和快速记账六类，可按尺寸展示 24 小时或 7 天天气、未来日程、主目标与动态下一步。天气支持固定地区和跟随位置两种方式，跟随位置只在应用前台按需更新，不申请后台定位。升级后会用三步引导讲清组件、学习教练和天气隐私边界；同一版本的改动统一归入这一条记录。',
+  },
   {
     date: '2026-07-28',
     title: '知潮 3.0.2：安卓桌面小组件与细节完善',
@@ -393,7 +429,7 @@ function App() {
               </p>
               <div className="hero-cta-group">
                 <a className="cta" href="#download">下载知潮 3.0.2</a>
-                <a className="cta cta-secondary" href="#features">看看能做什么</a>
+                <a className="cta cta-secondary" href="#widgets">了解学习教练与组件</a>
               </div>
               <div className="hero-signals" aria-label="核心能力">
                 <span>真实学习证据</span>
@@ -429,6 +465,50 @@ function App() {
                 <span className="release-story-index">{item.label}</span>
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="widgets" className="widget-story" aria-labelledby="widget-story-title">
+          <div className="widget-story-copy reveal">
+            <span>Android 桌面组件</span>
+            <h2 id="widget-story-title">不用先打开 App，今天该做什么已经在桌面</h2>
+            <p>
+              六类组件会根据桌面空间自动增减信息。天气可看当前、24 小时和 7 天；日程可切换计划、课程和值班；
+              学习组件会把真实进度和下一步放在一起。
+            </p>
+            <div className="widget-story-tags" aria-label="桌面组件能力">
+              <span>可调整大小</span>
+              <span>点击直达</span>
+              <span>摘要最小化</span>
+              <span>前台刷新</span>
+            </div>
+          </div>
+          <div className="widget-preview-grid">
+            {widgetHighlights.map((item) => (
+              <article className={`widget-preview widget-preview--${item.kind} reveal`} key={item.kind}>
+                <div className="widget-preview-topline">
+                  <span>{item.eyebrow}</span>
+                  <small>刚刚同步</small>
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+                {item.kind === 'weather' && (
+                  <div className="widget-weather-hours" aria-hidden="true">
+                    <span>15时<br /><strong>33°</strong></span>
+                    <span>18时<br /><strong>30°</strong></span>
+                    <span>21时<br /><strong>27°</strong></span>
+                    <span>明天<br /><strong>26°</strong></span>
+                  </div>
+                )}
+                {item.kind === 'study' && (
+                  <div className="widget-study-metrics" aria-hidden="true">
+                    <span><strong>32%</strong>正确率</span>
+                    <span><strong>20</strong>待复习</span>
+                    <span><strong>10天</strong>连续学习</span>
+                  </div>
+                )}
               </article>
             ))}
           </div>

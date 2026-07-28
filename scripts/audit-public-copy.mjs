@@ -59,7 +59,10 @@ const checks = [
   ["用户协议覆盖学习教练只读边界", sources["public/legal/terms.html"].includes("学习教练") && sources["public/legal/terms.html"].includes("不会替你修改目标、答案或计划")],
   ["用户协议覆盖笔记云备份边界", sources["public/legal/terms.html"].includes("朵朵笔记") && sources["public/legal/terms.html"].includes("尚未形成可恢复的云端副本")],
   ["协议与隐私政策覆盖桌面小组件最小摘要", ["public/legal/privacy.html", "public/legal/terms.html"].every((name) => sources[name].includes("Android 桌面小组件") && sources[name].includes("登录令牌"))],
-  ["免责声明覆盖3.0.2新增能力", sources["public/legal/disclaimer.html"].includes("学习教练") && sources["public/legal/disclaimer.html"].includes("桌面小组件") && sources["public/legal/disclaimer.html"].includes("朵朵笔记")],
+  ["公开文案覆盖六类桌面小组件", ["src/App.tsx", "public/legal/privacy.html", "public/legal/terms.html"].every((name) => ["今日总览", "天气预报", "计划日程", "学习进度", "朵朵状态", "快速记账"].every((label) => sources[name].includes(label)))],
+  ["天气定位统一为固定地区或跟随位置", ["src/App.tsx", "public/legal/privacy.html", "public/legal/terms.html", "public/legal/disclaimer.html"].every((name) => sources[name].includes("固定地区") && sources[name].includes("跟随位置"))],
+  ["天气定位明确不申请后台位置", ["public/legal/privacy.html", "public/legal/terms.html", "public/legal/disclaimer.html"].every((name) => sources[name].includes("不申请后台位置"))],
+  ["免责声明覆盖3.0.3新增能力", sources["public/legal/disclaimer.html"].includes("学习教练") && sources["public/legal/disclaimer.html"].includes("桌面小组件") && sources["public/legal/disclaimer.html"].includes("朵朵笔记")],
   ["协议与免责声明更新至2026-07-28", ["public/legal/terms.html", "public/legal/disclaimer.html"].every((name) => sources[name].includes("最后更新：2026-07-28"))],
 ];
 
