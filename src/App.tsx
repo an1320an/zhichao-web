@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import happyFace from '/mascot/happy.webp'
 import heroVisual from '/brand/zhichao-studio-hero-v2.webp'
-import petGrowthIcon from '/features/feature-pet-growth.webp'
-import dodoAssistantIcon from '/features/feature-dodo-assistant-v2.webp'
-import examIcon from '/features/feature-exam.webp'
-import forgettingCurveIcon from '/features/feature-forgetting-curve.webp'
-import careerIcon from '/features/feature-career.webp'
-import cloudSyncIcon from '/features/feature-cloud-sync.webp'
+import studyCoachIcon from '/features/study-coach.webp'
+import petGrowthIcon from '/features/pet-growth.webp'
+import dodoAssistantIcon from '/features/dodo-assistant.webp'
+import examBankIcon from '/features/exam-bank.webp'
+import spacedReviewIcon from '/features/spaced-review.webp'
+import careerPathIcon from '/features/career-path.webp'
+import bookkeepingIcon from '/features/bookkeeping.webp'
+import floatingDodoIcon from '/features/floating-dodo.webp'
+import cloudSyncIcon from '/features/cloud-sync.webp'
 import androidQrCode from '/qr-android-download.svg'
 
 const DOUYIN_URL = 'https://v.douyin.com/C8lWv7zLhz8/'
@@ -33,15 +36,15 @@ const philosophy = [
 ]
 
 const features = [
-  { icon: forgettingCurveIcon, title: '学习教练与动态下一步', desc: '你明确主目标，真实作答形成掌握证据；每次回来，下一步会按最新进度重新排序，而不是给一张不会变的计划表' },
-  { icon: petGrowthIcon, title: '轻量养成激励', desc: '等级 1-99，成长曲线，学历、打工、商店一应俱全。金币只能通过学习获得，不支持任何形式的付费购买' },
-  { icon: dodoAssistantIcon, title: '朵朵学习助手', desc: '日常交流、学习提醒和快捷入口连在一起；固定功能优先由规则库和题库完成，重要学习内容仍以教材与考试大纲为准' },
-  { icon: examIcon, title: '考试与题库系统', desc: '预置题库、错题本、三种学习模式与静态解析，供日常练习（以官方教材与考试大纲为准）' },
-  { icon: forgettingCurveIcon, title: '遗忘曲线复习', desc: '1h→1d→2d→4d→7d→15d→30d，科学安排复习节奏' },
-  { icon: careerIcon, title: '职业成长路线', desc: '医学生、医生、护士、药师，等级阈值触发晋升与徽章' },
-  { icon: examIcon, title: '随手记账与周期复盘', desc: '支持手动、聊天草稿与可选截图 OCR 识别；确认后才入账，并提供日、周、月等周期复盘' },
-  { icon: petGrowthIcon, title: '悬浮朵朵快捷入口', desc: '跟随已穿套装显示，支持自定义四个快捷操作与 5/10/15 秒自动贴边；截图识别默认关闭、按需授权' },
-  { icon: cloudSyncIcon, title: '云端数据同步', desc: '账号、学习记录与聊天记忆存在云端，换设备也能同步（当前提供 Android 客户端）' },
+  { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
+  { icon: petGrowthIcon, title: '轻量养成激励', desc: '等级、成长曲线、学历、打工和商店陪你走完整段学习路；金币只通过学习获得。' },
+  { icon: dodoAssistantIcon, title: '朵朵学习助手', desc: '日常交流、学习提醒和快捷入口连在一起，固定功能优先由规则库与题库完成。' },
+  { icon: examBankIcon, title: '考试与题库系统', desc: '按考试、科目、题型、难度和章节练习，支持错题本、模拟考试与详细解析。' },
+  { icon: spacedReviewIcon, title: '遗忘曲线复习', desc: '按 1 小时到 30 天的节奏安排回看，把“看过”逐步变成“真正记住”。' },
+  { icon: careerPathIcon, title: '职业成长路线', desc: '覆盖医学生、医生、护士与药师方向，让学习积累在成长路线与徽章里看得见。' },
+  { icon: bookkeepingIcon, title: '随手记账与周期复盘', desc: '手动记账、聊天草稿和可选截图识别都先给你确认，再按日、周、月回看收支。' },
+  { icon: floatingDodoIcon, title: '悬浮朵朵快捷入口', desc: '把常用的学习、计划、记账和工具入口放到手边，支持自动贴边与按需授权。' },
+  { icon: cloudSyncIcon, title: '云端数据同步', desc: '账号、学习记录、计划、笔记和账本按账号同步，换设备也能继续使用。' },
 ]
 
 const releaseHighlights = [
@@ -512,7 +515,8 @@ function App() {
 
         <section id="features" className="features">
           <h2 className="section-title reveal">功能亮点</h2>
-          <div className="card-grid">
+          <p className="section-lead reveal">九项能力各司其职，最后都落到一件事：让你更清楚自己学到哪、下一步先做什么。</p>
+          <div className="feature-grid">
             {features.map((item) => (
               <div
                 className="card feature-card reveal"
@@ -732,8 +736,8 @@ function App() {
         <nav className="legal-links">
           <a href="#faq">常见问题</a>
           <a href="#architecture">数据与规则</a>
-          <a href="/legal/privacy.html">隐私与服务规则</a>
-          <a href="/legal/complaints.html">投诉举报</a>
+          <a href="/legal/privacy.html">网站隐私说明</a>
+          <a href="/legal/complaints.html">联系与投诉</a>
         </nav>
       </footer>
     </div>

@@ -1,85 +1,50 @@
-import { readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import fs from "node:fs";
 import path from "node:path";
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const sources = Object.fromEntries(await Promise.all([
+const root = path.resolve(import.meta.dirname, "..");
+const publicCopyFiles = [
   "index.html",
   "src/App.tsx",
   "public/invite/index.html",
+  "public/404.html",
   "public/legal/privacy.html",
   "public/legal/terms.html",
   "public/legal/disclaimer.html",
   "public/legal/complaints.html",
-].map(async (name) => [name, await readFile(path.join(root, name), "utf8")])));
+];
 
-const marketingCopy = [
-  sources["index.html"],
-  sources["src/App.tsx"],
-  sources["public/invite/index.html"],
-].join("\n");
-const disallowedMarketingTerms = /\bAI\b|人工智能|大模型|DeepSeek|生成式/;
+const sources = Object.fromEntries(
+  publicCopyFiles.map((name) => [name, fs.readFileSync(path.join(root, name), "utf8")]),
+);
+const publicCopy = Object.values(sources).join("\n");
+const hiddenServiceTerms = /\bAI\b|人工智能|大模型|DeepSeek|生成式/;
+const featureAssets = [
+  "study-coach.webp",
+  "pet-growth.webp",
+  "dodo-assistant.webp",
+  "exam-bank.webp",
+  "spaced-review.webp",
+  "career-path.webp",
+  "bookkeeping.webp",
+  "floating-dodo.webp",
+  "cloud-sync.webp",
+];
 
 const checks = [
-  ["官网如实写明邀请制", sources["src/App.tsx"].includes("Android 移动端当前为邀请制内测")],
-  ["官网不得误写开放注册", !sources["src/App.tsx"].includes("现已开放注册")],
-  ["官网不得误写无需邀请码", !sources["src/App.tsx"].includes("无需邀请码")],
-  ["官网营销页不宣传生成服务或模型", !disallowedMarketingTerms.test(marketingCopy)],
-  ["官网营销页突出规则库与学习助手", sources["src/App.tsx"].includes("规则库 · 学习助手") && sources["src/App.tsx"].includes("固定功能优先由规则库和数据库完成")],
-  ["邀请码页只介绍学习与规则库能力", sources["public/invite/index.html"].includes("学习进度会在同一账号下衔接") && sources["public/invite/index.html"].includes("规则库和数据库")],
-  ["邀请码页不得继续宣称不调用云端模型", !sources["public/invite/index.html"].includes("不调用云端大模型") && !sources["public/invite/index.html"].includes("不实时调用云端大模型")],
-  ["邀请码页提供复制按钮与剪贴板回退", sources["public/invite/index.html"].includes("id=\"copy-code\"") && sources["public/invite/index.html"].includes("navigator.clipboard.writeText") && sources["public/invite/index.html"].includes("document.execCommand(\"copy\")")],
-  ["隐私政策写明单一授权覆盖实时AI、记忆整理与离线改进", sources["public/legal/privacy.html"].includes("内测 AI 数据授权是一项完整的可选 AI 服务授权") && sources["public/legal/privacy.html"].includes("提取长期记忆或待确认候选") && sources["public/legal/privacy.html"].includes("用于发现离线资源库未覆盖的场景")],
-  ["隐私政策写明 DeepSeek 与服务商备案信息", sources["public/legal/privacy.html"].includes("Beijing-DeepseekChat-202404280016") && sources["public/legal/privacy.html"].includes("网信算备110108970550101240011号")],
-  ["隐私政策把备案号用于说明服务来源", sources["public/legal/privacy.html"].includes("上述信息用于说明第三方处理方和当前接入服务来源")],
-  ["公开文案不再使用自我否定式备案表述", !Object.values(sources).some((text) => text.includes("不等于知潮已完成") || text.includes("不代表知潮已完成"))],
-  ["隐私政策写明离线样本隐私边界", sources["public/legal/privacy.html"].includes("不附带用户 ID、邮箱、昵称和模型回复")],
-  ["隐私政策写明撤回同时停止两项处理", sources["public/legal/privacy.html"].includes("新的实时 AI 请求不再发送给 DeepSeek") && sources["public/legal/privacy.html"].includes("新的输入也不再进入脱敏离线资源改进流程")],
-  ["隐私政策写明临床工具输入不上传", sources["public/legal/privacy.html"].includes("临床工具输入") && sources["public/legal/privacy.html"].includes("不会把这些具体输入上传")],
-  ["隐私政策覆盖精确闹钟权限", sources["public/legal/privacy.html"].includes("USE_EXACT_ALARM")],
-  ["隐私政策覆盖电池优化权限", sources["public/legal/privacy.html"].includes("REQUEST_IGNORE_BATTERY_OPTIMIZATIONS")],
-  ["隐私政策覆盖前台响铃服务", sources["public/legal/privacy.html"].includes("FOREGROUND_SERVICE_SPECIAL_USE")],
-  ["隐私政策覆盖全屏提醒权限", sources["public/legal/privacy.html"].includes("USE_FULL_SCREEN_INTENT")],
-  ["隐私政策覆盖严格专注无障碍服务", sources["public/legal/privacy.html"].includes("BIND_ACCESSIBILITY_SERVICE")],
-  ["公共内容共创采用独立授权", ["src/App.tsx", "public/legal/privacy.html", "public/legal/terms.html"].every((name) => sources[name].includes("公共内容共创"))],
-  ["共创授权写明未授权不能生产新内容", sources["public/legal/privacy.html"].includes("拒绝共创授权只会关闭新内容生产入口") && sources["public/legal/terms.html"].includes("不能继续使用上述新内容生产功能")],
-  ["共创授权不捆绑只读学习", sources["public/legal/privacy.html"].includes("不影响已有题库、错题本、公开知识内容浏览") && sources["public/legal/terms.html"].includes("已有题库、错题本、公开内容浏览")],
-  ["用户协议写明注销保留例外", sources["public/legal/terms.html"].includes("最小同意凭证")],
-  ["投诉页写明注销保留例外", sources["public/legal/complaints.html"].includes("最小同意凭证")],
-  ["公开文案不得笼统承诺删除全部个人数据", !Object.values(sources).some((text) => text.includes("删除你的全部个人数据"))],
-  ["政策不得把全部服务18+误写成国家一刀切要求", !Object.values(sources).some((text) => text.includes("按国家规定仅向年满 18"))],
-  ["免责声明写明本地计算边界", sources["public/legal/disclaimer.html"].includes("设备本地、确定性公式工具")],
-  ["危机记录不得继续宣称全部匿名", !Object.values(sources).some((text) => text.includes("不保存账号关联或原话摘要") || text.includes("只留匿名处置元数据"))],
-  ["隐私政策写明危机分级最小化", sources["public/legal/privacy.html"].includes("关注级事件") && sources["public/legal/privacy.html"].includes("明确危机级事件")],
-  ["危机受限详情写明300字30天与审计", sources["public/legal/privacy.html"].includes("最长 300 字") && sources["public/legal/privacy.html"].includes("超过 30 天") && sources["public/legal/privacy.html"].includes("审计日志")],
-  ["隐私政策如实说明原输入仍属聊天历史", sources["public/legal/privacy.html"].includes("仍会按第 1、5、8、9 章所述保存在账号聊天记录中")],
-  ["危机匿名元数据写明180天清理", sources["public/legal/privacy.html"].includes("超过 180 天") && sources["public/legal/terms.html"].includes("180 天后自动清理")],
-  ["公开文案不得承诺实时人工跟进", !Object.values(sources).some((text) => text.includes("并由人工跟进") || text.includes("用于人工关怀跟进"))],
-  ["公开文案不得继续宣称第三方模型全关闭", !Object.values(sources).some((text) => text.includes("当前第三方模型功能已关闭") || text.includes("当前运行状态：未启用第三方大模型处理"))],
-  ["公开文案不得继续宣称当前不实时调用模型", !Object.values(sources).some((text) => text.includes("当前由审核文案库和规则自动回应，不实时调用云端大模型") || text.includes("当前使用审核文案库与规则自动回应，不实时调用云端大模型"))],
-  ["官网与协议统一登记运营主体", ["src/App.tsx", "public/legal/privacy.html", "public/legal/terms.html", "public/legal/complaints.html"].every((name) => sources[name].includes("旬阳市槐序软件工作室"))],
-  ["官网主域统一为 huaix.cn", sources["index.html"].includes('href="https://huaix.cn/"') && sources["src/App.tsx"].includes("https://huaix.cn/download/") && sources["public/legal/privacy.html"].includes("主域名为 huaix.cn") && sources["public/legal/terms.html"].includes("官网 huaix.cn")],
-  ["官网展示真实 ICP 备案号", ["src/App.tsx", "public/legal/privacy.html", "public/legal/terms.html"].every((name) => sources[name].includes("陕ICP备2026019822号"))],
-  ["官网与协议统一抖音账号", ["src/App.tsx", "public/legal/privacy.html", "public/legal/terms.html", "public/legal/complaints.html"].every((name) => sources[name].includes("槐序学长工作室") && sources[name].includes("https://v.douyin.com/C8lWv7zLhz8/"))],
-  ["公开源码不再保留旧抖音短链", !Object.values(sources).some((text) => /Tmm7e_p2rMM|4vpWBY5MsL0|XTF17fnkqNE|N4weK8sUDmM/.test(text))],
-  ["官网发布信息统一为 3.0.2", sources["src/App.tsx"].includes("知潮 3.0.2 Android 安装包") && sources["public/invite/index.html"].includes("zhichao-mobile-release.apk?v=3.0.2")],
-  ["官网不再展示旧包卸载迁移指引", !sources["src/App.tsx"].includes("旧版用户迁移说明") && !sources["public/invite/index.html"].includes("再卸载旧版 HuaiPet")],
-  ["官网提供忘记密码双通道说明", sources["src/App.tsx"].includes("忘记密码怎么办？") && sources["src/App.tsx"].includes("只提供注册邮箱")],
-  ["记账政策写明周期复盘与金额隐私开关", sources["public/legal/privacy.html"].includes("日、周、月、季度、半年和年度复盘") && sources["public/legal/privacy.html"].includes("显示具体金额") && sources["public/legal/terms.html"].includes("计划提醒默认不展示具体金额")],
-  ["用户协议覆盖学习教练只读边界", sources["public/legal/terms.html"].includes("学习教练") && sources["public/legal/terms.html"].includes("不会替你修改目标、答案或计划")],
-  ["用户协议覆盖笔记云备份边界", sources["public/legal/terms.html"].includes("朵朵笔记") && sources["public/legal/terms.html"].includes("尚未形成可恢复的云端副本")],
-  ["协议与隐私政策覆盖桌面小组件最小摘要", ["public/legal/privacy.html", "public/legal/terms.html"].every((name) => sources[name].includes("Android 桌面小组件") && sources[name].includes("登录令牌"))],
-  ["公开文案覆盖六类桌面小组件", ["src/App.tsx", "public/legal/privacy.html", "public/legal/terms.html"].every((name) => ["今日总览", "天气预报", "计划日程", "学习进度", "朵朵状态", "快速记账"].every((label) => sources[name].includes(label)))],
-  ["天气定位统一为固定地区或跟随位置", ["src/App.tsx", "public/legal/privacy.html", "public/legal/terms.html", "public/legal/disclaimer.html"].every((name) => sources[name].includes("固定地区") && sources[name].includes("跟随位置"))],
-  ["天气定位明确不申请后台位置", ["public/legal/privacy.html", "public/legal/terms.html", "public/legal/disclaimer.html"].every((name) => sources[name].includes("不申请后台位置"))],
-  ["免责声明覆盖3.0.3新增能力", sources["public/legal/disclaimer.html"].includes("学习教练") && sources["public/legal/disclaimer.html"].includes("桌面小组件") && sources["public/legal/disclaimer.html"].includes("朵朵笔记")],
-  ["协议与免责声明更新至2026-07-28", ["public/legal/terms.html", "public/legal/disclaimer.html"].every((name) => sources[name].includes("最后更新：2026-07-28"))],
+  ["公开网页不出现客户端内部服务术语", !hiddenServiceTerms.test(publicCopy)],
+  ["官网主域统一为 huaix.cn", sources["index.html"].includes('href="https://huaix.cn/"') && sources["src/App.tsx"].includes("https://huaix.cn/download/")],
+  ["官网展示真实 ICP 备案号", sources["src/App.tsx"].includes("陕ICP备2026019822号") && sources["public/legal/privacy.html"].includes("陕ICP备2026019822号")],
+  ["官网统一登记运营主体", ["src/App.tsx", "public/legal/privacy.html", "public/legal/terms.html"].every((name) => sources[name].includes("旬阳市槐序软件工作室"))],
+  ["网站隐私说明限定为静态展示与下载", sources["public/legal/privacy.html"].includes("不提供账号登录") && sources["public/legal/privacy.html"].includes("只适用于")],
+  ["客户端条款明确在客户端内查看", sources["public/legal/terms.html"].includes("客户端内阅读") && sources["public/legal/privacy.html"].includes("客户端内置")],
+  ["九项功能使用九张独立生成配图", featureAssets.every((name) => fs.existsSync(path.join(root, "public", "features", name)))],
+  ["九项功能保持三列完整网格", sources["src/App.tsx"].includes('className="feature-grid"')],
+  ["邀请码与下载使用新主域路径", sources["public/invite/index.html"].includes("/download/zhichao-mobile-release.apk")],
+  ["旧 CNAME 不再指向 huaipet.com", fs.readFileSync(path.join(root, "public", "CNAME"), "utf8").trim() === "huaix.cn"],
 ];
 
 const failed = checks.filter(([, ok]) => !ok);
-if (failed.length > 0) {
-  for (const [label] of failed) console.error(`FAIL: ${label}`);
-  process.exitCode = 1;
-} else {
-  console.log(`PASS: ${checks.length} 项公开文案一致性检查`);
+for (const [label, ok] of checks) {
+  console.log(`${ok ? "PASS" : "FAIL"}: ${label}`);
 }
+if (failed.length > 0) process.exitCode = 1;
