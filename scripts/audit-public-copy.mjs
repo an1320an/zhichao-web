@@ -13,12 +13,20 @@ const sources = Object.fromEntries(await Promise.all([
   "public/legal/complaints.html",
 ].map(async (name) => [name, await readFile(path.join(root, name), "utf8")])));
 
+const marketingCopy = [
+  sources["index.html"],
+  sources["src/App.tsx"],
+  sources["public/invite/index.html"],
+].join("\n");
+const disallowedMarketingTerms = /\bAI\b|人工智能|大模型|DeepSeek|生成式/;
+
 const checks = [
   ["官网如实写明邀请制", sources["src/App.tsx"].includes("Android 移动端当前为邀请制内测")],
   ["官网不得误写开放注册", !sources["src/App.tsx"].includes("现已开放注册")],
   ["官网不得误写无需邀请码", !sources["src/App.tsx"].includes("无需邀请码")],
-  ["官网集中说明智能生成边界", sources["src/App.tsx"].includes("<strong>智能辅助</strong>") && sources["src/App.tsx"].includes("生成内容会标明来源")],
-  ["邀请码页如实写明规则与云端 AI 双引擎", sources["public/invite/index.html"].includes("规则与云端 AI 双引擎") && sources["public/invite/index.html"].includes("DeepSeek")],
+  ["官网营销页不宣传生成服务或模型", !disallowedMarketingTerms.test(marketingCopy)],
+  ["官网营销页突出规则库与学习助手", sources["src/App.tsx"].includes("规则库 · 学习助手") && sources["src/App.tsx"].includes("固定功能优先由规则库和数据库完成")],
+  ["邀请码页只介绍学习与规则库能力", sources["public/invite/index.html"].includes("学习进度会在同一账号下衔接") && sources["public/invite/index.html"].includes("规则库和数据库")],
   ["邀请码页不得继续宣称不调用云端模型", !sources["public/invite/index.html"].includes("不调用云端大模型") && !sources["public/invite/index.html"].includes("不实时调用云端大模型")],
   ["邀请码页提供复制按钮与剪贴板回退", sources["public/invite/index.html"].includes("id=\"copy-code\"") && sources["public/invite/index.html"].includes("navigator.clipboard.writeText") && sources["public/invite/index.html"].includes("document.execCommand(\"copy\")")],
   ["隐私政策写明单一授权覆盖实时AI、记忆整理与离线改进", sources["public/legal/privacy.html"].includes("内测 AI 数据授权是一项完整的可选 AI 服务授权") && sources["public/legal/privacy.html"].includes("提取长期记忆或待确认候选") && sources["public/legal/privacy.html"].includes("用于发现离线资源库未覆盖的场景")],

@@ -83,13 +83,10 @@
 }
 
 .hero-shell {
+  position: relative;
   max-width: 1180px;
   margin: 0 auto;
-  padding: 72px 24px 64px;
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
-  align-items: center;
-  gap: clamp(32px, 5vw, 72px);
+  padding: 48px 24px 64px;
 }
 
 .hero h1 {
@@ -116,7 +113,11 @@
 }
 
 .hero-copy {
-  position: relative;
+  position: absolute;
+  left: clamp(52px, 6vw, 88px);
+  top: 50%;
+  width: min(47%, 560px);
+  transform: translateY(-50%);
   z-index: 2;
 }
 
@@ -134,10 +135,10 @@
 .hero-art img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   border-radius: 30px;
-  box-shadow: 0 34px 80px -34px rgba(18, 92, 80, 0.36);
+  box-shadow: 0 34px 90px -38px rgba(18, 92, 80, 0.42);
 }
 
 .hero-art::after {
@@ -149,8 +150,19 @@
   pointer-events: none;
 }
 
+.hero-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 30px;
+  background: linear-gradient(90deg, rgba(255, 251, 239, 0.68) 0%, rgba(255, 251, 239, 0.3) 34%, transparent 58%);
+  pointer-events: none;
+}
+
 .hero-art-note {
   position: absolute;
+  z-index: 2;
   right: 22px;
   bottom: 22px;
   display: flex;
@@ -1121,7 +1133,8 @@
   }
 
   .hero-art img,
-  .hero-art::after {
+  .hero-art::after,
+  .hero-art::before {
     border-radius: 22px;
   }
 
@@ -1187,44 +1200,34 @@
 
 @media (max-width: 900px) {
   .hero-shell {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
   }
 
   .hero-copy {
+    position: static;
+    width: auto;
     max-width: 680px;
+    transform: none;
   }
 
   .hero-art {
     order: 2;
   }
 
+  .hero-art img {
+    aspect-ratio: 4 / 3;
+    object-position: 73% center;
+  }
+
+  .hero-art::before {
+    display: none;
+  }
+
   .widget-story {
     grid-template-columns: 1fr;
   }
-}
-
-/* ── AI 非真人显著标识（《人工智能拟人化互动服务管理暂行办法》第十八条，2026-07-15）──
-   App 端首页/聊天页已常驻该标识，官网作为拉新的第一触点也必须有。 */
-.ai-notice {
-  margin-top: 24px;
-  padding: 12px 14px;
-  border-left: 3px solid var(--accent);
-  border-radius: 0 12px 12px 0;
-  background: rgba(20, 125, 112, 0.07);
-  color: var(--text);
-  font-size: 12px;
-  line-height: 1.65;
-  max-width: 560px;
-}
-.ai-notice-footer {
-  margin-top: 6px;
-  font-size: 13px;
-  opacity: 0.85;
-  line-height: 1.7;
-}
-.ai-notice-footer a {
-  color: inherit;
-  text-decoration: underline;
 }
 
 .site-filing {
