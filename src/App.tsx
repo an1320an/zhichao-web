@@ -148,7 +148,7 @@ const platforms = [
     name: 'Android 移动端',
     desc: '知潮 3.0.2 Android 安装包',
     status: '桌面组件与体验更新',
-    downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk?v=3.0.2',
+    downloadUrl: 'https://huaix.cn/download/zhichao-mobile-release.apk?v=3.0.2',
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
   },
@@ -237,7 +237,7 @@ const changelog = [
   {
     date: '2026-07-28',
     title: '知潮 3.0.3：桌面天气、动态学习建议与日程组件升级',
-    desc: '安卓桌面组件扩展为今日总览、天气预报、计划日程、学习进度、朵朵状态和快速记账六类，可按尺寸展示 24 小时或 7 天天气、未来日程、主目标与动态下一步。天气支持固定地区和跟随位置两种方式，跟随位置只在应用前台按需更新，不申请后台定位。升级后会用三步引导讲清组件、学习教练和天气隐私边界；同一版本的改动统一归入这一条记录。',
+    desc: '安卓桌面组件扩展为今日总览、天气预报、计划日程、学习进度、朵朵状态和快速记账六类，可按尺寸展示 24 小时或 7 天天气、未来日程、主目标与动态下一步。天气支持固定地区和跟随位置两种方式，跟随位置只在应用前台按需更新，不申请后台定位。升级后会用三步引导讲清组件、学习教练和天气隐私边界；官网主域同步切换为 huaix.cn，并展示真实 ICP 备案信息。同一版本的改动统一归入这一条记录。',
   },
   {
     date: '2026-07-28',
@@ -740,6 +740,11 @@ function App() {
           联系邮箱：<a href="mailto:an1320an@gmail.com">an1320an@gmail.com</a>
         </p>
         <p>旬阳市槐序软件工作室（个体工商户） · 知潮</p>
+        <p className="site-filing">
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
+            陕ICP备2026019822号
+          </a>
+        </p>
         <p className="ai-notice-footer">
           朵朵是自动回应程序，不是真人。生成内容会标明来源，可能有误，仅供学习参考。
         </p>

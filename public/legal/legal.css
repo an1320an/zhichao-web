@@ -265,3 +265,16 @@ a {
     transition: none;
   }
 }
+
+.legal-filing {
+  width: min(860px, calc(100% - 32px));
+  margin: -8px auto 40px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.legal-filing a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
