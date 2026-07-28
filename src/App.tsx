@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import idleFace from '/mascot/idle.webp'
 import happyFace from '/mascot/happy.webp'
-import companionBanner from '/hero-companion-banner.webp'
+import heroVisual from '/brand/zhichao-learning-hero.webp'
 import petGrowthIcon from '/features/feature-pet-growth.webp'
 import aiChatIcon from '/features/feature-ai-chat.webp'
 import examIcon from '/features/feature-exam.webp'
@@ -67,20 +66,18 @@ const roadmap = [
   {
     status: '进行中',
     items: [
-      '等级制职称身份系统升级',
-      '视觉奖励——等级边框、晋升徽章',
-      '庆祝动画——晋升烟花 + 朵朵祝贺',
-      '学习节奏提醒——阶段复盘、考前复习计划',
-      '更多职业身份（检验、影像、公卫、口腔、中医……）',
+      '护理考研四科题库覆盖与章节体验',
+      '学习目标、掌握度和下一步建议持续优化',
+      '朵朵笔记附件备份与换机恢复体验',
+      '天气、计划与异步学习通知稳定性',
     ],
   },
   {
     status: '未来方向',
     items: [
-      '多端接入——微信小程序（规划中，方便随手打开、无需下载）',
-      '学习功能深化——阶段学习总结、考前复习计划、考后错题复盘报告',
-      '成长可视化——成长时间线、知识图谱、学习报告',
-      '技术基建——推送通知、离线模式、多语言',
+      '阶段学习总结与考前复习计划',
+      '成长时间线、薄弱点趋势和学习报告',
+      '更可靠的离线体验与恢复能力',
     ],
   },
 ]
@@ -109,8 +106,6 @@ const platforms = [
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
   },
-  { name: '微信小程序', desc: '随手打开、无需下载（正在评估）', status: '评估中', downloadUrl: null, downloadLabel: null, qrCode: null },
-  { name: 'Windows 桌面端', desc: '透明置顶桌面悬浮窗，学习提醒与轻量互动', status: '暂缓开发', downloadUrl: null, downloadLabel: null, qrCode: null },
 ]
 
 const cocreateRoles = [
@@ -355,12 +350,9 @@ function App() {
         <div className="nav-inner">
           <span className="brand">槐序 · 知潮</span>
           <nav>
-            <a href="#philosophy">理念</a>
             <a href="#features">功能</a>
+            <a href="#changelog">更新</a>
             <a href="#about">关于</a>
-            <a href="#cocreate">共创</a>
-            <a href="#roadmap">成长路线图</a>
-            <a href="#changelog">更新日志</a>
             <a href="#download" className="nav-cta">下载</a>
           </nav>
         </div>
@@ -368,19 +360,35 @@ function App() {
 
       <main>
         <section className="hero">
-          <div className="hero-inner">
-            <img src={idleFace} alt="学习搭子朵朵" className="hero-mascot" />
-            <h1>给医学人的学习搭子</h1>
-            <p className="hero-sub">
-              把 <strong>题库练习、错题复盘、遗忘曲线复习</strong> 和轻量养成激励做在一起的医学学习工具。
-            </p>
-            <p className="ai-notice">
-              <strong>智能辅助说明</strong>：生成内容会标明来源，可能有误，仅供学习参考。朵朵不是真人；相关功能只在你主动使用并授权后处理本次所需内容。当前内测仅面向年满 18 周岁的用户。
-            </p>
-            <img src={companionBanner} alt="朵朵陪你复习医学知识点" className="hero-companion" />
-            <div className="hero-cta-group">
-              <a className="cta" href="#download">立即下载 / 参与内测</a>
-              <a className="cta cta-secondary" href="#features">了解更多</a>
+          <div className="hero-shell">
+            <div className="hero-copy">
+              <span className="hero-eyebrow">医学学习 · Android 邀请内测</span>
+              <h1>今天学什么，<br /><span>下一步更清楚。</span></h1>
+              <p className="hero-sub">
+                题库练习、错题复盘、遗忘曲线和学习计划连成一条线。朵朵陪你把大目标拆成今天能完成的一小步。
+              </p>
+              <div className="hero-cta-group">
+                <a className="cta" href="#download">下载知潮 3.0.1</a>
+                <a className="cta cta-secondary" href="#features">看看能做什么</a>
+              </div>
+              <div className="hero-signals" aria-label="核心能力">
+                <span>题库与错题</span>
+                <span>目标与下一步</span>
+                <span>计划与提醒</span>
+              </div>
+              <p className="ai-notice">
+                <strong>智能辅助</strong> · 生成内容会标明来源，可能有误，仅供学习参考。朵朵不是真人；相关功能只在你主动使用并授权后处理本次所需内容。
+              </p>
+            </div>
+            <div className="hero-art">
+              <img src={heroVisual} alt="朵朵在书桌旁陪伴医学复习" />
+              <div className="hero-art-note">
+                <span className="hero-art-dot" />
+                <div>
+                  <strong>把目标落到今天</strong>
+                  <span>看清进度，也知道下一步</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -428,7 +436,6 @@ function App() {
             </div>
             <p className="release-privacy">截图 OCR 记账默认关闭，只有你主动授权并点击识别后才会处理截图；识别结果会先成为可修改草稿，不会自动入账。</p>
           </div>
-          <p className="download-note">Android 移动端为邀请制内测，通过 抖音 · {DOUYIN_NAME} 或 QQ 2014302010 联系获取邀请码；微信小程序正在评估中；Windows 桌面端暂缓开发。</p>
           {platformNotice && <p className="download-platform-notice">{platformNotice}</p>}
           <div className="card-grid">
             {platforms.map((p) => (
@@ -521,7 +528,7 @@ function App() {
         <section id="changelog" className="changelog">
           <h2 className="section-title reveal">更新日志</h2>
           <ul className="changelog-list">
-            {changelog.map((entry) => (
+            {changelog.slice(0, 6).map((entry) => (
               <li key={entry.date} className="reveal">
                 <span className="changelog-date">{entry.date}</span>
                 <div>
@@ -546,14 +553,13 @@ function App() {
         </section>
 
         <section id="architecture" className="architecture">
-          <h2 className="section-title reveal">一处记录，处处同步</h2>
+          <h2 className="section-title reveal">学习数据，按账号稳稳接住</h2>
           <div className="arch-diagram reveal">
-            <div className="arch-node">手机端</div>
-            <div className="arch-node">电脑端</div>
-            <div className="arch-node">微信小程序</div>
-            <div className="arch-arrow">↓</div>
+            <div className="arch-node">Android 客户端</div>
+            <div className="arch-node">账号与安全服务</div>
+            <div className="arch-node">学习记录与云端备份</div>
           </div>
-          <div className="arch-backend">后端（Fastify + SQLite）── 安全闸门、AI 编排与离线资源库</div>
+          <div className="arch-backend">规则优先 · 数据隔离 · 可恢复任务</div>
           <p className="arch-note">固定功能优先由规则和数据库完成；需要生成时，系统只在用户授权后处理必要输入，并在结果旁标明来源。安全请求会先经过规则保护。</p>
         </section>
 

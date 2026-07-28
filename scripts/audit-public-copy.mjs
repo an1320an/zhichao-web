@@ -17,7 +17,7 @@ const checks = [
   ["官网如实写明邀请制", sources["src/App.tsx"].includes("Android 移动端当前为邀请制内测")],
   ["官网不得误写开放注册", !sources["src/App.tsx"].includes("现已开放注册")],
   ["官网不得误写无需邀请码", !sources["src/App.tsx"].includes("无需邀请码")],
-  ["官网集中说明智能生成边界", sources["src/App.tsx"].includes("智能辅助说明") && sources["src/App.tsx"].includes("生成内容会标明来源")],
+  ["官网集中说明智能生成边界", sources["src/App.tsx"].includes("<strong>智能辅助</strong>") && sources["src/App.tsx"].includes("生成内容会标明来源")],
   ["邀请码页如实写明规则与云端 AI 双引擎", sources["public/invite/index.html"].includes("规则与云端 AI 双引擎") && sources["public/invite/index.html"].includes("DeepSeek")],
   ["邀请码页不得继续宣称不调用云端模型", !sources["public/invite/index.html"].includes("不调用云端大模型") && !sources["public/invite/index.html"].includes("不实时调用云端大模型")],
   ["邀请码页提供复制按钮与剪贴板回退", sources["public/invite/index.html"].includes("id=\"copy-code\"") && sources["public/invite/index.html"].includes("navigator.clipboard.writeText") && sources["public/invite/index.html"].includes("document.execCommand(\"copy\")")],

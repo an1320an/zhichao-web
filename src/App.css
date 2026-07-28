@@ -8,12 +8,13 @@
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
-  background: var(--bg);
-  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(18px);
+  z-index: 20;
 }
 
 .nav-inner {
-  max-width: 1024px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 16px 24px;
   display: flex;
@@ -24,9 +25,10 @@
 }
 
 .brand {
-  font-weight: 600;
+  font-weight: 800;
   font-size: 18px;
   color: var(--text-h);
+  letter-spacing: 0.08em;
 }
 
 .nav a {
@@ -62,6 +64,7 @@
   padding: 7px 18px;
   border-radius: 999px;
   font-weight: 500;
+  box-shadow: 0 8px 20px rgba(20, 125, 112, 0.18);
 }
 
 .nav-cta:hover {
@@ -73,85 +76,124 @@
   position: relative;
   width: 100%;
   background:
-    radial-gradient(circle at 20% 0%, var(--accent-bg) 0%, transparent 45%),
-    radial-gradient(circle at 80% 100%, var(--accent-bg) 0%, transparent 40%);
+    radial-gradient(circle at 14% 6%, rgba(126, 220, 194, 0.2), transparent 34rem),
+    linear-gradient(180deg, #f8fcfa 0%, var(--bg) 100%);
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
-.hero-inner {
-  max-width: 720px;
+.hero-shell {
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 64px 24px 48px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+  padding: 72px 24px 64px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
   align-items: center;
+  gap: clamp(32px, 5vw, 72px);
 }
 
 .hero h1 {
-  background: linear-gradient(90deg, var(--text-h), var(--accent), var(--text-h));
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient-sweep 6s ease infinite;
+  color: var(--text-h);
+  margin: 22px 0 20px;
 }
 
-@keyframes gradient-sweep {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.hero h1 span {
+  color: var(--accent);
 }
 
-.hero-mascot {
-  width: 140px;
-  height: 140px;
-  object-fit: contain;
-  margin-bottom: 16px;
-  animation: breathe 4s ease-in-out infinite;
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 3px 12px;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--accent-strong);
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: 0.06em;
 }
 
-@keyframes breathe {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero h1,
-  .hero-mascot {
-    animation: none;
-  }
+.hero-copy {
+  position: relative;
+  z-index: 2;
 }
 
 .hero-sub {
-  font-size: 19px;
-  margin-top: 8px;
+  max-width: 570px;
+  font-size: 18px;
+  line-height: 1.75;
 }
 
-.hero-companion {
-  margin-top: 20px;
+.hero-art {
+  position: relative;
+  min-width: 0;
+}
+
+.hero-art img {
+  display: block;
   width: 100%;
-  max-width: 420px;
-  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: 0 34px 80px -34px rgba(18, 92, 80, 0.36);
+}
+
+.hero-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+  pointer-events: none;
+}
+
+.hero-art-note {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 210px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 16px;
+  background: rgba(251, 253, 251, 0.88);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+.hero-art-note strong,
+.hero-art-note span {
+  display: block;
+}
+
+.hero-art-note strong {
+  color: var(--text-h);
+  font-size: 13px;
+}
+
+.hero-art-note span {
+  color: var(--text);
+  font-size: 11px;
+}
+
+.hero-art-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: var(--coral);
+  box-shadow: 0 0 0 5px rgba(239, 128, 107, 0.16);
 }
 
 .hero-cta-group {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 32px;
+  justify-content: flex-start;
+  margin-top: 28px;
 }
 
 .cta {
@@ -161,13 +203,41 @@
   background: var(--accent);
   color: white;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700;
+  box-shadow: 0 12px 28px -14px rgba(20, 125, 112, 0.65);
 }
 
 .cta-secondary {
   background: transparent;
   color: var(--text-h);
   border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.hero-signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.hero-signals span {
+  position: relative;
+  padding-left: 14px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.hero-signals span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
 }
 
 .section-title {
@@ -194,8 +264,9 @@
 
 .card {
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 18px;
   padding: 24px;
+  background: color-mix(in srgb, var(--card-bg) 94%, var(--accent-bg));
   text-align: left;
   overflow-wrap: anywhere;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -751,23 +822,71 @@
 
 @media (max-width: 640px) {
   .hero h1 {
-    font-size: 32px;
+    font-size: 40px;
+    letter-spacing: -1.5px;
+  }
+
+  .hero-shell {
+    padding: 48px 18px 44px;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .hero-cta-group {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .cta {
+    text-align: center;
+  }
+
+  .hero-art img,
+  .hero-art::after {
+    border-radius: 22px;
+  }
+
+  .hero-art-note {
+    right: 12px;
+    bottom: 12px;
+    min-width: 0;
+    max-width: calc(100% - 24px);
+  }
+
+  .hero-signals {
+    gap: 10px 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy {
+    max-width: 680px;
+  }
+
+  .hero-art {
+    order: 2;
   }
 }
 
 /* ── AI 非真人显著标识（《人工智能拟人化互动服务管理暂行办法》第十八条，2026-07-15）──
    App 端首页/聊天页已常驻该标识，官网作为拉新的第一触点也必须有。 */
 .ai-notice {
-  display: inline-block;
-  margin: 18px auto 0;
-  padding: 10px 18px;
-  border-radius: 999px;
-  background: rgba(47, 125, 97, 0.1);
-  color: #2f7d61;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.6;
-  max-width: 640px;
+  margin-top: 24px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  background: rgba(20, 125, 112, 0.07);
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.65;
+  max-width: 560px;
 }
 .ai-notice-footer {
   margin-top: 6px;
