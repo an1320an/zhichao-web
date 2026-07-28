@@ -38,6 +38,7 @@ const philosophy = [
 ]
 
 const features = [
+  { icon: forgettingCurveIcon, title: '学习教练与动态下一步', desc: '你明确主目标，真实作答形成掌握证据；每次回来，下一步会按最新进度重新排序，而不是给一张不会变的计划表' },
   { icon: petGrowthIcon, title: '轻量养成激励', desc: '等级 1-99，成长曲线，学历、打工、商店一应俱全。金币只能通过学习获得，不支持任何形式的付费购买' },
   { icon: aiChatIcon, title: '朵朵智能辅助', desc: '固定功能优先由规则和题库完成；需要生成时，在你授权后由模型服务补充，并在结果旁标明来源' },
   { icon: examIcon, title: '考试与题库系统', desc: '预置题库、错题本、三种学习模式与静态解析，供日常练习（以官方教材与考试大纲为准）' },
@@ -51,18 +52,18 @@ const features = [
 const releaseHighlights = [
   {
     label: '目标',
-    title: '从“大目标”到今天这一步',
-    desc: '把目标、掌握度、练习与错题放在一起，给出可采纳、可排进计划的下一步。',
+    title: '方向由你定，不从聊天里猜',
+    desc: '可以有多个学习目标，但只有一个主目标负责当前推荐；暂停、完成和调整都由你确认。',
   },
   {
-    label: '桌面',
-    title: '不打开 App，也能看见进度',
-    desc: '今日总览、计划日程、学习进度与快速记账四类小组件，把常用信息放回桌面。',
+    label: '证据',
+    title: '真正做过的题，才改变掌握判断',
+    desc: '刷题、模拟考、错题复习和知识点练习会留下证据；只答对一题，不会直接被判成已经掌握。',
   },
   {
-    label: '复习',
-    title: '练习不是做完就算',
-    desc: '题库、错题本、知识树和遗忘曲线彼此衔接，让每次练习都能留下下一次行动。',
+    label: '行动',
+    title: '建议能落到练习、知识卡和计划',
+    desc: '没数据时先安排起点练习；有证据后优先补薄弱、续学或巩固。是否采纳，仍由你决定。',
   },
 ]
 
@@ -388,16 +389,16 @@ function App() {
               <span className="hero-eyebrow">医学学习 · Android 邀请内测</span>
               <h1>今天学什么，<br /><span>下一步更清楚。</span></h1>
               <p className="hero-sub">
-                题库练习、错题复盘、遗忘曲线和学习计划连成一条线。朵朵陪你把大目标拆成今天能完成的一小步。
+                选定主目标后，把刷题、模拟考、错题复习和知识练习变成掌握证据。知潮会随着真实进度，持续调整今天最值得先做的那一步。
               </p>
               <div className="hero-cta-group">
                 <a className="cta" href="#download">下载知潮 3.0.2</a>
                 <a className="cta cta-secondary" href="#features">看看能做什么</a>
               </div>
               <div className="hero-signals" aria-label="核心能力">
-                <span>题库与错题</span>
-                <span>目标与下一步</span>
-                <span>计划与提醒</span>
+                <span>真实学习证据</span>
+                <span>动态掌握判断</span>
+                <span>可执行下一步</span>
               </div>
               <p className="ai-notice">
                 <strong>智能辅助</strong> · 生成内容会标明来源，可能有误，仅供学习参考。朵朵不是真人；相关功能只在你主动使用并授权后处理本次所需内容。
@@ -409,7 +410,7 @@ function App() {
                 <span className="hero-art-dot" />
                 <div>
                   <strong>把目标落到今天</strong>
-                  <span>看清进度，也知道下一步</span>
+                  <span>每次学习后，路线都会更新</span>
                 </div>
               </div>
             </div>
@@ -418,9 +419,9 @@ function App() {
 
         <section className="release-story" aria-labelledby="release-story-title">
           <div className="release-story-heading reveal">
-            <span>知潮 3.0.2</span>
-            <h2 id="release-story-title">让“下一步”更容易被看见</h2>
-            <p>不是再堆一个入口，而是把目标、行动和提醒接起来。</p>
+            <span>知潮学习教练</span>
+            <h2 id="release-story-title">不只提醒什么时候学，还回答先学什么</h2>
+            <p>普通计划负责时间，知潮把目标、真实学习证据和下一次行动连起来。</p>
           </div>
           <div className="release-story-grid">
             {releaseHighlights.map((item, index) => (
@@ -569,7 +570,7 @@ function App() {
           <h2 className="section-title reveal">更新日志</h2>
           <ul className="changelog-list">
             {changelog.slice(0, 6).map((entry) => (
-              <li key={entry.date} className="reveal">
+              <li key={`${entry.date}-${entry.title}`} className="reveal">
                 <span className="changelog-date">{entry.date}</span>
                 <div>
                   <h3>{entry.title}</h3>
