@@ -100,9 +100,9 @@ const platformNotices: Record<string, string> = {
 const platforms = [
   {
     name: 'Android 移动端',
-    desc: '知潮 3.0.1 Android 安装包',
-    status: '体验修复更新',
-    downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk?v=3.0.1',
+    desc: '知潮 3.0.2 Android 安装包',
+    status: '桌面组件与体验更新',
+    downloadUrl: 'https://huaipet.com/download/zhichao-mobile-release.apk?v=3.0.2',
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
   },
@@ -184,6 +184,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-07-28',
+    title: '知潮 3.0.2：安卓桌面小组件与细节完善',
+    desc: '新增今日总览、计划日程、学习进度和快速记账四类安卓桌面小组件，可从设置页查看添加方法；升级后会自动展示三步新功能导览。学习目标与建议改为分开加载，天气卡片、区县定位和考试倒计时显示更稳；默认图标与官网视觉同步更新，聊天内容安全边界和提示也进一步收拢。',
+  },
   {
     date: '2026-07-28',
     title: '知潮 3.0.1：学习下一步、天气与答题等待体验修复',
@@ -368,7 +373,7 @@ function App() {
                 题库练习、错题复盘、遗忘曲线和学习计划连成一条线。朵朵陪你把大目标拆成今天能完成的一小步。
               </p>
               <div className="hero-cta-group">
-                <a className="cta" href="#download">下载知潮 3.0.1</a>
+                <a className="cta" href="#download">下载知潮 3.0.2</a>
                 <a className="cta cta-secondary" href="#features">看看能做什么</a>
               </div>
               <div className="hero-signals" aria-label="核心能力">
