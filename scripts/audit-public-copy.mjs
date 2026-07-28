@@ -56,6 +56,11 @@ const checks = [
   ["官网不再展示旧包卸载迁移指引", !sources["src/App.tsx"].includes("旧版用户迁移说明") && !sources["public/invite/index.html"].includes("再卸载旧版 HuaiPet")],
   ["官网提供忘记密码双通道说明", sources["src/App.tsx"].includes("忘记密码怎么办？") && sources["src/App.tsx"].includes("只提供注册邮箱")],
   ["记账政策写明周期复盘与金额隐私开关", sources["public/legal/privacy.html"].includes("日、周、月、季度、半年和年度复盘") && sources["public/legal/privacy.html"].includes("显示具体金额") && sources["public/legal/terms.html"].includes("计划提醒默认不展示具体金额")],
+  ["用户协议覆盖学习教练只读边界", sources["public/legal/terms.html"].includes("学习教练") && sources["public/legal/terms.html"].includes("不会替你修改目标、答案或计划")],
+  ["用户协议覆盖笔记云备份边界", sources["public/legal/terms.html"].includes("朵朵笔记") && sources["public/legal/terms.html"].includes("尚未形成可恢复的云端副本")],
+  ["协议与隐私政策覆盖桌面小组件最小摘要", ["public/legal/privacy.html", "public/legal/terms.html"].every((name) => sources[name].includes("Android 桌面小组件") && sources[name].includes("登录令牌"))],
+  ["免责声明覆盖3.0.2新增能力", sources["public/legal/disclaimer.html"].includes("学习教练") && sources["public/legal/disclaimer.html"].includes("桌面小组件") && sources["public/legal/disclaimer.html"].includes("朵朵笔记")],
+  ["协议与免责声明更新至2026-07-28", ["public/legal/terms.html", "public/legal/disclaimer.html"].every((name) => sources[name].includes("最后更新：2026-07-28"))],
 ];
 
 const failed = checks.filter(([, ok]) => !ok);

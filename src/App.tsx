@@ -48,6 +48,24 @@ const features = [
   { icon: cloudSyncIcon, title: '云端数据同步', desc: '账号、学习记录与聊天记忆存在云端，换设备也能同步（当前提供 Android 客户端）' },
 ]
 
+const releaseHighlights = [
+  {
+    label: '目标',
+    title: '从“大目标”到今天这一步',
+    desc: '把目标、掌握度、练习与错题放在一起，给出可采纳、可排进计划的下一步。',
+  },
+  {
+    label: '桌面',
+    title: '不打开 App，也能看见进度',
+    desc: '今日总览、计划日程、学习进度与快速记账四类小组件，把常用信息放回桌面。',
+  },
+  {
+    label: '复习',
+    title: '练习不是做完就算',
+    desc: '题库、错题本、知识树和遗忘曲线彼此衔接，让每次练习都能留下下一次行动。',
+  },
+]
+
 const roadmap = [
   {
     status: '已完成',
@@ -395,6 +413,23 @@ function App() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="release-story" aria-labelledby="release-story-title">
+          <div className="release-story-heading reveal">
+            <span>知潮 3.0.2</span>
+            <h2 id="release-story-title">让“下一步”更容易被看见</h2>
+            <p>不是再堆一个入口，而是把目标、行动和提醒接起来。</p>
+          </div>
+          <div className="release-story-grid">
+            {releaseHighlights.map((item, index) => (
+              <article className={`release-story-card release-story-card--${index + 1} reveal`} key={item.title}>
+                <span className="release-story-index">{item.label}</span>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </article>
+            ))}
           </div>
         </section>
 
