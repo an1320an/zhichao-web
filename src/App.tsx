@@ -147,7 +147,7 @@ const platforms = [
     name: 'Android 移动端',
     desc: '知潮 3.0.2 Android 安装包',
     status: '桌面组件与体验更新',
-    downloadUrl: 'https://huaix.cn/download/zhichao-mobile-release.apk?v=3.0.2',
+    downloadUrl: 'https://huaix.cn/download/zhichao-mobile-release.apk?v=3.0.5',
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
   },
@@ -225,6 +225,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-07-30',
+    title: '知潮 3.0.5：自适应学习闭环与朵朵体验更新',
+    desc: '学习教练新增 5/10/15 分钟任务、薄弱原因识别、答题信心、停滞换策略和完成后 3 题复测，并只维护一条由用户主动开启的动态学习提醒。同步更新计划完成入口、临床计算工具、桌面天气与朵朵状态组件、朵朵小屋和传说衣柜、首页单成就佩戴、场景化记账反馈、连续手写与常用功能抽屉，并完善 App 内法律文本、联系入口和内容安全边界。同一天的改进统一归入本条记录。',
+  },
   {
     date: '2026-07-29',
     title: '知潮 3.0.3 归潮纪念版：国内服务、桌面组件与学习下一步',
