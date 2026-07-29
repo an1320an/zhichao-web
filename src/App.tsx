@@ -145,7 +145,7 @@ const platformNotices: Record<string, string> = {
 const platforms = [
   {
     name: 'Android 移动端',
-    desc: '知潮 3.0.2 Android 安装包',
+    desc: '知潮 3.0.5 Android 安装包',
     status: '桌面组件与体验更新',
     downloadUrl: 'https://huaix.cn/download/zhichao-mobile-release.apk?v=3.0.5',
     downloadLabel: '下载知潮新包',
@@ -424,7 +424,7 @@ function App() {
                 选定主目标后，把刷题、模拟考、错题复习和知识练习变成掌握证据。知潮会随着真实进度，持续调整今天最值得先做的那一步。
               </p>
               <div className="hero-cta-group">
-                <a className="cta" href="#download">下载知潮 3.0.2</a>
+                <a className="cta" href="#download">下载知潮 3.0.5</a>
                 <a className="cta cta-secondary" href="#widgets">了解学习教练与组件</a>
               </div>
               <div className="hero-signals" aria-label="核心能力">
