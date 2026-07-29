@@ -37,6 +37,8 @@ const checks = [
   ["官网主域统一为 huaix.cn", sources["index.html"].includes('href="https://huaix.cn/"') && sources["src/App.tsx"].includes("https://huaix.cn/download/")],
   ["官网展示真实 ICP 备案号", sources["src/App.tsx"].includes("陕ICP备2026019822号") && sources["public/404.html"].includes("陕ICP备2026019822号")],
   ["官网统一登记运营主体", sources["src/App.tsx"].includes("旬阳市槐序软件工作室")],
+  ["公开联系邮箱已统一", publicCopy.includes("2014302010@qq.com") && !publicCopy.includes("an1320an@gmail.com")],
+  ["抖音入口保持可点击直达", sources["src/App.tsx"].includes("href={DOUYIN_URL}") && sources["src/App.tsx"].includes("https://v.douyin.com/C8lWv7zLhz8/")],
   ["公开站不再提供 App 协议或隐私页面", removedPublicAgreementFiles.every((name) => !fs.existsSync(path.join(root, name)))],
   ["公开页面不再链接 App 协议或隐私页面", !/\/legal\/(?:privacy|terms|disclaimer|complaints)\.html/.test(publicCopy)],
   ["九项功能使用九张独立生成配图", featureAssets.every((name) => fs.existsSync(path.join(root, "public", "features", name)))],

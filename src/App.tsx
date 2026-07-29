@@ -15,6 +15,7 @@ import androidQrCode from '/qr-android-download.svg'
 
 const DOUYIN_URL = 'https://v.douyin.com/C8lWv7zLhz8/'
 const DOUYIN_NAME = '槐序学长工作室'
+const CONTACT_EMAIL = '2014302010@qq.com'
 
 const philosophy = [
   {
@@ -583,7 +584,7 @@ function App() {
             用轻量的陪伴让漫长的医学备考不那么枯燥。项目由旬阳市槐序软件工作室（个体工商户）持续迭代打造，你可以在抖音
             <a href={DOUYIN_URL} target="_blank" rel="noopener noreferrer"> @{DOUYIN_NAME} </a>
             关注最新进展，或通过邮箱
-            <a href="mailto:an1320an@gmail.com"> an1320an@gmail.com </a>
+            <a href={`mailto:${CONTACT_EMAIL}`}> {CONTACT_EMAIL} </a>
             联系我们、提出建议。
           </p>
         </section>
@@ -610,7 +611,7 @@ function App() {
               有兴趣的话，通过
               <a href={DOUYIN_URL} target="_blank" rel="noopener noreferrer"> 抖音 · {DOUYIN_NAME} </a>
               、QQ 2014302010 或
-              <a href="mailto:an1320an@gmail.com"> 邮箱 </a>
+              <a href={`mailto:${CONTACT_EMAIL}`}> 邮箱 </a>
               找我们聊聊。
             </p>
           </div>
@@ -725,7 +726,7 @@ function App() {
           QQ：2014302010
         </a>
         <p>
-          联系邮箱：<a href="mailto:an1320an@gmail.com">an1320an@gmail.com</a>
+          联系邮箱：<a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </p>
         <p>旬阳市槐序软件工作室（个体工商户） · 知潮</p>
         <p className="site-filing">
@@ -736,7 +737,7 @@ function App() {
         <nav className="legal-links">
           <a href="#faq">常见问题</a>
           <a href="#architecture">数据与规则</a>
-          <a href="mailto:an1320an@gmail.com">联系我们</a>
+          <a href={`mailto:${CONTACT_EMAIL}`}>联系我们</a>
         </nav>
       </footer>
     </div>
