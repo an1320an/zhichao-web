@@ -7,13 +7,13 @@
 <meta name="description" content="你的朋友邀请你一起用知潮备考。" />
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; background: linear-gradient(160deg, #eaf4ee 0%, #f4f8f6 100%); color: #1f2d27; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; background: linear-gradient(160deg, #eaf4ee 0%, #f4f8f6 100%); color: #1f2d27; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
   .card { background: #fff; border-radius: 20px; padding: 32px 24px; max-width: 380px; width: 100%; box-shadow: 0 12px 40px rgba(47,125,97,0.12); text-align: center; }
   .logo { font-size: 22px; font-weight: 800; color: #2f7d61; }
   .lead { font-size: 15px; color: #4a5b54; margin-top: 14px; line-height: 1.6; }
   .code-label { font-size: 12px; color: #899490; margin-top: 24px; letter-spacing: 1px; }
   .code-row { display: flex; align-items: stretch; gap: 8px; margin-top: 6px; }
-  .code { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; font-size: clamp(22px, 7.5vw, 30px); font-weight: 800; letter-spacing: 3px; color: #1f2d27; background: #f4f8f6; border-radius: 12px; padding: 14px 10px; overflow-wrap: anywhere; }
+  .code { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; font-size: clamp(20px, 6.5vw, 26px); font-weight: 800; letter-spacing: 2px; color: #1f2d27; background: #f4f8f6; border-radius: 12px; padding: 14px 8px; white-space: nowrap; overflow: hidden; }
   .code.empty { font-size: 13px; font-weight: 600; letter-spacing: 0; line-height: 1.45; }
   .copy-btn { flex: 0 0 68px; border: 0; border-radius: 12px; background: #e4eee8; color: #2f7d61; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
   .copy-btn:active { opacity: .72; }
@@ -22,6 +22,15 @@
   .btn:active { opacity: .85; }
   .hint { font-size: 12.5px; color: #899490; margin-top: 16px; line-height: 1.6; }
   .foot { font-size: 11px; color: #b0bdb8; margin-top: 18px; line-height: 1.6; }
+  .filing { width: 100%; margin: 18px auto 0; text-align: center; font-size: 13px; opacity: .72; }
+  .filing a { color: inherit; }
+  @media (max-width: 360px) {
+    body { padding: 12px; }
+    .card { padding: 28px 18px; }
+    .code-row { gap: 6px; }
+    .code { font-size: 20px; letter-spacing: 1.5px; padding-inline: 6px; }
+    .copy-btn { flex-basis: 62px; }
+  }
 </style>
 </head>
 <body>
@@ -81,8 +90,8 @@
       }, 1600);
     });
   </script>
-  <p style="margin: 28px auto 18px; text-align: center; font-size: 13px; opacity: .72;">
-    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" style="color: inherit;">陕ICP备2026019822号</a>
+  <p class="filing">
+    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">陕ICP备2026019822号</a>
   </p>
 </body>
 </html>
