@@ -145,9 +145,9 @@ const platformNotices: Record<string, string> = {
 const platforms = [
   {
     name: 'Android 移动端',
-    desc: '知潮 3.0.6 Android 安装包',
-    status: '桌面组件与体验更新',
-    downloadUrl: 'https://huaix.cn/download/zhichao-mobile-release.apk?v=3.0.6',
+    desc: '知潮 3.0.7 Android 安装包',
+    status: '首页、Dock 与交互细节更新',
+    downloadUrl: 'https://huaix.cn/download/zhichao-mobile-release.apk?v=3.0.7',
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
   },
@@ -225,6 +225,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-07-30',
+    title: '知潮 3.0.7：首页、Dock 与交互细节修复',
+    desc: '修复首页常用功能下拉、悬浮朵朵大小与贴边方向、佩戴成就同步，以及底部 Dock 的胶囊圆角、重复内层、暖色残影和内容遮挡；统一聊天页底色并增强液态玻璃透明模糊。答题把握度新增用途说明和明确可点击选项，记账编辑弹窗取消割裂遮罩，朵朵笔记使用说明现在可从卡片和文字区域直接上下滑动。',
+  },
   {
     date: '2026-07-30',
     title: '知潮 3.0.6：自适应学习闭环与朵朵体验更新',
@@ -424,7 +429,7 @@ function App() {
                 选定主目标后，把刷题、模拟考、错题复习和知识练习变成掌握证据。知潮会随着真实进度，持续调整今天最值得先做的那一步。
               </p>
               <div className="hero-cta-group">
-                <a className="cta" href="#download">下载知潮 3.0.6</a>
+                <a className="cta" href="#download">下载知潮 3.0.7</a>
                 <a className="cta cta-secondary" href="#widgets">了解学习教练与组件</a>
               </div>
               <div className="hero-signals" aria-label="核心能力">
