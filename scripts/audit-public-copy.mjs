@@ -32,6 +32,12 @@ const featureAssets = [
   "floating-dodo.webp",
   "cloud-sync.webp",
 ];
+const inviteWelcomeAsset = path.join(
+  root,
+  "public",
+  "invite",
+  "zhichao-invite-welcome-v1.webp",
+);
 
 const checks = [
   ["公开网页不出现客户端内部服务术语", !hiddenServiceTerms.test(publicCopy)],
@@ -47,6 +53,8 @@ const checks = [
   ["九项功能使用九张独立生成配图", featureAssets.every((name) => fs.existsSync(path.join(root, "public", "features", name)))],
   ["九项功能保持三列完整网格", sources["src/App.tsx"].includes('className="feature-grid"')],
   ["邀请码与下载使用新主域路径", sources["public/invite/index.html"].includes("/download/zhichao-mobile-release.apk")],
+  ["邀请页提供欢迎首屏和真实功能简介", ["欢迎来到知潮", "练得更有方向", "复习更有节奏", "朵朵陪你坚持", "三步开始"].every((phrase) => sources["public/invite/index.html"].includes(phrase))],
+  ["邀请页使用独立欢迎插画", fs.existsSync(inviteWelcomeAsset) && sources["public/invite/index.html"].includes("/invite/zhichao-invite-welcome-v1.webp")],
   ["邀请页不作无法覆盖访问日志的绝对承诺", !sources["public/invite/index.html"].includes("不会收集你的任何个人信息") && sources["public/invite/index.html"].includes("不设置账号登录或信息填写表单")],
   ["官网不预写未来收费或情感付费自辩", !["如果未来提供自愿支持", "增进与朵朵的情感关系"].some((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["共创说明采用事实表述而非关系排除清单", !sources["src/App.tsx"].includes("不代表股权、雇佣、商业代理或官方授权关系")],

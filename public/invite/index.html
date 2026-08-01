@@ -3,50 +3,456 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>邀请 · 知潮</title>
-<meta name="description" content="你的朋友邀请你一起用知潮备考。" />
+<meta name="theme-color" content="#e8f4ee" />
+<title>朋友邀请你加入知潮</title>
+<meta name="description" content="欢迎来到知潮。收下朋友的邀请码，开始有计划、有节奏的学习。" />
 <style>
+  :root {
+    color-scheme: light;
+    --ink: #19352b;
+    --ink-soft: #4f665e;
+    --muted: #7a8d86;
+    --green: #2f8165;
+    --green-deep: #236c53;
+    --mint: #e7f3ed;
+    --line: rgba(45, 105, 82, .13);
+    --shadow: 0 22px 70px rgba(36, 94, 72, .12);
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; background: linear-gradient(160deg, #eaf4ee 0%, #f4f8f6 100%); color: #1f2d27; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-  .card { background: #fff; border-radius: 20px; padding: 32px 24px; max-width: 380px; width: 100%; box-shadow: 0 12px 40px rgba(47,125,97,0.12); text-align: center; }
-  .logo { font-size: 22px; font-weight: 800; color: #2f7d61; }
-  .lead { font-size: 15px; color: #4a5b54; margin-top: 14px; line-height: 1.6; }
-  .code-label { font-size: 12px; color: #899490; margin-top: 24px; letter-spacing: 1px; }
-  .code-row { display: flex; align-items: stretch; gap: 8px; margin-top: 6px; }
-  .code { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; font-size: clamp(20px, 6.5vw, 26px); font-weight: 800; letter-spacing: 2px; color: #1f2d27; background: #f4f8f6; border-radius: 12px; padding: 14px 8px; white-space: nowrap; overflow: hidden; }
-  .code.empty { font-size: 13px; font-weight: 600; letter-spacing: 0; line-height: 1.45; }
-  .copy-btn { flex: 0 0 68px; border: 0; border-radius: 12px; background: #e4eee8; color: #2f7d61; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
-  .copy-btn:active { opacity: .72; }
-  .copy-btn:disabled { cursor: default; opacity: .5; }
-  .btn { display: block; margin-top: 22px; background: #2f7d61; color: #fff; text-decoration: none; font-weight: 700; font-size: 16px; padding: 14px; border-radius: 12px; }
-  .btn:active { opacity: .85; }
-  .hint { font-size: 12.5px; color: #899490; margin-top: 16px; line-height: 1.6; }
-  .foot { font-size: 11px; color: #b0bdb8; margin-top: 18px; line-height: 1.6; }
-  .filing { width: 100%; margin: 18px auto 0; text-align: center; font-size: 13px; opacity: .72; }
-  .filing a { color: inherit; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 10% 8%, rgba(255,255,255,.95) 0 8%, transparent 24%),
+      radial-gradient(circle at 94% 22%, rgba(244,181,149,.22), transparent 25%),
+      linear-gradient(155deg, #e2f2ea 0%, #f3f8f4 46%, #f7f1eb 100%);
+  }
+
+  body::before,
+  body::after {
+    position: fixed;
+    z-index: -1;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+  }
+
+  body::before { top: 16%; left: -250px; background: rgba(113, 190, 159, .16); }
+  body::after { right: -260px; bottom: 8%; background: rgba(168, 147, 213, .12); }
+  button, a { -webkit-tap-highlight-color: transparent; }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 3px solid rgba(47, 129, 101, .28);
+    outline-offset: 3px;
+  }
+
+  .page { width: min(100%, 1040px); margin: 0 auto; padding: 20px 20px 30px; }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 52px;
+    margin-bottom: 16px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 850;
+    letter-spacing: .04em;
+  }
+
+  .brand-mark {
+    position: relative;
+    width: 31px;
+    height: 31px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #74bf73, #348a65);
+    box-shadow: inset 0 1px rgba(255,255,255,.55), 0 5px 14px rgba(47,129,101,.18);
+  }
+
+  .brand-mark::before,
+  .brand-mark::after {
+    position: absolute;
+    top: 5px;
+    width: 10px;
+    height: 15px;
+    background: #eef8df;
+    content: "";
+  }
+
+  .brand-mark::before { left: 6px; border-radius: 10px 2px 10px 2px; transform: rotate(-28deg); }
+  .brand-mark::after { right: 6px; border-radius: 2px 10px 2px 10px; transform: rotate(28deg); }
+
+  .invite-pill {
+    padding: 8px 13px;
+    border: 1px solid rgba(47,129,101,.14);
+    border-radius: 999px;
+    background: rgba(255,255,255,.55);
+    color: var(--green-deep);
+    font-size: 12px;
+    font-weight: 750;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, .92fr) minmax(420px, 1.2fr);
+    align-items: stretch;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.82);
+    border-radius: 32px;
+    background: rgba(255,255,255,.82);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+  }
+
+  .hero-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+    padding: 46px 40px;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 8px;
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .08em;
+  }
+
+  .eyebrow::before { width: 22px; height: 2px; border-radius: 99px; background: var(--green); content: ""; }
+
+  h1 {
+    margin-top: 15px;
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.08;
+    letter-spacing: -.04em;
+  }
+
+  .hero-lead { margin-top: 17px; color: var(--ink-soft); font-size: 16px; line-height: 1.8; }
+  .hero-lead strong { color: var(--green-deep); }
+
+  .hero-visual { position: relative; min-height: 470px; overflow: hidden; background: #eaf4ee; }
+
+  .hero-visual img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: 58% center;
+  }
+
+  .hero-visual::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,.38), transparent 24%);
+    content: "";
+    pointer-events: none;
+  }
+
+  .code-card {
+    margin-top: 26px;
+    padding: 17px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: linear-gradient(145deg, #f4faf6, #edf6f1);
+  }
+
+  .code-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .code-label span:last-child { color: var(--green); }
+  .code-row { display: flex; min-width: 0; align-items: stretch; gap: 9px; margin-top: 10px; }
+
+  .code {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 14px 8px;
+    border: 1px solid rgba(47,129,101,.09);
+    border-radius: 13px;
+    background: rgba(255,255,255,.92);
+    color: var(--ink);
+    font-size: clamp(20px, 4vw, 27px);
+    font-weight: 900;
+    letter-spacing: .12em;
+    white-space: nowrap;
+  }
+
+  .code.empty { font-size: 12px; font-weight: 650; letter-spacing: 0; line-height: 1.45; }
+
+  .copy-btn {
+    flex: 0 0 68px;
+    border: 0;
+    border-radius: 13px;
+    background: var(--green);
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .18s ease, background .18s ease;
+  }
+
+  .copy-btn:hover { background: var(--green-deep); transform: translateY(-1px); }
+  .copy-btn:active { transform: translateY(0); }
+  .copy-btn:disabled { cursor: default; opacity: .48; transform: none; }
+  .section { margin-top: 22px; }
+
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 13px;
+    padding: 0 4px;
+  }
+
+  h2 { font-size: 23px; letter-spacing: -.02em; }
+  .section-head p { color: var(--muted); font-size: 13px; }
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+
+  .feature {
+    min-width: 0;
+    min-height: 164px;
+    padding: 22px;
+    border: 1px solid rgba(255,255,255,.9);
+    border-radius: 22px;
+    background: rgba(255,255,255,.77);
+    box-shadow: 0 12px 36px rgba(38,87,69,.07);
+  }
+
+  .feature-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 14px;
+    background: var(--mint);
+    color: var(--green);
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .feature:nth-child(2) .feature-icon { background: #f1ecfa; color: #7860b7; }
+  .feature:nth-child(3) .feature-icon { background: #fff0e7; color: #cb7750; }
+  .feature h3 { margin-top: 16px; font-size: 17px; }
+  .feature p { margin-top: 8px; color: var(--ink-soft); font-size: 13px; line-height: 1.7; }
+
+  .join-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: center;
+    padding: 28px 30px;
+    border: 1px solid rgba(47,129,101,.12);
+    border-radius: 26px;
+    background: linear-gradient(120deg, rgba(255,255,255,.9), rgba(241,248,244,.82));
+    box-shadow: 0 16px 48px rgba(38,87,69,.08);
+  }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 19px; }
+
+  .step { position: relative; padding-left: 38px; color: var(--ink-soft); font-size: 13px; line-height: 1.55; }
+  .step b { display: block; color: var(--ink); font-size: 14px; }
+
+  .step-number {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    display: grid;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--mint);
+    color: var(--green-deep);
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .download-btn {
+    display: inline-flex;
+    min-width: 214px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 22px;
+    border-radius: 16px;
+    background: var(--green);
+    box-shadow: 0 12px 25px rgba(47,129,101,.22);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 850;
+    text-decoration: none;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+
+  .download-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(47,129,101,.26); }
+  .download-btn::after { content: "↓"; font-size: 19px; }
+  .account-hint { margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+
+  .site-footer {
+    padding: 22px 8px 4px;
+    color: #82928c;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  .site-footer a { color: #5f7b70; text-underline-offset: 3px; }
+  .filing { margin-top: 5px; font-size: 12px; }
+
+  @media (max-width: 820px) {
+    .page { padding-top: 10px; }
+    .topbar { margin-bottom: 10px; }
+    .hero { grid-template-columns: minmax(0, 1fr); border-radius: 26px; }
+    .hero-visual { grid-row: 1; min-height: 0; aspect-ratio: 3 / 2; }
+    .hero-visual::after { background: linear-gradient(0deg, rgba(255,255,255,.3), transparent 24%); }
+    .hero-copy { padding: 30px 28px 28px; }
+    h1 { font-size: 38px; }
+    .feature-grid { grid-template-columns: minmax(0, 1fr); }
+    .feature { min-height: 0; }
+    .join-card { grid-template-columns: minmax(0, 1fr); }
+    .download-btn { width: 100%; }
+  }
+
+  @media (max-width: 540px) {
+    .page { padding: 8px 12px 22px; }
+    .topbar { min-height: 48px; padding: 0 4px; }
+    .brand { font-size: 16px; }
+    .brand-mark { width: 28px; height: 28px; }
+    .invite-pill { padding: 7px 10px; }
+    .hero { border-radius: 24px; }
+    .hero-copy { padding: 25px 20px 22px; }
+    .eyebrow { font-size: 12px; }
+    h1 { margin-top: 11px; font-size: 34px; }
+    .hero-lead { margin-top: 12px; font-size: 14px; line-height: 1.72; }
+    .code-card { margin-top: 20px; padding: 14px; border-radius: 17px; }
+    .code { font-size: clamp(19px, 7vw, 25px); }
+    .section { margin-top: 18px; }
+    .section-head { display: block; padding: 0 2px; }
+    .section-head p { margin-top: 4px; }
+    .feature-grid { gap: 10px; }
+    .feature { padding: 19px; border-radius: 19px; }
+    .feature-icon { float: left; margin-right: 14px; }
+    .feature h3 { margin-top: 1px; padding-top: 2px; }
+    .feature p { min-height: 42px; }
+    .join-card { gap: 22px; padding: 24px 20px; border-radius: 22px; }
+    .steps { grid-template-columns: 1fr; gap: 14px; }
+  }
+
   @media (max-width: 360px) {
-    body { padding: 12px; }
-    .card { padding: 28px 18px; }
+    .page { padding-inline: 9px; }
+    .hero-copy { padding-inline: 16px; }
+    h1 { font-size: 31px; }
     .code-row { gap: 6px; }
-    .code { font-size: 20px; letter-spacing: 1.5px; padding-inline: 6px; }
     .copy-btn { flex-basis: 62px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
   }
 </style>
 </head>
 <body>
-  <div class="card">
-    <div class="logo">🌱 槐序 · 知潮</div>
-    <p class="lead">你的朋友邀请你一起用 <b>知潮</b> 备考——题库、复习与轻养成结合的学习工具。</p>
-    <p class="hint" style="margin-top:10px;">📚 计划、提醒、题库练习、错题复习与学习进度会在同一账号下衔接；固定功能优先由规则库和数据库完成。本服务仅面向年满 18 周岁的邀请内测用户。</p>
-    <div class="code-label">你的邀请码</div>
-    <div class="code-row">
-      <div class="code" id="code">—</div>
-      <button class="copy-btn" id="copy-code" type="button" aria-label="复制邀请码">复制</button>
-    </div>
-    <a class="btn" href="/download/zhichao-mobile-release.apk?v=3.0.29">下载知潮 Android 版</a>
-    <p class="hint">已有知潮账号可直接登录并继续使用云端数据；新用户安装后可在<b>注册页</b>填入上面的邀请码。</p>
-    <p class="foot">邀请码仅用于邀请注册，请勿倒卖。本页面不设置账号登录或信息填写表单。知潮当前仅面向年满 18 周岁的邀请用户。<a href="/website-privacy.html">网站隐私说明</a></p>
-  </div>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>槐序 · 知潮</span></div>
+      <span class="invite-pill">朋友专属邀请</span>
+    </header>
+
+    <section class="hero" aria-labelledby="welcome-title">
+      <div class="hero-copy">
+        <p class="eyebrow">一起进入学习节奏</p>
+        <h1 id="welcome-title">欢迎来到知潮</h1>
+        <p class="hero-lead">你的朋友为你留了一张入场券。用 <strong>题库练习、错题复习和学习计划</strong>，把每一次进步慢慢连起来。</p>
+
+        <div class="code-card">
+          <div class="code-label"><span>你的专属邀请码</span><span>注册时填写</span></div>
+          <div class="code-row">
+            <div class="code" id="code" aria-live="polite">—</div>
+            <button class="copy-btn" id="copy-code" type="button" aria-label="复制邀请码">复制</button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="/invite/zhichao-invite-welcome-v1.webp" width="1440" height="960" alt="朵朵拿着书，欢迎新朋友开始有计划的学习" fetchpriority="high" />
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="know-title">
+      <div class="section-head">
+        <h2 id="know-title">先认识一下知潮</h2>
+        <p>刷题、复习与陪伴，在同一条学习线上衔接</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature">
+          <span class="feature-icon" aria-hidden="true">✓</span>
+          <h3>练得更有方向</h3>
+          <p>题库练习、错题回看与模拟测评相互衔接，方便按自己的范围持续练习。</p>
+        </article>
+        <article class="feature">
+          <span class="feature-icon" aria-hidden="true">⌁</span>
+          <h3>复习更有节奏</h3>
+          <p>遗忘曲线安排到期错题，帮助你知道今天先复习什么，完成后再安排下一次。</p>
+        </article>
+        <article class="feature">
+          <span class="feature-icon" aria-hidden="true">♧</span>
+          <h3>朵朵陪你坚持</h3>
+          <p>学习计划、笔记、提醒与轻养成汇在一起，让长期备考不只剩下题目数字。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section join-card" aria-labelledby="join-title">
+      <div>
+        <h2 id="join-title">三步开始</h2>
+        <div class="steps">
+          <div class="step"><span class="step-number">1</span><b>下载安装</b>获取 Android 客户端</div>
+          <div class="step"><span class="step-number">2</span><b>注册时填写</b>输入上方邀请码</div>
+          <div class="step"><span class="step-number">3</span><b>设定目标</b>开始自己的学习计划</div>
+        </div>
+        <p class="account-hint">已有知潮账号可直接登录并继续使用云端数据，不需要重新注册。</p>
+      </div>
+      <a class="download-btn" href="/download/zhichao-mobile-release.apk?v=3.0.29">下载知潮 Android 版</a>
+    </section>
+
+    <footer class="site-footer">
+      <p>邀请码仅用于邀请注册，请勿倒卖。本页面不设置账号登录或信息填写表单。知潮当前仅面向年满 18 周岁的邀请用户。</p>
+      <p><a href="/website-privacy.html">网站隐私说明</a></p>
+      <p class="filing"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">陕ICP备2026019822号</a></p>
+    </footer>
+  </main>
+
   <script>
     var code = (new URLSearchParams(location.search).get("code") || "").trim();
     var codeElement = document.getElementById("code");
@@ -90,8 +496,5 @@
       }, 1600);
     });
   </script>
-  <p class="filing">
-    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">陕ICP备2026019822号</a>
-  </p>
 </body>
 </html>
