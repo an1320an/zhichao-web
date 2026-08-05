@@ -36,6 +36,8 @@ const philosophy = [
   },
 ]
 
+const APP_VERSION = '3.0.43'
+
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
   { icon: petGrowthIcon, title: '轻量养成激励', desc: '等级、成长曲线、学历、打工和商店陪你走完整段学习路；金币只通过学习获得。' },
@@ -145,9 +147,9 @@ const platformNotices: Record<string, string> = {
 const platforms = [
   {
     name: 'Android 移动端',
-    desc: '知潮 3.0.43 Android 安装包',
+    desc: `知潮 ${APP_VERSION} Android 安装包`,
     status: '病历模拟、用药学习卡与笔记记账更新',
-    downloadUrl: 'https://huaix.cn/download/zhichao-mobile-release.apk?v=3.0.43',
+    downloadUrl: `https://huaix.cn/download/zhichao-mobile-release.apk?v=${APP_VERSION}`,
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
   },
@@ -444,7 +446,7 @@ function App() {
                 选定主目标后，把刷题、模拟考、错题复习和知识练习变成掌握证据。知潮会随着真实进度，持续调整今天最值得先做的那一步。
               </p>
               <div className="hero-cta-group">
-                <a className="cta" href="#download">下载知潮 3.0.30</a>
+                <a className="cta" href="#download">下载知潮 {APP_VERSION}</a>
                 <a className="cta cta-secondary" href="#widgets">了解学习教练与组件</a>
               </div>
               <div className="hero-signals" aria-label="核心能力">
