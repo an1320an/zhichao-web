@@ -145,9 +145,9 @@ const platformNotices: Record<string, string> = {
 const platforms = [
   {
     name: 'Android 移动端',
-    desc: '知潮 3.0.30 Android 安装包',
-    status: '学习、朵朵联动、记账与规培工作台更新',
-    downloadUrl: 'https://huaix.cn/download/zhichao-mobile-release.apk?v=3.0.30',
+    desc: '知潮 3.0.43 Android 安装包',
+    status: '病历模拟、用药学习卡与笔记记账更新',
+    downloadUrl: 'https://huaix.cn/download/zhichao-mobile-release.apk?v=3.0.43',
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
   },
@@ -225,6 +225,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-08-06',
+    title: '知潮 3.0.43：病历模拟、用药学习卡与笔记记账升级',
+    desc: '病历模拟升级为完整训练流程：文书时间线按真实收治顺序解锁，先写入院记录再写后续文书，支持长按删除和导入 Word、TXT、PDF 文档，知情同意书等模板改为规范书面文体，整理成稿排版更有条理。新增用药学习卡：输入药名即可查看分类、作用机制、适应证概览、注意要点与考点提示，二次查询秒回。朵朵笔记新增 Markdown 预览、表格块与思维导图、流程图；随手记账界面瘦身、支持连续记账与常用分类，银行和支付平台图标一眼可辨，并修复图片凭证无法打开的问题。',
+  },
   {
     date: '2026-08-02',
     title: '知潮 3.0.30：学习流程、朵朵联动与本地规培工作台升级',
