@@ -760,6 +760,14 @@ function App() {
           <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
             陕ICP备2026019822号
           </a>
+          {' · '}
+          <a
+            href="https://beian.mps.gov.cn/#/query/webSearch?code=61092802000137"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            陕公网安备61092802000137号
+          </a>
         </p>
         <nav className="legal-links">
           <a href="#faq">常见问题</a>
