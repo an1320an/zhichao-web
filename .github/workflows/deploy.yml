@@ -1,28 +1,27 @@
-# 已退役：这个 workflow 原本每次 push 到 main 就把官网 rsync 到香港 43.161.234.56。
-#
-# 2026-08-05 香港实例退役：nginx 已停并禁用开机自启，那台机器上的 huaipet-server
-# 后端更早之前就已经是 stopped 状态。官网现在由北京 82.156.43.145 提供服务，走
-# 原子发布目录（/var/www/zhichao-web/releases/<commit>-<timestamp> + current 软链），
-# 不再用 rsync 覆盖式部署。
-#
-# 保留这个文件而不是直接删掉，是为了让任何看到"官网怎么不自动部署了"的人能立刻
-# 找到原因；同时把触发条件改成仅手动，避免它继续在每次 push 时跑出一个绿灯却什么
-# 都没做的假成功——那比明确失败更容易误导人。
-#
-# 要恢复自动部署，需要先确定新的目标主机与发布方式，不要简单地把 IP 换成北京：
-# 北京侧是原子发布 + 软链切换，直接 rsync 覆盖会破坏回滚能力。
-
-name: Deploy to HK server (retired 2026-08-05)
+name: Deploy to HK server
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [main]
 
 jobs:
-  retired:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Explain retirement
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Deploy dist to server
         run: |
-          echo "香港实例已于 2026-08-05 退役，此 workflow 不再部署任何内容。"
-          echo "官网现由北京 82.156.43.145 以原子发布目录方式提供服务。"
-          exit 1
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          rsync -avz --delete --exclude='download' \
+            -e "ssh -i ~/.ssh/deploy_key -p 22 -o StrictHostKeyChecking=accept-new" \
+            ./dist/ ubuntu@43.161.234.56:/var/www/huaipet-web/
