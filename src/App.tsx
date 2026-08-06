@@ -762,10 +762,12 @@ function App() {
           </a>
           {' · '}
           <a
+            className="gongan-filing"
             href="https://beian.mps.gov.cn/#/query/webSearch?code=61092802000137"
             target="_blank"
             rel="noopener noreferrer"
           >
+            <img src="/gongan.png" alt="" width={18} height={18} />
             陕公网安备61092802000137号
           </a>
         </p>

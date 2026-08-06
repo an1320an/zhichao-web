@@ -1302,3 +1302,14 @@
   color: inherit;
   text-underline-offset: 3px;
 }
+
+.gongan-filing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: middle;
+}
+
+.gongan-filing img {
+  display: block;
+}
