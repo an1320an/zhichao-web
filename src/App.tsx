@@ -36,7 +36,7 @@ const philosophy = [
   },
 ]
 
-const APP_VERSION = '3.0.43'
+const APP_VERSION = '3.0.59'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
@@ -148,7 +148,7 @@ const platforms = [
   {
     name: 'Android 移动端',
     desc: `知潮 ${APP_VERSION} Android 安装包`,
-    status: '病历模拟、用药学习卡与笔记记账更新',
+    status: '知识卡片整理与聊天体验更新',
     downloadUrl: `https://huaix.cn/download/zhichao-mobile-release.apk?v=${APP_VERSION}`,
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
@@ -227,6 +227,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-08-08',
+    title: '知潮 3.0.59：知识卡片整理、聊天体验与稳定性修复',
+    desc: '知识卡片新增结构化分段展示，支持单卡内容重新整理、结合内容生成练习题和记忆卡片。朵朵聊天优化：记账、足迹、日程与长期记忆这类需要确认的回复不再和确认卡片重复啰嗦，闹钟提醒答非所问的情况也已改善。修复搭子页常用工具编辑面板视觉问题、天气页定位权限交互、快捷互动页面视觉（头像跟随装扮），以及多处答题与图示页面切换卡顿、选中图标对比度和闹钟响铃服务被系统提前终止时的误判问题。',
+  },
   {
     date: '2026-08-06',
     title: '知潮 3.0.43：病历模拟、用药学习卡与笔记记账升级',
