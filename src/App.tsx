@@ -13,8 +13,10 @@ import floatingDodoIcon from '/features/floating-dodo.webp'
 import cloudSyncIcon from '/features/cloud-sync.webp'
 import androidQrCode from '/qr-android-download.svg'
 
-const DOUYIN_URL = 'https://v.douyin.com/C8lWv7zLhz8/'
-const DOUYIN_NAME = '槐序学长工作室'
+const SUPPORT_DOUYIN_URL = 'https://v.douyin.com/4Tl7oRzN9KM/'
+const SUPPORT_DOUYIN_NAME = '槐序学长'
+const STUDIO_DOUYIN_URL = 'https://v.douyin.com/fs6MHFOU5q4/'
+const STUDIO_DOUYIN_NAME = '槐序工坊'
 const CONTACT_EMAIL = '2014302010@qq.com'
 
 const philosophy = [
@@ -36,7 +38,7 @@ const philosophy = [
   },
 ]
 
-const APP_VERSION = '3.0.59'
+const APP_VERSION = '3.0.60'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
@@ -108,15 +110,19 @@ const roadmap = [
       '悬浮朵朵（套装联动、自定义快捷操作与自动贴边）',
       '云端账号与数据同步（当前提供 Android 客户端）',
       '安全与健康使用保护（18+ 门槛、使用时长提醒、危机干预、数据导出与删除）',
+      '计划、课程表、排班表、倒数日与纪念日',
+      '结构化图示、知识卡片、用药学习卡与临床案例训练',
+      '足迹图文记录、图片文字识别与朵朵回应',
     ],
   },
   {
     status: '进行中',
     items: [
       '护理考研四科题库覆盖与章节体验',
+      '题库关闭副本零模型终审与护理考研章节体验',
       '学习目标、掌握度和下一步建议持续优化',
-      '朵朵笔记附件备份与换机恢复体验',
-      '天气、计划与异步学习通知稳定性',
+      '新笔记内核迁移、附件恢复与 Android 真机矩阵',
+      '提醒响铃、悬浮搭子看门狗与不同手机系统稳定性',
     ],
   },
   {
@@ -148,7 +154,7 @@ const platforms = [
   {
     name: 'Android 移动端',
     desc: `知潮 ${APP_VERSION} Android 安装包`,
-    status: '知识卡片整理与聊天体验更新',
+    status: '学习工作流、笔记迁移与可靠性更新',
     downloadUrl: `https://huaix.cn/download/zhichao-mobile-release.apk?v=${APP_VERSION}`,
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
@@ -158,7 +164,7 @@ const platforms = [
 const cocreateRoles = [
   {
     title: '剪辑 / 视频创作',
-    desc: '槐序学长工作室的知潮开发日记需要人帮忙剪素材、把开发过程做成好看的内容，一起把这个项目的故事讲给更多人听。',
+    desc: '槐序工坊的知潮开发日记需要人帮忙剪素材、把开发过程做成好看的内容，一起把这个项目的故事讲给更多人听。',
   },
   {
     title: '插画 / 角色设计',
@@ -194,11 +200,11 @@ const faq = [
   },
   {
     q: '支持哪些平台？',
-    a: `Android 移动端目前为邀请制内测（面向年满 18 周岁的用户）。想参与内测的话，通过抖音 @${DOUYIN_NAME} 或 QQ 2014302010 联系我们获取邀请码。`,
+    a: `Android 移动端目前为邀请制内测（面向年满 18 周岁的用户）。想参与内测的话，通过抖音 @${SUPPORT_DOUYIN_NAME} 或 QQ 2014302010 联系获取邀请码。`,
   },
   {
     q: '忘记密码怎么办？',
-    a: `仍在登录状态时，可以在 App「设置 → 账号安全」生成并妥善保存恢复码；退出登录或卸载重装后，可在登录页点「忘记密码」用恢复码自助重置。没有恢复码时，登录页也会引导你通过抖音 @${DOUYIN_NAME} 私信人工核验，请只提供注册邮箱，不要发送旧密码、恢复码或其他敏感信息。`,
+    a: `仍在登录状态时，可以在 App「设置 → 账号安全」生成并妥善保存恢复码；退出登录或卸载重装后，可在登录页点「忘记密码」用恢复码自助重置。没有恢复码时，登录页也会引导你通过抖音 @${SUPPORT_DOUYIN_NAME} 私信人工核验，请只提供注册邮箱，不要发送旧密码、恢复码或其他敏感信息。`,
   },
   {
     q: '学习教练会替我自动改计划吗？',
@@ -227,6 +233,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-08-08',
+    title: '知潮 3.0.60：学习工作流、内容整理与可靠性升级',
+    desc: '常用功能补齐病例模拟、用药学习卡、课程表和排班表等入口；朵朵聊天改为单一路由协调提醒、计划、记账与学习请求，减少离线规则和在线回复互相抢答。同步升级图示模板、图片与 PDF 导出、足迹图文排版、知识卡片操作、临床案例训练、闹钟看门狗、账单附件显示、计划层级、笔记批量管理与截图解读隔离，并统一柔和 Dock 玻璃效果。',
+  },
   {
     date: '2026-08-08',
     title: '知潮 3.0.59：知识卡片整理、聊天体验与稳定性修复',
@@ -370,7 +381,7 @@ const changelog = [
   {
     date: '2026-07-08',
     title: 'Android 内测开启',
-    desc: `知潮（当时名为 HuaiPet）Android 移动端正式开启邀请制内测，通过抖音 @${DOUYIN_NAME} 联系获取邀请码。`,
+    desc: `知潮（当时名为 HuaiPet）Android 移动端正式开启邀请制内测，通过抖音 @${SUPPORT_DOUYIN_NAME} 联系获取邀请码。`,
   },
   {
     date: '2026-07-07',
@@ -424,6 +435,7 @@ function resetCardTilt(e: React.MouseEvent<HTMLDivElement>) {
 
 function App() {
   const [platform] = useState(detectPlatform)
+  const [showAllChangelog, setShowAllChangelog] = useState(false)
   const platformNotice = platformNotices[platform]
   useScrollReveal()
 
@@ -445,7 +457,7 @@ function App() {
         <section className="hero">
           <div className="hero-shell">
             <div className="hero-copy">
-              <span className="hero-eyebrow">槐序学长工作室 · Android 邀请内测</span>
+              <span className="hero-eyebrow">槐序工坊 · Android 邀请内测</span>
               <h1>今天学什么，<br /><span>下一步更清楚。</span></h1>
               <p className="hero-sub">
                 选定主目标后，把刷题、模拟考、错题复习和知识练习变成掌握证据。知潮会随着真实进度，持续调整今天最值得先做的那一步。
@@ -569,7 +581,7 @@ function App() {
           <h2 className="section-title reveal">下载</h2>
           <div className="download-migration download-current reveal">
             <h3>当前邀请内测版</h3>
-            <p>下载安装后，已有知潮账号可直接登录并继续使用云端数据；新用户请先向邀请人或槐序学长工作室获取邀请码。</p>
+            <p>下载安装后，已有知潮账号可直接登录并继续使用云端数据；新用户请先向邀请人或抖音 @槐序学长 获取邀请码。</p>
             <div className="release-badges" aria-label="当前版本能力">
               <span>Android</span>
               <span>邀请内测</span>
@@ -604,7 +616,7 @@ function App() {
           </div>
           <p className="download-note">
             Android 移动端当前为邀请制内测。年满 18 周岁的用户可通过
-            <a href={DOUYIN_URL} target="_blank" rel="noopener noreferrer"> 抖音 · {DOUYIN_NAME} </a>
+            <a href={SUPPORT_DOUYIN_URL} target="_blank" rel="noopener noreferrer"> 抖音 · {SUPPORT_DOUYIN_NAME} </a>
             或 QQ 2014302010 联系获取邀请码；已有账号可直接登录。
           </p>
         </section>
@@ -612,10 +624,11 @@ function App() {
         <section id="about" className="about">
           <h2 className="section-title reveal">关于我们</h2>
           <p className="reveal">
-            知潮是槐序学长工作室持续开发的学习工具，目标是长期好用、越用越懂你的薄弱点，
+            知潮是槐序工坊持续开发的学习工具，目标是长期好用、越用越懂你的薄弱点，
             用轻量的陪伴让漫长的医学备考不那么枯燥。项目由旬阳市槐序软件工作室（个体工商户）持续迭代打造，你可以在抖音
-            <a href={DOUYIN_URL} target="_blank" rel="noopener noreferrer"> @{DOUYIN_NAME} </a>
-            关注最新进展，或通过邮箱
+            <a href={SUPPORT_DOUYIN_URL} target="_blank" rel="noopener noreferrer"> @{SUPPORT_DOUYIN_NAME} </a>
+            咨询邀请码、加入粉丝群或反馈问题；工作室动态、内容共创与合作可联系
+            <a href={STUDIO_DOUYIN_URL} target="_blank" rel="noopener noreferrer"> @{STUDIO_DOUYIN_NAME} </a>。也可以通过邮箱
             <a href={`mailto:${CONTACT_EMAIL}`}> {CONTACT_EMAIL} </a>
             联系我们、提出建议。
           </p>
@@ -625,7 +638,7 @@ function App() {
           <div className="cocreate">
             <h2 className="section-title reveal">招募共创</h2>
             <p className="cocreate-intro">
-              知潮目前是槐序学长工作室主理人独立推进的项目，还没有任何收入——这不是一份工作，是一次"为爱发电"的邀请。
+              知潮目前是槐序工坊主理人独立推进的项目，还没有任何收入——这不是一份工作，是一次"为爱发电"的邀请。
               如果你也觉得"医学备考是场持久战，需要一个长期好用、越用越懂你薄弱点的学习工具"这件事值得做，欢迎一起加入，把它做出来。
             </p>
             <div className="card-grid">
@@ -641,7 +654,7 @@ function App() {
             </p>
             <p className="cocreate-contact">
               有兴趣的话，通过
-              <a href={DOUYIN_URL} target="_blank" rel="noopener noreferrer"> 抖音 · {DOUYIN_NAME} </a>
+              <a href={STUDIO_DOUYIN_URL} target="_blank" rel="noopener noreferrer"> 抖音 · {STUDIO_DOUYIN_NAME} </a>
               、QQ 2014302010 或
               <a href={`mailto:${CONTACT_EMAIL}`}> 邮箱 </a>
               找我们聊聊。
@@ -670,7 +683,7 @@ function App() {
         <section id="changelog" className="changelog">
           <h2 className="section-title reveal">更新日志</h2>
           <ul className="changelog-list">
-            {changelog.slice(0, 6).map((entry) => (
+            {(showAllChangelog ? changelog : changelog.slice(0, 3)).map((entry) => (
               <li key={`${entry.date}-${entry.title}`} className="reveal">
                 <span className="changelog-date">{entry.date}</span>
                 <div>
@@ -680,6 +693,14 @@ function App() {
               </li>
             ))}
           </ul>
+          <button
+            type="button"
+            className="changelog-toggle"
+            aria-expanded={showAllChangelog}
+            onClick={() => setShowAllChangelog((value) => !value)}
+          >
+            {showAllChangelog ? '收起历史更新' : `查看更多更新（${changelog.length - 3}）`}
+          </button>
         </section>
 
         <section id="faq" className="faq">
@@ -731,7 +752,7 @@ function App() {
       <footer className="footer">
         <a
           className="social-link"
-          href={DOUYIN_URL}
+          href={SUPPORT_DOUYIN_URL}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -741,7 +762,10 @@ function App() {
               d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.6h-3.28v13.9a3.16 3.16 0 0 1-5.6 2 3.16 3.16 0 0 1 3.34-5.05v-3.34a6.47 6.47 0 0 0-5.4 10.86 6.47 6.47 0 0 0 11.04-4.58V9.01a8.16 8.16 0 0 0 4.7 1.5V7.24a4.85 4.85 0 0 1-3.4-1.42z"
             />
           </svg>
-          抖音：{DOUYIN_NAME}
+          用户支持：{SUPPORT_DOUYIN_NAME}
+        </a>
+        <a className="social-link" href={STUDIO_DOUYIN_URL} target="_blank" rel="noopener noreferrer">
+          工作室与合作：{STUDIO_DOUYIN_NAME}
         </a>
         <a
           className="social-link"
