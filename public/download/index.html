@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#eaf4ee" />
+    <title>下载知潮 Android 版</title>
+    <style>
+      :root {
+        font-family: "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+        color: #17352b;
+        background: #eaf4ee;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 90% 0%, #fff 0, transparent 30%), #eaf4ee; }
+      main { width: min(100% - 32px, 680px); margin: 0 auto; padding: max(28px, env(safe-area-inset-top)) 0 max(30px, env(safe-area-inset-bottom)); }
+      .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+      .brand img { width: 54px; height: 54px; border-radius: 18px; }
+      .brand strong { display: block; font-size: 22px; }
+      .brand span { color: #668077; font-size: 14px; }
+      .card { background: rgba(255,255,255,.9); border: 1px solid rgba(62,132,104,.13); border-radius: 30px; padding: clamp(24px, 6vw, 38px); box-shadow: 0 16px 50px rgba(35,81,64,.12); }
+      .eyebrow { color: #3f856b; font-weight: 700; letter-spacing: .08em; }
+      h1 { margin: 8px 0 14px; font-size: clamp(30px, 8vw, 46px); line-height: 1.15; }
+      .lead { margin: 0; color: #5f746d; font-size: 17px; line-height: 1.75; }
+      .meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 24px 0; }
+      .meta div { padding: 14px 16px; border-radius: 18px; background: #f2f7f4; }
+      .meta small { display: block; color: #7b8d87; margin-bottom: 4px; }
+      .meta strong { font-size: 17px; }
+      .download { display: block; width: 100%; padding: 17px 20px; border-radius: 18px; background: #3f856b; color: white; font-size: 19px; font-weight: 800; text-align: center; text-decoration: none; box-shadow: 0 12px 24px rgba(63,133,107,.25); }
+      .download:active { transform: translateY(1px); }
+      #download-status { min-height: 24px; margin: 12px 0 0; color: #3f856b; text-align: center; font-size: 14px; }
+      .guide { margin-top: 24px; padding-top: 22px; border-top: 1px solid #e1ebe5; }
+      .guide h2 { margin: 0 0 12px; font-size: 19px; }
+      .guide ol { margin: 0; padding-left: 22px; color: #536a62; line-height: 1.8; }
+      details { margin-top: 18px; color: #61766f; }
+      summary { cursor: pointer; font-weight: 700; color: #3f6f5d; }
+      code { display: block; margin-top: 10px; padding: 12px; border-radius: 12px; background: #f2f7f4; overflow-wrap: anywhere; font-size: 12px; }
+      .safety { margin: 20px 0 0; padding: 14px 16px; border-radius: 16px; background: #fff8e8; color: #80652e; line-height: 1.65; }
+      footer { padding: 24px 8px 0; color: #71867e; text-align: center; font-size: 13px; line-height: 1.9; }
+      footer a { color: inherit; }
+      .filing { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 7px; }
+      .filing img { vertical-align: -3px; }
+      @media (max-width: 420px) { .meta { grid-template-columns: 1fr; } .card { border-radius: 25px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="brand">
+        <img src="/mascot/happy.webp" alt="知潮朵朵" />
+        <div><strong>知潮</strong><span>槐序工坊</span></div>
+      </header>
+      <section class="card" aria-labelledby="download-title">
+        <div class="eyebrow">ANDROID 内测版</div>
+        <h1 id="download-title">下载知潮 3.0.61</h1>
+        <p class="lead">这里是知潮官网的下载确认页。点击下方按钮后，浏览器才会开始下载；进度可在浏览器的下载列表中查看。</p>
+        <div class="meta">
+          <div><small>安装包大小</small><strong>约 211.3 MB</strong></div>
+          <div><small>更新方式</small><strong>软更新</strong></div>
+        </div>
+        <a id="download-apk" class="download" href="/download/zhichao-mobile-release.apk?v=3.0.61" download>开始下载 APK</a>
+        <p id="download-status" role="status" aria-live="polite"></p>
+        <div class="guide">
+          <h2>下载与安装</h2>
+          <ol>
+            <li>点击“开始下载 APK”，并允许浏览器保存文件。</li>
+            <li>到浏览器的下载列表查看实时进度。</li>
+            <li>下载完成后打开安装包；如系统询问，请仅为当前浏览器临时允许安装未知应用。</li>
+          </ol>
+        </div>
+        <p class="safety">请确认地址栏域名为 <strong>huaix.cn</strong>。本页不会自动开始下载，也不会要求输入知潮账号或密码。</p>
+        <details>
+          <summary>核对安装包 SHA-256</summary>
+          <code>199b03fc6dfc4ae593df4e1d5a4545d1b944f64b9094b17122096be711f07044</code>
+        </details>
+      </section>
+      <footer>
+        <a href="/website-privacy.html">网站隐私说明</a>
+        <div class="filing">
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">陕ICP备2026019822号</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://beian.mps.gov.cn/#/query/webSearch?code=61092802000137" target="_blank" rel="noopener noreferrer"><img src="/gongan.png" alt="" width="16" height="16" /> 陕公网安备61092802000137号</a>
+        </div>
+      </footer>
+    </main>
+    <script>
+      document.getElementById("download-apk").addEventListener("click", function () {
+        document.getElementById("download-status").textContent = "已向浏览器提交下载，请到下载列表查看进度。";
+      });
+    </script>
+  </body>
+</html>

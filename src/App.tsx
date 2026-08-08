@@ -155,7 +155,7 @@ const platforms = [
     name: 'Android 移动端',
     desc: `知潮 ${APP_VERSION} Android 安装包`,
     status: '学习工作流、笔记迁移与可靠性更新',
-    downloadUrl: `https://huaix.cn/download/zhichao-mobile-release.apk?v=${APP_VERSION}`,
+    downloadUrl: 'https://huaix.cn/download/index.html',
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
   },

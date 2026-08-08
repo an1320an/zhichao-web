@@ -8,6 +8,7 @@ const publicCopyFiles = [
   "public/invite/index.html",
   "public/404.html",
   "public/website-privacy.html",
+  "public/download/index.html",
 ];
 
 const sources = Object.fromEntries(
@@ -41,7 +42,7 @@ const inviteWelcomeAsset = path.join(
 
 const checks = [
   ["公开网页不出现客户端内部服务术语", !hiddenServiceTerms.test(publicCopy)],
-  ["官网主域统一为 huaix.cn", sources["index.html"].includes('href="https://huaix.cn/"') && sources["src/App.tsx"].includes("https://huaix.cn/download/")],
+  ["官网主域统一为 huaix.cn", sources["index.html"].includes('href="https://huaix.cn/"') && sources["src/App.tsx"].includes("https://huaix.cn/download/index.html")],
   ["官网展示真实 ICP 备案号", sources["src/App.tsx"].includes("陕ICP备2026019822号") && sources["public/404.html"].includes("陕ICP备2026019822号")],
   ["官网统一登记运营主体", sources["src/App.tsx"].includes("旬阳市槐序软件工作室")],
   ["公开联系邮箱已统一", publicCopy.includes("2014302010@qq.com") && !publicCopy.includes("an1320an@gmail.com")],
@@ -54,7 +55,9 @@ const checks = [
   ["主页与邀请页均可访问网站隐私说明", sources["src/App.tsx"].includes("/website-privacy.html") && sources["public/invite/index.html"].includes("/website-privacy.html")],
   ["九项功能使用九张独立生成配图", featureAssets.every((name) => fs.existsSync(path.join(root, "public", "features", name)))],
   ["九项功能保持三列完整网格", sources["src/App.tsx"].includes('className="feature-grid"')],
-  ["邀请码与下载使用新主域路径", sources["public/invite/index.html"].includes("/download/zhichao-mobile-release.apk")],
+  ["主站与邀请页先进入可见下载确认页", sources["src/App.tsx"].includes("https://huaix.cn/download/index.html") && sources["public/invite/index.html"].includes('href="/download/index.html"')],
+  ["下载确认页不自动触发 APK", sources["public/download/index.html"].includes('id="download-apk"') && sources["public/download/index.html"].includes("开始下载 APK") && !/meta\s+http-equiv=["']refresh|location\.(?:href|replace)|\.click\(\)/i.test(sources["public/download/index.html"])],
+  ["下载确认页保留版本、大小、哈希与备案", ["3.0.61", "211.3 MB", "199b03fc6dfc4ae593df4e1d5a4545d1b944f64b9094b17122096be711f07044", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => sources["public/download/index.html"].includes(phrase))],
   ["邀请页提供欢迎首屏和真实功能简介", ["欢迎来到知潮", "练得更有方向", "复习更有节奏", "朵朵陪你坚持", "三步开始"].every((phrase) => sources["public/invite/index.html"].includes(phrase))],
   ["邀请页使用独立欢迎插画", fs.existsSync(inviteWelcomeAsset) && sources["public/invite/index.html"].includes("/invite/zhichao-invite-welcome-v1.webp")],
   ["邀请页不作无法覆盖访问日志的绝对承诺", !sources["public/invite/index.html"].includes("不会收集你的任何个人信息") && sources["public/invite/index.html"].includes("不设置账号登录或信息填写表单")],
