@@ -56,6 +56,8 @@ const checks = [
   ["邀请页提供欢迎首屏和真实功能简介", ["欢迎来到知潮", "练得更有方向", "复习更有节奏", "朵朵陪你坚持", "三步开始"].every((phrase) => sources["public/invite/index.html"].includes(phrase))],
   ["邀请页使用独立欢迎插画", fs.existsSync(inviteWelcomeAsset) && sources["public/invite/index.html"].includes("/invite/zhichao-invite-welcome-v1.webp")],
   ["邀请页不作无法覆盖访问日志的绝对承诺", !sources["public/invite/index.html"].includes("不会收集你的任何个人信息") && sources["public/invite/index.html"].includes("不设置账号登录或信息填写表单")],
+  ["邀请页展示真实 ICP 与公安联网备案", ["陕ICP备2026019822号", "陕公网安备61092802000137号", "beian.mps.gov.cn/#/query/webSearch?code=61092802000137", "/gongan.png"].every((phrase) => sources["public/invite/index.html"].includes(phrase))],
+  ["邀请页使用清晰嫩芽品牌标志", sources["public/invite/index.html"].includes('aria-label="知潮嫩芽标志"') && !sources["public/invite/index.html"].includes(".brand-mark::before")],
   ["官网不预写未来收费或情感付费自辩", !["如果未来提供自愿支持", "增进与朵朵的情感关系"].some((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["共创说明采用事实表述而非关系排除清单", !sources["src/App.tsx"].includes("不代表股权、雇佣、商业代理或官方授权关系")],
   ["网站说明不夹带备案背书自辩或绝对承诺", !["不代表主管部门", "认可或背书", "不会收集任何个人信息"].some((phrase) => sources["public/website-privacy.html"].includes(phrase))],
