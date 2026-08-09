@@ -49,6 +49,7 @@ const checks = [
   ["双抖音入口保持可点击且职责分开", ["https://v.douyin.com/4Tl7oRzN9KM/", "槐序学长", "https://v.douyin.com/fs6MHFOU5q4/", "槐序工坊", "用户支持", "工作室与合作"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["网站隐私说明同步双联系渠道", ["2026 年 8 月 8 日", "https://v.douyin.com/4Tl7oRzN9KM/", "https://v.douyin.com/fs6MHFOU5q4/"].every((phrase) => sources["public/website-privacy.html"].includes(phrase))],
   ["更新日志默认显示三条并可展开", sources["src/App.tsx"].includes("changelog.slice(0, 3)") && sources["src/App.tsx"].includes("showAllChangelog") && sources["src/App.tsx"].includes("查看更多更新")],
+  ["3.0.66 记账专题更新日志已准备", ["知潮 3.0.66：记账界面与长期账本能力升级", "分类层级与分类预算", "24 个月趋势", "归档账户恢复", "跨设备快捷模板"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["公开站不复制 App 协议或 App 隐私政策", removedAppAgreementFiles.every((name) => !fs.existsSync(path.join(root, name)))],
   ["公开页面不再链接 App 协议或隐私页面", !/\/legal\/(?:privacy|terms|disclaimer|complaints)\.html/.test(publicCopy)],
   ["网站隐私说明仅覆盖当前网站实际处理", sources["public/website-privacy.html"].includes("网站服务器访问日志") && sources["public/website-privacy.html"].includes("不适用于知潮 Android 客户端")],
