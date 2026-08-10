@@ -51,6 +51,8 @@ const checks = [
   ["更新日志默认显示三条并可展开", sources["src/App.tsx"].includes("changelog.slice(0, 3)") && sources["src/App.tsx"].includes("showAllChangelog") && sources["src/App.tsx"].includes("查看更多更新")],
   ["3.0.66 记账专题更新日志已准备", ["知潮 3.0.66：记账界面与长期账本能力升级", "分类层级与分类预算", "24 个月趋势", "归档账户恢复", "跨设备快捷模板"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["3.0.67 朵朵笔记新内核更新日志已准备", ["知潮 3.0.67：朵朵笔记升级全新内核", "纸面优先", "旧笔记", "查看和导出", "尽力单向导入", "知识卡片"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
+  ["3.0.69 提醒体系更新日志已准备", ["知潮 3.0.69：计划提醒改由系统闹钟或日历承接", "不会把它表述为已经同步", "普通通知", "在对应系统应用中修改或删除", "足迹图片不显示"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
+  ["提醒体系更新文案不作送达绝对承诺", !["一定会提醒", "保证送达", "已经同步成功"].some((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["笔记升级文案不作数据零风险绝对承诺", !["百分之百迁移", "数据绝不会丢失", "完整迁移所有旧笔记"].some((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["公开站不复制 App 协议或 App 隐私政策", removedAppAgreementFiles.every((name) => !fs.existsSync(path.join(root, name)))],
   ["公开页面不再链接 App 协议或隐私页面", !/\/legal\/(?:privacy|terms|disclaimer|complaints)\.html/.test(publicCopy)],
