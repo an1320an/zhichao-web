@@ -38,7 +38,7 @@ const philosophy = [
   },
 ]
 
-const APP_VERSION = '3.0.64'
+const APP_VERSION = '3.0.67'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
