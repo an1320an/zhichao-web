@@ -38,7 +38,7 @@ const philosophy = [
   },
 ]
 
-const APP_VERSION = '3.0.70'
+const APP_VERSION = '3.0.71'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
@@ -54,19 +54,19 @@ const features = [
 
 const releaseHighlights = [
   {
-    label: '刷卡',
-    title: '英语词书从第一组开始学，也按进度回来复习',
-    desc: '四级、六级、考研和医学英语支持翻卡自评、内建键盘缺字补全与多种词测；完整词表仍会继续增量补充。',
+    label: '书架',
+    title: '笔记本、PDF 和图片，先在书架里一眼找到',
+    desc: '资料按笔记本整理，封面与最近使用信息更清楚；打开后直接回到上次阅读和书写的位置。',
   },
   {
-    label: '朗读',
-    title: '单词、知识卡片和朵朵笔记共用朗读与听书',
-    desc: '口音、语速和播放控制保持一致；设备缺少可用语音包时会提示降级，不会把失败说成正在播放。',
+    label: '导入',
+    title: 'PDF 和图片直接变成可以批注的页面',
+    desc: '从文件或相册导入资料，保留原始版面后继续阅读、翻页和动手标记，不需要先在多个工具间来回转换。',
   },
   {
-    label: '直达',
-    title: '问朵朵想做什么，直接找到现有功能入口',
-    desc: '自然语言匹配只从真实功能菜单中选择；未开启 AI 数据授权时，仍可使用本机字面匹配和功能中心。',
+    label: '手写',
+    title: '提笔就写，翻页、缩放和连续书写更跟手',
+    desc: '纸面优先的 GoodNotes 式体验把笔、橡皮、颜色与粗细放在手边，并优化长笔记中的触控和渲染流畅度。',
   },
 ]
 
@@ -156,7 +156,7 @@ const platforms = [
   {
     name: 'Android 移动端',
     desc: `知潮 ${APP_VERSION} Android 安装包`,
-    status: '刷卡学习、找功能与学习体验升级',
+    status: '朵朵笔记书架、导入、手写与流畅度升级',
     downloadUrl: 'https://huaix.cn/download/index.html',
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
@@ -227,6 +227,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-08-11',
+    title: '知潮 3.0.71：朵朵笔记的纸面体验再升级',
+    desc: '朵朵笔记进一步靠近 GoodNotes 式的纸面工作流：书架更容易找到最近的笔记本与资料，PDF 和图片可直接导入为可阅读、可批注的页面；手写工具与页面操作更集中，并优化翻页、缩放、连续书写和长笔记渲染时的流畅度。本次未改变笔记的数据处理方式。',
+  },
   {
     date: '2026-08-11',
     title: '知潮 3.0.70：刷卡学习、找功能与学习体验升级',
@@ -516,9 +521,9 @@ function App() {
 
         <section className="release-story" aria-labelledby="release-story-title">
           <div className="release-story-heading reveal">
-            <span>知潮 3.0.70 新功能</span>
-            <h2 id="release-story-title">从刷卡记忆，到朗读听书和功能直达</h2>
-            <p>先从首组内容开始，再把词测、复习和常用学习入口接到同一条日常路径里。</p>
+            <span>知潮 3.0.71 新功能</span>
+            <h2 id="release-story-title">把书架、资料导入和手写，收进一套 GoodNotes 式笔记体验</h2>
+            <p>PDF 和图片打开就能继续写，翻页、缩放与长笔记书写也更流畅。</p>
           </div>
           <div className="release-story-grid">
             {releaseHighlights.map((item, index) => (
