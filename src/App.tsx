@@ -39,8 +39,8 @@ const philosophy = [
 ]
 
 const APP_VERSION = '3.0.75'
-const APP_RELEASED_AT = '2026-08-12'
-const APP_RELEASED_AT_LABEL = '2026 年 8 月 12 日（精确时刻待正式切换）'
+const APP_RELEASED_AT = '2026-08-12T01:05:00+08:00'
+const APP_RELEASED_AT_LABEL = '2026 年 8 月 12 日 01:05（北京时间）'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
