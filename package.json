@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "audit:copy": "node scripts/audit-public-copy.mjs",
     "test:release-prep": "node --test scripts/prepare-release-3.0.73.test.mjs",
+    "test:maintenance-fallback": "node --test scripts/service-maintenance-fallback.test.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },
