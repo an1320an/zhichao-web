@@ -66,7 +66,7 @@ const checks = [
   ["主站与邀请页先进入可见下载确认页", sources["src/App.tsx"].includes("https://huaix.cn/download/index.html") && sources["public/invite/index.html"].includes('href="/download/index.html"')],
   ["下载确认页不自动触发 APK", sources["public/download/index.html"].includes('id="download-apk"') && sources["public/download/index.html"].includes("开始下载 APK") && !/meta\s+http-equiv=["']refresh|location\.(?:href|replace)|\.click\(\)/i.test(sources["public/download/index.html"])],
   ["下载确认页使用清晰的品牌标题", sources["public/download/index.html"].includes("<title>知潮官方下载</title>")],
-  ["下载确认页保留 3.0.71 版本、回填位、非强制更新与备案", ["3.0.71", "ROOT_FILL_FINAL_APK_SIZE_BYTES", "ROOT_FILL_FINAL_APK_SHA256", "待最终 APK 回填", "非强制更新", "本次更新", "朵朵笔记", "PDF 和图片", "手写", "流畅度", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => sources["public/download/index.html"].includes(phrase))],
+  ["下载确认页保留 3.0.71 精确包身份、非强制更新与备案", ["3.0.71", "225361289", "93A7623AEB3FADD9693F3EB5C7B5E02A8390D49F45B2DB13324D5EEA5B2EBA8E", "214.9 MB", "非强制更新", "本次更新", "朵朵笔记", "PDF 和图片", "手写", "流畅度", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => sources["public/download/index.html"].includes(phrase))],
   ["下载确认页不向普通用户显示安装包哈希", !/<(?:code|details)[^>]*>[^<]*(?:SHA-?256|[a-f0-9]{64})/iu.test(sources["public/download/index.html"])],
   ["邀请页提供欢迎首屏和真实功能简介", ["欢迎来到知潮", "练得更有方向", "复习更有节奏", "朵朵陪你坚持", "三步开始"].every((phrase) => sources["public/invite/index.html"].includes(phrase))],
   ["邀请页使用独立欢迎插画", fs.existsSync(inviteWelcomeAsset) && sources["public/invite/index.html"].includes("/invite/zhichao-invite-welcome-v1.webp")],
