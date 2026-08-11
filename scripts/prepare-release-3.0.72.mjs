@@ -8,12 +8,19 @@ const PREVIOUS_VERSION = "3.0.71";
 const APPROVAL = "PREPARE_3_0_72_AFTER_SIGNED_APK_VERIFICATION";
 const root = path.resolve(import.meta.dirname, "..");
 
-function replaceExactly(source, needle, replacement, label) {
+function replaceExactlyOrAlready(source, needle, replacement, label) {
   const first = source.indexOf(needle);
-  if (first < 0 || source.indexOf(needle, first + needle.length) >= 0) {
-    throw new Error(`${label} does not have one exact replacement target`);
+  if (first >= 0) {
+    if (source.indexOf(needle, first + needle.length) >= 0) {
+      throw new Error(`${label} has more than one replacement target`);
+    }
+    return source.slice(0, first) + replacement + source.slice(first + needle.length);
   }
-  return source.slice(0, first) + replacement + source.slice(first + needle.length);
+  const prepared = source.indexOf(replacement);
+  if (prepared >= 0 && source.indexOf(replacement, prepared + replacement.length) < 0) {
+    return source;
+  }
+  throw new Error(`${label} is neither the previous nor prepared value`);
 }
 
 function replacePatternExactly(source, pattern, replacement, label) {
@@ -109,7 +116,7 @@ export function prepareSources(sources, metadata) {
   let download = sources.download;
   let audit = sources.audit;
 
-  app = replaceExactly(app,
+  app = replaceExactlyOrAlready(app,
     `const APP_VERSION = '${PREVIOUS_VERSION}'`,
     `const APP_VERSION = '${RELEASE_VERSION}'`,
     "App version");
@@ -121,19 +128,27 @@ export function prepareSources(sources, metadata) {
     /const releaseHighlights = \[[\s\S]*?\r?\n\]\r?\n\r?\nconst widgetHighlights/u,
     `${releaseHighlights}\n\nconst widgetHighlights`,
     "release highlights");
-  app = replacePatternExactly(app,
-    /const changelog = \[\r?\n/u,
-    `const changelog = [\n${changelogEntry(metadata.releasedAt.date)}\n`,
-    "changelog insertion");
-  app = replaceExactly(app,
+  const currentReleaseEntry = /  \{\r?\n    date: '[^']+',\r?\n    title: '知潮 3\.0\.72：英语复习、九图足迹与找功能体验升级',\r?\n    desc: '[^']*',\r?\n  \},/u;
+  const currentReleaseMatches = [...app.matchAll(new RegExp(currentReleaseEntry.source, "gu"))];
+  if (currentReleaseMatches.length === 1) {
+    app = app.replace(currentReleaseEntry, changelogEntry(metadata.releasedAt.date));
+  } else if (currentReleaseMatches.length === 0) {
+    app = replacePatternExactly(app,
+      /const changelog = \[\r?\n/u,
+      `const changelog = [\n${changelogEntry(metadata.releasedAt.date)}\n`,
+      "changelog insertion");
+  } else {
+    throw new Error("changelog contains duplicate 3.0.72 entries");
+  }
+  app = replaceExactlyOrAlready(app,
     `<span>知潮 ${PREVIOUS_VERSION} 新功能</span>`,
     `<span>知潮 ${RELEASE_VERSION} 新功能</span>`,
     "release story version");
-  app = replaceExactly(app,
+  app = replaceExactlyOrAlready(app,
     "把书架、资料导入和手写，收进一套 GoodNotes 式笔记体验",
     "英语学习、足迹与找功能，继续变得更顺手",
     "release story title");
-  app = replaceExactly(app,
+  app = replaceExactlyOrAlready(app,
     "PDF 和图片打开就能继续写，翻页、缩放与长笔记书写也更流畅。",
     "复习和模考更完整，九图足迹可以点开看大图，自然语言找功能也会把入口说明白。",
     "release story summary");
@@ -148,11 +163,15 @@ export function prepareSources(sources, metadata) {
     "download APK hash");
   download = download.replaceAll(PREVIOUS_VERSION, RELEASE_VERSION);
   download = replacePatternExactly(download,
+    /<span>versionCode \d+<\/span>/u,
+    `<span>versionCode ${RELEASE_BUILD}</span>`,
+    "download version code");
+  download = replacePatternExactly(download,
     /<time datetime="[^"]+">[^<]+<\/time>/u,
     `<time datetime="${metadata.releasedAt.iso}">${metadata.releasedAt.label}</time>`,
     "download release time");
-  download = replaceExactly(download,
-    '<div class="fact"><small>安装包</small><strong>214.9 MB</strong><span>Android · arm64</span></div>',
+  download = replacePatternExactly(download,
+    /<div class="fact"><small>安装包<\/small><strong>[^<]+<\/strong><span>Android · arm64<\/span><\/div>/u,
     `<div class="fact"><small>安装包</small><strong>${metadata.apkMegabytes} MB</strong><span>Android · arm64</span></div>`,
     "download visible APK size");
   download = replacePatternExactly(download,
@@ -166,17 +185,17 @@ export function prepareSources(sources, metadata) {
           </section>`,
     "download release notes");
 
-  audit = replaceExactly(audit,
-    '["3.0.71 新功能引导与下载身份一致", ["const APP_VERSION = \'3.0.71\'", "知潮 3.0.71 新功能", "GoodNotes 式笔记体验", "书架", "PDF 和图片", "提笔就写"].every((phrase) => sources["src/App.tsx"].includes(phrase))],',
-    '["3.0.72 新功能引导与下载身份一致", ["const APP_VERSION = \'3.0.72\'", "知潮 3.0.72 新功能", "英语学习、足迹与找功能", "25 分钟", "九张图片", "病历"].every((phrase) => sources["src/App.tsx"].includes(phrase))],',
+  audit = replacePatternExactly(audit,
+    /^\s*\["3\.0\.(?:71|72) 新功能引导与下载身份一致",.*$/mu,
+    '  ["3.0.72 新功能引导与下载身份一致", ["const APP_VERSION = \'3.0.72\'", "知潮 3.0.72 新功能", "英语学习、足迹与找功能", "25 分钟", "九张图片", "病历"].every((phrase) => sources["src/App.tsx"].includes(phrase))],',
     "public copy current release check");
-  audit = replaceExactly(audit,
-    '["下载确认页保留 3.0.71 精确包身份、非强制更新与备案", ["3.0.71", "225361289", "93A7623AEB3FADD9693F3EB5C7B5E02A8390D49F45B2DB13324D5EEA5B2EBA8E", "214.9 MB", "非强制更新", "本次更新", "朵朵笔记", "PDF 和图片", "手写", "流畅度", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => sources["public/download/index.html"].includes(phrase))],',
-    `["下载确认页保留 3.0.72 精确包身份、非强制更新与备案", ["3.0.72", "${metadata.apkBytes}", "${metadata.apkHash.toUpperCase()}", "${metadata.apkMegabytes} MB", "非强制更新", "本次更新", "复习与模考", "九图", "找功能", "装扮视觉", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => sources["public/download/index.html"].includes(phrase))],`,
+  audit = replacePatternExactly(audit,
+    /^\s*\["下载确认页保留 3\.0\.(?:71|72) 精确包身份、非强制更新与备案",.*$/mu,
+    `  ["下载确认页保留 3.0.72 精确包身份、非强制更新与备案", ["3.0.72", "versionCode 109", "${metadata.apkBytes}", "${metadata.apkHash.toUpperCase()}", "${metadata.apkMegabytes} MB", "非强制更新", "本次更新", "复习与模考", "九图", "找功能", "装扮视觉", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => sources["public/download/index.html"].includes(phrase))],`,
     "public copy exact package check");
-  audit = replaceExactly(audit,
-    '["3.0.71 朵朵笔记更新日志已准备", ["知潮 3.0.71：朵朵笔记的纸面体验再升级", "GoodNotes 式", "书架", "PDF 和图片", "手写工具", "长笔记渲染"].every((phrase) => sources["src/App.tsx"].includes(phrase))],',
-    '["3.0.72 更新日志已准备", ["知潮 3.0.72：英语复习、九图足迹与找功能体验升级", "25 分钟模拟考试", "九张图片", "问朵朵·找功能", "医疗内容改为分级提示"].every((phrase) => sources["src/App.tsx"].includes(phrase))],\n  ["3.0.71 朵朵笔记更新日志已保留", ["知潮 3.0.71：朵朵笔记的纸面体验再升级", "GoodNotes 式", "书架", "PDF 和图片", "手写工具", "长笔记渲染"].every((phrase) => sources["src/App.tsx"].includes(phrase))],',
+  audit = replacePatternExactly(audit,
+    /^\s*\["3\.0\.(?:71 朵朵笔记更新日志已准备|72 更新日志已准备)",.*$(?:\r?\n\s*\["3\.0\.71 朵朵笔记更新日志已保留",.*$)*/mu,
+    '  ["3.0.72 更新日志已准备", ["知潮 3.0.72：英语复习、九图足迹与找功能体验升级", "25 分钟模拟考试", "九张图片", "问朵朵·找功能", "医疗内容改为分级提示"].every((phrase) => sources["src/App.tsx"].includes(phrase))],\n  ["3.0.71 朵朵笔记更新日志已保留", ["知潮 3.0.71：朵朵笔记的纸面体验再升级", "GoodNotes 式", "书架", "PDF 和图片", "手写工具", "长笔记渲染"].every((phrase) => sources["src/App.tsx"].includes(phrase))],',
     "public copy changelog check");
 
   return { app, download, audit };

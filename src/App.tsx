@@ -38,9 +38,9 @@ const philosophy = [
   },
 ]
 
-const APP_VERSION = '3.0.71'
-const APP_RELEASED_AT = '2026-08-11T10:31:00+08:00'
-const APP_RELEASED_AT_LABEL = '2026 年 8 月 11 日 10:31（北京时间）'
+const APP_VERSION = '3.0.72'
+const APP_RELEASED_AT = '2026-08-11T12:00:00+08:00'
+const APP_RELEASED_AT_LABEL = '2026 年 8 月 11 日 12:00（北京时间）'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
@@ -56,19 +56,24 @@ const features = [
 
 const releaseHighlights = [
   {
-    label: '书架',
-    title: '笔记本、PDF 和图片，先在书架里一眼找到',
-    desc: '资料按笔记本整理，封面与最近使用信息更清楚；打开后直接回到上次阅读和书写的位置。',
+    label: '复习',
+    title: '到期词卡直接回到今天，不只展示一条曲线',
+    desc: '复习队列由服务端掌握度统一安排，每日新词保持上限，换设备后仍按同一进度继续。',
   },
   {
-    label: '导入',
-    title: 'PDF 和图片直接变成可以批注的页面',
-    desc: '从文件或相册导入资料，保留原始版面后继续阅读、翻页和动手标记，不需要先在多个工具间来回转换。',
+    label: '模考',
+    title: '25 分钟覆盖单选、完形与阅读，交卷再逐题复盘',
+    desc: '模拟考试支持中途续答和幂等提交；AI 生成的学习内容仍需结合教材、考试大纲与可靠来源核对。',
   },
   {
-    label: '手写',
-    title: '提笔就写，翻页、缩放和连续书写更跟手',
-    desc: '纸面优先的 GoodNotes 式体验把笔、橡皮、颜色与粗细放在手边，并优化长笔记中的触控和渲染流畅度。',
+    label: '足迹',
+    title: '九张图片按数量排版，点开就能看大图',
+    desc: '单图、双图、四图和多图采用不同布局，此刻状态最多三项、标签最多五项。',
+  },
+  {
+    label: '直达',
+    title: '找功能会把名称、用途和命中理由说明白',
+    desc: '改进“病历”等自然语言表达的匹配；当前装扮也会联动足迹、悬浮朵朵与截图问朵朵的视觉。',
   },
 ]
 
@@ -229,6 +234,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-08-11',
+    title: '知潮 3.0.72：英语复习、九图足迹与找功能体验升级',
+    desc: '英语刷卡学习补齐由服务端掌握度驱动的到期复习队列，并新增 25 分钟模拟考试，覆盖单项选择、完形填空和阅读理解，提交后可查看逐题解析；每日本新词仍设上限，四本词书当前先提供已校验的首组内容，后续内容会按校验结果扩充。足迹一次最多选择九张图片，按数量自动排版并支持点开看大图，此刻状态与标签可多选；已穿戴装扮会同步影响足迹封面、悬浮朵朵和截图问朵朵的配色与边框。“问朵朵·找功能”补充入口名称、说明和命中理由，并改进“病历”等自然语言表达的匹配。医疗内容改为分级提示，避免把普通学习与生活内容一概拦截；黄赌毒政、未成年人犯罪、暴力以及提示词注入和越狱防护继续启用。AI 生成的学习内容可能有误，请结合教材、考试大纲和可靠来源核对。',
+  },
   {
     date: '2026-08-11',
     title: '知潮 3.0.71：朵朵笔记的纸面体验再升级',
@@ -524,11 +534,11 @@ function App() {
         <section className="release-story" aria-labelledby="release-story-title">
           <div className="release-story-heading reveal">
             <div className="release-story-meta">
-              <span>知潮 3.0.71 新功能</span>
+              <span>知潮 3.0.72 新功能</span>
               <time dateTime={APP_RELEASED_AT}>最新更新 · {APP_RELEASED_AT_LABEL}</time>
             </div>
-            <h2 id="release-story-title">把书架、资料导入和手写，收进一套 GoodNotes 式笔记体验</h2>
-            <p>PDF 和图片打开就能继续写，翻页、缩放与长笔记书写也更流畅。</p>
+            <h2 id="release-story-title">英语学习、足迹与找功能，继续变得更顺手</h2>
+            <p>复习和模考更完整，九图足迹可以点开看大图，自然语言找功能也会把入口说明白。</p>
           </div>
           <div className="release-story-grid">
             {releaseHighlights.map((item, index) => (
