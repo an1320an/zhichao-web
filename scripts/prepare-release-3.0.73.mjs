@@ -107,31 +107,46 @@ export function validateReleaseMetadata(environment = process.env) {
 const releaseHighlights = `const releaseHighlights = [
   {
     label: '首页',
-    title: '找功能在小屏更完整，与学习教练各归其位',
-    desc: '标题、说明、输入框和搜索操作分开呈现，已有字面匹配与自然语言匹配继续沿用。',
-  },
-  {
-    label: '释义',
-    title: '背单词时，中文释义可以按自己的习惯显示',
-    desc: '填词练习会给出足够的词义提示，不必只靠主动朗读猜测目标单词。',
+    title: '首页找功能在小屏里，标题、说明和操作不再挤在一起',
+    desc: '名称、用途、输入框和搜索操作分开呈现，字面匹配与自然语言匹配继续沿用。',
   },
   {
     label: '刷卡',
-    title: '卡片信息和记忆操作重新分层，先回忆再核对',
-    desc: '题面、释义、例句与记忆反馈各归其位，常见屏高下的阅读和点击路径更清楚。',
+    title: '中文释义可按习惯显示，填词和记忆操作更清楚',
+    desc: '填词练习会给出足够的词义提示；题面、例句和记忆反馈重新分层，便于先回忆再核对。',
   },
   {
     label: '主题',
     title: '全局配色可以跟随装扮，也可以单独选择',
     desc: '普通主题初始为每套 1000 金币；六套限定主题随对应成就解锁，不提供金币购买入口。',
   },
+  {
+    label: '足迹',
+    title: '九图可以长按排序，详情还能接着看当天记录',
+    desc: '图片继续按数量排版；四种时光回看场景与 AI 日签，帮助你从真实记录里回看一天或一段时间。',
+  },
+  {
+    label: '彩蛋',
+    title: '20 张朵朵心情彩蛋，收进《朵朵百态·初遇篇》',
+    desc: '彩蛋会在安全回应中低频出现，不保证每条都有；可在彩蛋册查看、分享，或提交文字创意参与共创。',
+  },
+  {
+    label: '回应',
+    title: '账单短评完整展示，普通医学学习吐槽不再一刀切',
+    desc: 'MDT 等学习吐槽会按非诊疗关怀处理；明确要求个人诊疗执行时仍会提示边界，黄赌毒政、未成年人犯罪、暴力、危机与提示注入保护保持。',
+  },
+  {
+    label: 'AI',
+    title: 'AI 智能服务统一授权，在线优先、失败有兜底',
+    desc: '少量授权后的最终可见片段经安全筛查和去标识后才进入知潮自身改进候选；聊天与足迹的离线文案包经版本化多轮安全复核后使用并可回滚，记账短评仅作人工审核参考，不会自动训练第三方模型。',
+  },
 ]`;
 
-const changelogTitle = "知潮 3.0.73：首页找功能、刷卡提示与全局主题升级";
+const changelogTitle = "知潮 3.0.73：首页、刷卡、主题与足迹体验升级";
 const changelogEntry = (date) => `  {
     date: '${date}',
     title: '${changelogTitle}',
-    desc: '首页的“问朵朵·找功能”重新整理小屏布局，标题、说明、输入框与搜索操作分开呈现，减少互相挤压。英语刷卡学习可按个人习惯选择是否显示中文释义，填词练习也会给出足够的词义提示；卡片信息层级和记忆操作区同步收拢，便于先回忆再核对。新增全局主题设置，可跟随当前朵朵装扮或单独选择界面配色；普通主题初始为每套 1000 金币并永久解锁，六套限定主题则随对应成就永久解锁，不提供金币购买入口。主题只改变界面视觉，不改变已有学习数据和装扮。软件下载确认页新增“访问知潮官网”入口，并继续由用户主动开始下载。',
+    desc: '首页的“问朵朵·找功能”重新整理小屏布局，标题、说明、输入框与搜索操作分开呈现。英语刷卡学习可按个人习惯选择是否显示中文释义，填词练习会给出足够的词义提示，卡片信息与记忆操作也重新分层。新增全局主题设置，可跟随当前朵朵装扮或单独选择界面配色；普通主题初始为每套 1000 金币并永久解锁，六套限定主题随对应成就永久解锁，不提供金币购买入口。足迹支持九图长按排序和当天上下文详情，并加入四种时光回看场景与 AI 日签；《朵朵百态·初遇篇》收录 20 张免费心情彩蛋，可在彩蛋册查看、分享或提交文字创意参与共创，彩蛋低频出现且不保证每条回应都有。账单朵朵短评会完整显示，MDT 等普通医学学习吐槽不再一刀切；黄赌毒政、未成年人犯罪、暴力、危机与提示注入保护保持。AI 智能服务统一使用一次简洁授权，同意并在线时优先使用 AI，离线或服务失败时使用规则兜底。少量授权后的最终可见片段经安全筛查和去标识后才进入知潮自身改进候选；聊天与足迹的离线文案包会在多轮安全复核后形成版本化更新并可回滚，记账短评仅作人工审核参考，不会自动训练第三方模型。软件下载确认页保留“访问知潮官网”入口，并继续由用户主动开始下载。',
   },`;
 
 export function prepareSources(sources, metadata) {
@@ -152,7 +167,7 @@ export function prepareSources(sources, metadata) {
     `${releaseHighlights}\n\nconst widgetHighlights`,
     "release highlights");
 
-  const targetReleaseEntry = /  \{\r?\n    date: '[^']+',\r?\n    title: '知潮 3\.0\.73：首页找功能、刷卡提示与全局主题升级',\r?\n    desc: '[^']*',\r?\n  \},/u;
+  const targetReleaseEntry = /  \{\r?\n    date: '[^']+',\r?\n    title: '知潮 3\.0\.73：首页、刷卡、主题与足迹体验升级',\r?\n    desc: '[^']*',\r?\n  \},/u;
   const targetReleaseMatches = [...app.matchAll(new RegExp(targetReleaseEntry.source, "gu"))];
   if (targetReleaseMatches.length === 1) {
     app = app.replace(targetReleaseEntry, changelogEntry(metadata.releasedAt.date));
@@ -174,11 +189,11 @@ export function prepareSources(sources, metadata) {
     "release story version");
   app = replaceExactlyOrAlready(app,
     "英语学习、足迹与找功能，继续变得更顺手",
-    "找功能、刷卡提示与全局主题，继续变得更顺手",
+    "首页、学习、足迹与朵朵回应，这次一起理顺",
     "release story title");
   app = replaceExactlyOrAlready(app,
     "复习和模考更完整，九图足迹可以点开看大图，自然语言找功能也会把入口说明白。",
-    "首页找功能恢复完整布局，刷卡可以按习惯显示中文释义，六套限定主题也可以预览和解锁。",
+    "小屏找功能和刷卡提示更清楚，九图足迹加入排序、回看和彩蛋，账单与医学学习回应也更稳妥。",
     "release story summary");
 
   download = replacePatternExactly(download,
@@ -205,24 +220,26 @@ export function prepareSources(sources, metadata) {
   download = replacePatternExactly(download,
     /<div class="release-notes">[\s\S]*?<\/div>\r?\n          <\/section>/u,
     `<div class="release-notes">
-              <div class="release-note"><b>01</b><div><strong>首页找功能恢复完整布局</strong><span>小屏下标题、说明、输入框和搜索操作分开呈现，减少互相挤压。</span></div></div>
-              <div class="release-note"><b>02</b><div><strong>刷卡可按习惯显示中文释义</strong><span>填词练习会给出词义提示，不必只靠朗读判断目标单词。</span></div></div>
-              <div class="release-note"><b>03</b><div><strong>卡片信息与记忆操作更清楚</strong><span>题面、释义、例句和记忆反馈重新分层，常见屏高下更易阅读和点击。</span></div></div>
-              <div class="release-note"><b>04</b><div><strong>全局主题可跟随装扮或单独选择</strong><span>普通主题初始为每套 1000 金币；六套限定主题随对应成就解锁。</span></div></div>
+              <div class="release-note"><b>01</b><div><strong>首页找功能与刷卡提示更清楚</strong><span>小屏布局减少互相挤压；中文释义可按习惯显示，填词与记忆操作重新分层。</span></div></div>
+              <div class="release-note"><b>02</b><div><strong>全局主题可跟随装扮或单独选择</strong><span>普通主题初始为每套 1000 金币；六套限定主题随对应成就解锁。</span></div></div>
+              <div class="release-note"><b>03</b><div><strong>九图足迹增加排序、当天上下文与时光回看</strong><span>支持长按排序、当天上下文详情，以及四种时光回看场景与 AI 日签。</span></div></div>
+              <div class="release-note"><b>04</b><div><strong>朵朵百态·初遇篇加入 20 张免费彩蛋</strong><span>低频彩蛋可收入彩蛋册、分享或提交文字创意共创，不保证每条回应都有。</span></div></div>
+              <div class="release-note"><b>05</b><div><strong>账单与医学学习回应更稳妥</strong><span>账单朵朵短评完整显示，MDT 等普通学习吐槽减少误拦，既有红线与提示注入保护保持。</span></div></div>
+              <div class="release-note"><b>06</b><div><strong>AI 智能服务统一授权并保留离线兜底</strong><span>同意并在线时优先使用 AI，离线或服务失败时使用规则；少量去标识候选需经审核，不会自动训练第三方模型。</span></div></div>
             </div>
           </section>`,
     "download release notes");
 
   audit = replacePatternExactly(audit,
     /^\s*\["3\.0\.(?:72|73) 新功能引导与下载身份一致",.*$/mu,
-    '  ["3.0.73 新功能引导与下载身份一致", ["const APP_VERSION = \'3.0.73\'", "知潮 3.0.73 新功能", "首页找功能", "中文释义", "普通主题", "1000 金币", "六套限定主题", "成就解锁"].every((phrase) => sources["src/App.tsx"].includes(phrase))],',
+    '  ["3.0.73 新功能引导与下载身份一致", ["const APP_VERSION = \'3.0.73\'", "知潮 3.0.73 新功能", "首页找功能", "中文释义", "普通主题", "1000 金币", "六套限定主题", "长按排序", "当天记录", "四种时光回看场景", "AI 日签", "朵朵百态·初遇篇", "20 张", "账单短评完整展示", "MDT", "统一授权", "安全筛查和去标识", "不会自动训练第三方模型"].every((phrase) => sources["src/App.tsx"].includes(phrase))],',
     "public copy current release check");
   audit = replacePatternExactly(audit,
     /^\s*\["下载确认页保留 3\.0\.(?:72|73) 精确包身份、非强制更新与备案",.*$/mu,
-    `  ["下载确认页保留 3.0.73 精确包身份、非强制更新与备案", ["3.0.73", "versionCode 110", "${metadata.apkBytes}", "${metadata.apkHash.toUpperCase()}", "${metadata.apkMegabytes} MB", "非强制更新", "最新更新：", "（北京时间）", "首页找功能", "中文释义", "普通主题", "1000 金币", "六套限定主题", "成就解锁", "访问知潮官网", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => sources["public/download/index.html"].includes(phrase))],`,
+    `  ["下载确认页保留 3.0.73 精确包身份、非强制更新与备案", ["3.0.73", "versionCode 110", "${metadata.apkBytes}", "${metadata.apkHash.toUpperCase()}", "${metadata.apkMegabytes} MB", "非强制更新", "最新更新：", "（北京时间）", "首页找功能", "中文释义", "普通主题", "1000 金币", "六套限定主题", "成就解锁", "长按排序", "当天上下文", "四种时光回看场景", "AI 日签", "朵朵百态·初遇篇", "20 张免费彩蛋", "文字创意共创", "账单朵朵短评完整显示", "MDT", "提示注入保护", "统一授权", "离线或服务失败", "不会自动训练第三方模型", "访问知潮官网", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => sources["public/download/index.html"].includes(phrase))],`,
     "public copy exact package check");
 
-  const currentChangelogAudit = '  ["3.0.73 更新日志已准备", ["知潮 3.0.73：首页找功能、刷卡提示与全局主题升级", "问朵朵·找功能", "中文释义", "普通主题", "1000 金币", "六套限定主题", "成就解锁", "访问知潮官网"].every((phrase) => sources["src/App.tsx"].includes(phrase))],';
+  const currentChangelogAudit = '  ["3.0.73 更新日志已准备", ["知潮 3.0.73：首页、刷卡、主题与足迹体验升级", "问朵朵·找功能", "中文释义", "普通主题", "1000 金币", "六套限定主题", "成就解锁", "九图长按排序", "当天上下文详情", "四种时光回看场景", "AI 日签", "朵朵百态·初遇篇", "20 张免费心情彩蛋", "彩蛋册", "文字创意参与共创", "账单朵朵短评", "MDT", "黄赌毒政", "提示注入保护", "AI 智能服务统一使用一次简洁授权", "规则兜底", "安全筛查和去标识", "版本化更新并可回滚", "记账短评仅作人工审核参考", "不会自动训练第三方模型", "访问知潮官网"].every((phrase) => sources["src/App.tsx"].includes(phrase))],';
   const changelogAuditCount = countOccurrences(audit, '["3.0.73 更新日志已准备"');
   if (changelogAuditCount === 0) {
     audit = replacePatternExactly(audit,
