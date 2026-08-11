@@ -15,7 +15,7 @@ const sources = Object.fromEntries(
   publicCopyFiles.map((name) => [name, fs.readFileSync(path.join(root, name), "utf8")]),
 );
 const publicCopy = Object.values(sources).join("\n");
-const hiddenServiceTerms = /\bAI\b|人工智能|大模型|DeepSeek|生成式|模型服务|智能生成|智能对话/;
+const hiddenServiceTerms = /DeepSeek|system prompt|featureType|模型密钥|AI 中央清单|内部模型路由/;
 const removedAppAgreementFiles = [
   "public/legal/privacy.html",
   "public/legal/terms.html",
@@ -41,7 +41,7 @@ const inviteWelcomeAsset = path.join(
 );
 
 const checks = [
-  ["公开网页不出现客户端内部服务术语", !hiddenServiceTerms.test(publicCopy)],
+  ["公开网页不泄露内部模型与服务实现术语", !hiddenServiceTerms.test(publicCopy)],
   ["官网主域统一为 huaix.cn", sources["index.html"].includes('href="https://huaix.cn/"') && sources["src/App.tsx"].includes("https://huaix.cn/download/index.html")],
   ["官网展示真实 ICP 备案号", sources["src/App.tsx"].includes("陕ICP备2026019822号") && sources["public/404.html"].includes("陕ICP备2026019822号")],
   ["官网统一登记运营主体", sources["src/App.tsx"].includes("旬阳市槐序软件工作室")],
@@ -51,7 +51,9 @@ const checks = [
   ["更新日志默认显示三条并可展开", sources["src/App.tsx"].includes("changelog.slice(0, 3)") && sources["src/App.tsx"].includes("showAllChangelog") && sources["src/App.tsx"].includes("查看更多更新")],
   ["3.0.66 记账专题更新日志已准备", ["知潮 3.0.66：记账界面与长期账本能力升级", "分类层级与分类预算", "24 个月趋势", "归档账户恢复", "跨设备快捷模板"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["3.0.67 朵朵笔记新内核更新日志已准备", ["知潮 3.0.67：朵朵笔记升级全新内核", "纸面优先", "旧笔记", "查看和导出", "尽力单向导入", "知识卡片"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
-  ["3.0.69 提醒体系更新日志已准备", ["知潮 3.0.69：计划提醒改由系统闹钟或日历承接", "不会把它表述为已经同步", "普通通知", "在对应系统应用中修改或删除", "足迹图片不显示"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
+  ["3.0.70 统一更新日志已公开", ["知潮 3.0.70：刷卡学习、找功能与学习体验升级", "内建键盘缺字补全", "问朵朵·找功能", "系统闹钟、系统日历或普通通知", "足迹个人页", "账本旧数据恢复", "官方安装包校验"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
+  ["未公开的 3.0.68/3.0.69 不再作为独立日志", !["知潮 3.0.68：", "知潮 3.0.69："].some((phrase) => sources["src/App.tsx"].includes(phrase))],
+  ["3.0.70 新功能引导与下载身份一致", ["const APP_VERSION = '3.0.70'", "知潮 3.0.70 新功能", "从刷卡记忆，到朗读听书和功能直达", "四级、六级、考研和医学英语", "未开启 AI 数据授权时"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["提醒体系更新文案不作送达绝对承诺", !["一定会提醒", "保证送达", "已经同步成功"].some((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["笔记升级文案不作数据零风险绝对承诺", !["百分之百迁移", "数据绝不会丢失", "完整迁移所有旧笔记"].some((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["公开站不复制 App 协议或 App 隐私政策", removedAppAgreementFiles.every((name) => !fs.existsSync(path.join(root, name)))],
@@ -63,7 +65,7 @@ const checks = [
   ["主站与邀请页先进入可见下载确认页", sources["src/App.tsx"].includes("https://huaix.cn/download/index.html") && sources["public/invite/index.html"].includes('href="/download/index.html"')],
   ["下载确认页不自动触发 APK", sources["public/download/index.html"].includes('id="download-apk"') && sources["public/download/index.html"].includes("开始下载 APK") && !/meta\s+http-equiv=["']refresh|location\.(?:href|replace)|\.click\(\)/i.test(sources["public/download/index.html"])],
   ["下载确认页使用清晰的品牌标题", sources["public/download/index.html"].includes("<title>知潮官方下载</title>")],
-  ["下载确认页保留版本、大小、本次更新与备案", ["3.0.67", "211.5 MB", "本次更新", "朵朵笔记已升级全新内核", "旧笔记", "查看和导出", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => sources["public/download/index.html"].includes(phrase))],
+  ["下载确认页保留版本、大小、本次更新与备案", ["3.0.70", "214.9 MB", "本次更新", "刷卡学习", "问朵朵·找功能", "系统闹钟、系统日历或普通通知", "官方安装包校验", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => sources["public/download/index.html"].includes(phrase))],
   ["下载确认页不向普通用户展示安装包哈希", !/SHA-?256|f29cab3959bf030d93aff07744ba0d976e94102e6dcd1aa30273c961c3e20c16/i.test(sources["public/download/index.html"])],
   ["邀请页提供欢迎首屏和真实功能简介", ["欢迎来到知潮", "练得更有方向", "复习更有节奏", "朵朵陪你坚持", "三步开始"].every((phrase) => sources["public/invite/index.html"].includes(phrase))],
   ["邀请页使用独立欢迎插画", fs.existsSync(inviteWelcomeAsset) && sources["public/invite/index.html"].includes("/invite/zhichao-invite-welcome-v1.webp")],
