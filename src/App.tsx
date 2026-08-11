@@ -39,6 +39,8 @@ const philosophy = [
 ]
 
 const APP_VERSION = '3.0.71'
+const APP_RELEASED_AT = '2026-08-11T10:31:00+08:00'
+const APP_RELEASED_AT_LABEL = '2026 年 8 月 11 日 10:31（北京时间）'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
@@ -521,7 +523,10 @@ function App() {
 
         <section className="release-story" aria-labelledby="release-story-title">
           <div className="release-story-heading reveal">
-            <span>知潮 3.0.71 新功能</span>
+            <div className="release-story-meta">
+              <span>知潮 3.0.71 新功能</span>
+              <time dateTime={APP_RELEASED_AT}>最新更新 · {APP_RELEASED_AT_LABEL}</time>
+            </div>
             <h2 id="release-story-title">把书架、资料导入和手写，收进一套 GoodNotes 式笔记体验</h2>
             <p>PDF 和图片打开就能继续写，翻页、缩放与长笔记书写也更流畅。</p>
           </div>
@@ -614,7 +619,13 @@ function App() {
         <section id="download" className="download">
           <h2 className="section-title reveal">下载</h2>
           <div className="download-migration download-current reveal">
-            <h3>当前邀请内测版</h3>
+            <div className="download-current-heading">
+              <div>
+                <span className="download-current-kicker">最新邀请内测版</span>
+                <h3>知潮 {APP_VERSION}</h3>
+              </div>
+              <time dateTime={APP_RELEASED_AT}>{APP_RELEASED_AT_LABEL}</time>
+            </div>
             <p>下载安装后，已有知潮账号可直接登录并继续使用云端数据；新用户请先向邀请人或抖音 @槐序学长 获取邀请码。</p>
             <div className="release-badges" aria-label="当前版本能力">
               <span>Android</span>

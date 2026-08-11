@@ -275,12 +275,38 @@
   padding: 30px 34px 26px;
 }
 
-.release-story-heading > span {
+.release-story-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  flex-wrap: wrap;
+}
+
+.release-story-meta > span {
   color: var(--accent-strong);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.release-story-meta time {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.release-story-meta time::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .release-story-heading h2 {
@@ -760,6 +786,37 @@
   margin: 0 0 8px;
   color: var(--text-h);
   font-size: 17px;
+}
+
+.download-current-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px 24px;
+  margin-bottom: 12px;
+}
+
+.download-current-heading h3 {
+  margin: 3px 0 0;
+  font-size: 22px;
+}
+
+.download-current-kicker {
+  color: var(--accent-strong);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+}
+
+.download-current-heading time {
+  max-width: 210px;
+  padding: 7px 10px;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+  border-radius: 12px;
+  background: color-mix(in srgb, white 72%, transparent);
+  color: var(--text);
+  font-size: 11px;
+  line-height: 1.5;
 }
 
 .download-migration p,
@@ -1251,6 +1308,11 @@
     padding: 26px 22px 20px;
   }
 
+  .release-story-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
   .release-story-grid {
     grid-template-columns: 1fr;
     padding: 0 10px 10px;
@@ -1284,6 +1346,16 @@
   .widget-preview--weather {
     grid-column: auto;
     min-height: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .download-current-heading {
+    flex-direction: column;
+  }
+
+  .download-current-heading time {
+    max-width: none;
   }
 }
 

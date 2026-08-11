@@ -4,89 +4,141 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light" />
-    <meta name="theme-color" content="#eaf4ee" />
+    <meta name="theme-color" content="#edf7f2" />
     <meta name="zhichao-apk-size-bytes" content="225361289" />
     <meta name="zhichao-apk-sha256" content="93A7623AEB3FADD9693F3EB5C7B5E02A8390D49F45B2DB13324D5EEA5B2EBA8E" />
     <title>知潮官方下载</title>
     <style>
       :root {
         font-family: "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
-        color: #17352b;
-        background: #eaf4ee;
+        color: #15382f;
+        background: #edf7f2;
+        font-synthesis: none;
       }
       * { box-sizing: border-box; }
-      body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 90% 0%, #fff 0, transparent 30%), #eaf4ee; }
-      main { width: min(100% - 32px, 680px); margin: 0 auto; padding: max(28px, env(safe-area-inset-top)) 0 max(30px, env(safe-area-inset-bottom)); }
-      .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-      .brand img { width: 54px; height: 54px; border-radius: 18px; }
-      .brand strong { display: block; font-size: 22px; }
-      .brand span { color: #668077; font-size: 14px; }
-      .card { background: rgba(255,255,255,.9); border: 1px solid rgba(62,132,104,.13); border-radius: 30px; padding: clamp(24px, 6vw, 38px); box-shadow: 0 16px 50px rgba(35,81,64,.12); }
-      .eyebrow { color: #3f856b; font-weight: 700; letter-spacing: .08em; }
-      h1 { margin: 8px 0 14px; font-size: clamp(30px, 8vw, 46px); line-height: 1.15; }
-      .lead { margin: 0; color: #5f746d; font-size: 17px; line-height: 1.7; }
-      .meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 22px 0 20px; }
-      .meta div { min-width: 0; padding: 13px 16px; border-radius: 18px; background: #f2f7f4; }
-      .meta small { display: block; color: #7b8d87; margin-bottom: 4px; }
-      .meta strong { font-size: 17px; }
-      .release-notes { margin: 0 0 22px; padding: 18px 20px; border-radius: 20px; background: #f7faf8; border: 1px solid #e4eee8; }
-      .release-notes h2 { margin: 0 0 10px; font-size: 18px; }
-      .release-notes ul { margin: 0; padding-left: 20px; color: #536a62; line-height: 1.65; }
-      .release-notes li + li { margin-top: 6px; }
-      .download { display: block; width: 100%; padding: 17px 20px; border-radius: 18px; background: #3f856b; color: white; font-size: 19px; font-weight: 800; text-align: center; text-decoration: none; box-shadow: 0 12px 24px rgba(63,133,107,.25); }
-      .download:active { transform: translateY(1px); }
-      #download-status { min-height: 24px; margin: 12px 0 0; color: #3f856b; text-align: center; font-size: 14px; }
-      .guide { margin-top: 24px; padding-top: 22px; border-top: 1px solid #e1ebe5; }
-      .guide h2 { margin: 0 0 12px; font-size: 19px; }
-      .guide ol { margin: 0; padding-left: 22px; color: #536a62; line-height: 1.8; }
-      .safety { margin: 20px 0 0; padding: 14px 16px; border-radius: 16px; background: #fff8e8; color: #80652e; line-height: 1.65; }
-      footer { padding: 24px 8px 0; color: #71867e; text-align: center; font-size: 13px; line-height: 1.9; }
-      footer a { color: inherit; }
+      html, body { overflow-x: hidden; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 94% 0%, rgba(255, 255, 255, .96) 0, rgba(255, 255, 255, 0) 29rem),
+          radial-gradient(circle at 3% 58%, rgba(108, 204, 170, .14) 0, rgba(108, 204, 170, 0) 25rem),
+          #edf7f2;
+      }
+      a { color: inherit; }
+      main { width: min(100% - 34px, 1040px); margin: 0 auto; padding: max(24px, env(safe-area-inset-top)) 0 max(34px, env(safe-area-inset-bottom)); }
+      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin: 0 4px 22px; }
+      .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+      .brand img { width: 52px; height: 52px; border-radius: 17px; box-shadow: 0 10px 26px rgba(30, 94, 72, .13); }
+      .brand strong, .brand span { display: block; }
+      .brand strong { font-size: 21px; letter-spacing: .08em; }
+      .brand span { margin-top: 2px; color: #6b8279; font-size: 13px; }
+      .official { display: inline-flex; align-items: center; gap: 7px; color: #3d725f; font-size: 13px; font-weight: 750; white-space: nowrap; }
+      .official::before { content: ""; width: 8px; height: 8px; border-radius: 999px; background: #35a276; box-shadow: 0 0 0 5px rgba(53, 162, 118, .12); }
+      .shell { overflow: hidden; border: 1px solid rgba(50, 126, 96, .14); border-radius: 34px; background: rgba(255, 255, 255, .88); box-shadow: 0 28px 80px rgba(27, 75, 59, .13); backdrop-filter: blur(18px); }
+      .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr); gap: 30px; padding: clamp(28px, 5vw, 52px); background: linear-gradient(135deg, rgba(242, 252, 247, .92), rgba(255, 255, 255, .96)); }
+      .eyebrow { display: inline-flex; align-items: center; min-height: 28px; padding: 3px 11px; border-radius: 999px; background: #dff2e9; color: #2e7259; font-size: 12px; font-weight: 850; letter-spacing: .1em; }
+      h1 { margin: 13px 0 13px; color: #10382c; font-size: clamp(34px, 6vw, 56px); line-height: 1.08; letter-spacing: -.04em; }
+      .lead { max-width: 560px; margin: 0; color: #587269; font-size: 16px; line-height: 1.75; }
+      .release-time { display: flex; align-items: center; gap: 8px; margin: 18px 0 0; color: #667d75; font-size: 13px; }
+      .release-time::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #62ad8f; }
+      .download { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 58px; margin-top: 24px; padding: 15px 20px; border-radius: 18px; background: #247f60; color: white; font-size: 18px; font-weight: 850; text-align: center; text-decoration: none; box-shadow: 0 14px 30px rgba(36, 127, 96, .25); transition: transform .18s ease, box-shadow .18s ease; }
+      .download::after { content: "↓"; font-size: 20px; }
+      .download:hover { transform: translateY(-2px); box-shadow: 0 18px 36px rgba(36, 127, 96, .3); }
+      .download:active { transform: translateY(0); }
+      #download-status { min-height: 22px; margin: 9px 0 0; color: #36765d; text-align: center; font-size: 13px; }
+      .release-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; min-width: 0; max-width: 100%; gap: 11px; }
+      .fact { min-width: 0; min-height: 104px; padding: 17px; border: 1px solid #e3eee8; border-radius: 20px; background: rgba(248, 252, 250, .9); }
+      .fact small, .fact strong, .fact span { display: block; }
+      .fact small { margin-bottom: 9px; color: #82958e; font-size: 12px; }
+      .fact strong { color: #244a3d; font-size: 17px; }
+      .fact span { margin-top: 5px; color: #71867e; font-size: 12px; line-height: 1.5; }
+      .content { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr); gap: 24px; padding: 0 clamp(24px, 5vw, 52px) clamp(30px, 5vw, 48px); }
+      .panel { border-top: 1px solid #e4eee9; padding-top: 27px; }
+      .panel h2 { margin: 0 0 15px; color: #234a3c; font-size: 19px; }
+      .release-notes { display: grid; gap: 10px; }
+      .release-note { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; padding: 13px 14px; border-radius: 17px; background: #f5faf7; }
+      .release-note b { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 11px; background: #dff2e9; color: #327459; font-size: 13px; }
+      .release-note strong { display: block; margin: 1px 0 4px; color: #284d40; font-size: 14px; }
+      .release-note span { color: #617970; font-size: 13px; line-height: 1.6; }
+      .guide ol { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; counter-reset: guide; }
+      .guide li { position: relative; padding-left: 40px; color: #597168; font-size: 13px; line-height: 1.65; counter-increment: guide; }
+      .guide li::before { content: counter(guide); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 27px; height: 27px; border-radius: 9px; background: #edf6f1; color: #35765d; font-weight: 800; }
+      .safety { margin: 20px 0 0; padding: 15px 16px; border: 1px solid #f0dfb6; border-radius: 17px; background: #fff9eb; color: #755d29; font-size: 13px; line-height: 1.65; }
+      footer { padding: 24px 8px 0; color: #71867e; text-align: center; font-size: 12px; line-height: 1.9; }
+      footer a { text-underline-offset: 3px; }
       .filing { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 7px; }
       .filing img { vertical-align: -3px; }
-      @media (max-width: 420px) {
-        main { width: min(100% - 24px, 680px); }
-        .card { border-radius: 25px; }
-        .meta div { padding: 12px; }
-        .meta strong { font-size: 15px; }
-        .release-notes { padding: 16px; }
+      @media (max-width: 760px) {
+        .hero, .content { grid-template-columns: 1fr; }
+        .hero { gap: 24px; }
+        .content { gap: 6px; }
+        .release-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 480px) {
+        main { width: min(100% - 22px, 1040px); padding-top: max(15px, env(safe-area-inset-top)); }
+        .topbar { margin-bottom: 14px; }
+        .official { font-size: 11px; }
+        .shell { border-radius: 27px; }
+        .hero { padding: 25px 20px 22px; }
+        .content { padding: 0 20px 27px; }
+        .brand img { width: 46px; height: 46px; border-radius: 15px; }
+        .brand strong { font-size: 18px; }
       }
     </style>
   </head>
   <body>
     <main>
-      <header class="brand">
-        <img src="/mascot/happy.webp" alt="知潮朵朵" />
-        <div><strong>知潮</strong><span>槐序工坊</span></div>
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="返回知潮官网">
+          <img src="/mascot/happy.webp" alt="知潮朵朵" />
+          <span><strong>知潮</strong><span>槐序工坊</span></span>
+        </a>
+        <span class="official">huaix.cn 官方来源</span>
       </header>
-      <section class="card" aria-labelledby="download-title">
-        <div class="eyebrow">ANDROID 内测版</div>
-        <h1 id="download-title">下载知潮 3.0.71</h1>
-        <p class="lead">这里是知潮官网的下载确认页。点击下方按钮后，浏览器才会开始下载。</p>
-        <div class="meta">
-          <div><small>安装包大小</small><strong>214.9 MB</strong></div>
-          <div><small>更新方式</small><strong>非强制更新</strong></div>
+
+      <section class="shell" aria-labelledby="download-title">
+        <div class="hero">
+          <div>
+            <span class="eyebrow">ANDROID 邀请内测</span>
+            <h1 id="download-title">知潮 3.0.71</h1>
+            <p class="lead">先看清版本与更新内容，再由你决定是否下载。已有账号更新安装后，可继续使用原来的云端数据。</p>
+            <p class="release-time">最新更新：<time datetime="2026-08-11T10:31:00+08:00">2026 年 8 月 11 日 10:31（北京时间）</time></p>
+            <a id="download-apk" class="download" href="/download/zhichao-mobile-release.apk?v=3.0.71" download>开始下载 APK</a>
+            <p id="download-status" role="status" aria-live="polite"></p>
+          </div>
+
+          <div class="release-facts" aria-label="安装包信息">
+            <div class="fact"><small>版本</small><strong>3.0.71</strong><span>versionCode 108</span></div>
+            <div class="fact"><small>安装包</small><strong>214.9 MB</strong><span>Android · arm64</span></div>
+            <div class="fact"><small>更新方式</small><strong>非强制更新</strong><span>可按自己的时间安装</span></div>
+            <div class="fact"><small>发布状态</small><strong>官方已核验</strong><span>签名与公网文件一致</span></div>
+          </div>
         </div>
-        <section class="release-notes" aria-labelledby="release-notes-title">
-          <h2 id="release-notes-title">本次更新</h2>
-          <ul>
-            <li>朵朵笔记的书架重新整理笔记本、PDF 和图片资料，最近内容更容易找到。</li>
-            <li>支持将 PDF 和图片直接导入为可阅读、可手写批注的页面。</li>
-            <li>笔、橡皮、颜色与粗细等手写工具更集中，阅读和书写连接得更自然。</li>
-            <li>优化翻页、缩放、连续书写和长笔记渲染时的流畅度。</li>
-          </ul>
-        </section>
-        <a id="download-apk" class="download" href="/download/zhichao-mobile-release.apk?v=3.0.71" download>开始下载 APK</a>
-        <p id="download-status" role="status" aria-live="polite"></p>
-        <div class="guide">
-          <h2>下载与安装</h2>
-          <ol>
-            <li>点击“开始下载 APK”，到浏览器的下载列表查看进度。</li>
-            <li>下载完成后打开安装包；如系统询问，请仅为当前浏览器临时允许安装未知应用。</li>
-          </ol>
+
+        <div class="content">
+          <section class="panel" aria-labelledby="release-notes-title">
+            <h2 id="release-notes-title">本次更新</h2>
+            <div class="release-notes">
+              <div class="release-note"><b>01</b><div><strong>朵朵笔记书架更清楚</strong><span>最近笔记本、PDF 与图片资料更容易找到，打开后继续上次阅读。</span></div></div>
+              <div class="release-note"><b>02</b><div><strong>PDF 和图片直接导入</strong><span>资料可直接变成可阅读、可手写批注的页面，减少格式转换。</span></div></div>
+              <div class="release-note"><b>03</b><div><strong>手写与长笔记更流畅</strong><span>工具收纳更集中，并优化翻页、缩放、连续输入与长内容渲染流畅度。</span></div></div>
+              <div class="release-note"><b>04</b><div><strong>输入与保存更可靠</strong><span>连续输入不再丢焦点，失败状态可见并支持重试。</span></div></div>
+            </div>
+          </section>
+
+          <section class="panel guide" aria-labelledby="install-guide-title">
+            <h2 id="install-guide-title">下载与安装</h2>
+            <ol>
+              <li>点击“开始下载 APK”，到浏览器下载列表查看进度。</li>
+              <li>下载完成后打开安装包；如系统询问，只为当前浏览器临时允许安装未知应用。</li>
+              <li>安装后从桌面打开知潮。覆盖更新不会要求重新注册账号。</li>
+            </ol>
+            <p class="safety">请确认地址栏域名为 <strong>huaix.cn</strong>。本页不会自动下载，也不会要求输入知潮账号、密码或验证码。</p>
+          </section>
         </div>
-        <p class="safety">请确认地址栏域名为 <strong>huaix.cn</strong>。本页不会自动开始下载，也不会要求输入知潮账号或密码。</p>
       </section>
+
       <footer>
         <a href="/website-privacy.html">网站隐私说明</a>
         <div class="filing">
