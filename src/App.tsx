@@ -38,9 +38,9 @@ const philosophy = [
   },
 ]
 
-const APP_VERSION = '3.0.73'
-const APP_RELEASED_AT = '2026-08-11T18:00:00+08:00'
-const APP_RELEASED_AT_LABEL = '2026 年 8 月 11 日 18:00（北京时间）'
+const APP_VERSION = '3.0.74'
+const APP_RELEASED_AT = '2026-08-11T19:00:00+08:00'
+const APP_RELEASED_AT_LABEL = '2026 年 8 月 11 日 19:00（北京时间）'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
@@ -249,6 +249,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-08-11',
+    title: '知潮 3.0.74：正式安装包与发布基线维护',
+    desc: '将已经完成的首页找功能、英语刷卡提示、全局主题、九图足迹与时光回看、朵朵彩蛋和回应优化统一到新的正式安装包，并补齐版本、启动、签名、产权扫描和公开下载身份校验。本次不改变账号数据、金币奖励或既有安全规则，为非强制更新，可按自己的时间安装。',
+  },
   {
     date: '2026-08-11',
     title: '知潮 3.0.73：首页、刷卡、主题与足迹体验升级',
@@ -554,11 +559,11 @@ function App() {
         <section className="release-story" aria-labelledby="release-story-title">
           <div className="release-story-heading reveal">
             <div className="release-story-meta">
-              <span>知潮 3.0.73 新功能</span>
+              <span>知潮 3.0.74 正式更新</span>
               <time dateTime={APP_RELEASED_AT}>最新更新 · {APP_RELEASED_AT_LABEL}</time>
             </div>
-            <h2 id="release-story-title">首页、学习、足迹与朵朵回应，这次一起理顺</h2>
-            <p>小屏找功能和刷卡提示更清楚，九图足迹加入排序、回看和彩蛋，账单与医学学习回应也更稳妥。</p>
+            <h2 id="release-story-title">已完成的体验与正式安装包，现在对齐到同一条发布基线</h2>
+            <p>首页、刷卡、主题、足迹与朵朵回应均已纳入 3.0.74，账号数据、金币奖励和既有安全规则不变。</p>
           </div>
           <div className="release-story-grid">
             {releaseHighlights.map((item, index) => (
