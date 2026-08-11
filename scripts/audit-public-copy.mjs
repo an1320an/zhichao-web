@@ -67,6 +67,8 @@ const checks = [
   ["主站与邀请页先进入可见下载确认页", sources["src/App.tsx"].includes("https://huaix.cn/download/index.html") && sources["public/invite/index.html"].includes('href="/download/index.html"')],
   ["下载确认页不自动触发 APK", sources["public/download/index.html"].includes('id="download-apk"') && sources["public/download/index.html"].includes("开始下载 APK") && !/meta\s+http-equiv=["']refresh|location\.(?:href|replace)|\.click\(\)/i.test(sources["public/download/index.html"])],
   ["下载确认页使用清晰的品牌标题", sources["public/download/index.html"].includes("<title>知潮官方下载</title>")],
+  ["下载确认页提供清晰可见的官网入口", sources["public/download/index.html"].includes('<a class="website-link" href="/" aria-label="访问知潮官网首页">') && sources["public/download/index.html"].includes("访问知潮官网")],
+  ["下载确认页提供键盘焦点与减少动态效果支持", sources["public/download/index.html"].includes("a:focus-visible") && sources["public/download/index.html"].includes("prefers-reduced-motion: reduce")],
   ["下载确认页保留 3.0.72 精确包身份、非强制更新与备案", ["3.0.72", "versionCode 109", "225414510", "AE4D6F9942A2E7403F58A1140D80A2BE576B70E700B41877421609162B3703AC", "215.0 MB", "非强制更新", "本次更新", "复习与模考", "九图", "找功能", "装扮视觉", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => sources["public/download/index.html"].includes(phrase))],
   ["下载确认页不向普通用户显示安装包哈希", !/<(?:code|details)[^>]*>[^<]*(?:SHA-?256|[a-f0-9]{64})/iu.test(sources["public/download/index.html"])],
   ["邀请页提供欢迎首屏和真实功能简介", ["欢迎来到知潮", "练得更有方向", "复习更有节奏", "朵朵陪你坚持", "三步开始"].every((phrase) => sources["public/invite/index.html"].includes(phrase))],

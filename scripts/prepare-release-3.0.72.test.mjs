@@ -45,6 +45,8 @@ test("prepares all public 3.0.72 identities in memory without fake APK values", 
     `content="${"a".repeat(64).toUpperCase()}"`,
     "117.7 MB",
     "2026 年 8 月 11 日 20:05（北京时间）",
+    'class="website-link" href="/"',
+    "访问知潮官网",
   ]) assert.ok(prepared.download.includes(phrase), phrase);
   assert.ok(prepared.audit.includes("3.0.72 精确包身份"));
   assert.equal(fs.readFileSync(path.join(root, "src", "App.tsx"), "utf8"), sources.app);
