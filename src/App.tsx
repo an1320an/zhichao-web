@@ -38,9 +38,9 @@ const philosophy = [
   },
 ]
 
-const APP_VERSION = '3.0.78'
-const APP_RELEASED_AT = '2026-08-12T22:18:00+08:00'
-const APP_RELEASED_AT_LABEL = '2026 年 8 月 12 日 22:18（北京时间）'
+const APP_VERSION = '3.0.79'
+const APP_RELEASED_AT = '2026-08-13T01:50:00+08:00'
+const APP_RELEASED_AT_LABEL = '2026 年 8 月 13 日 01:50（北京时间）'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
@@ -234,6 +234,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-08-13',
+    title: '知潮 3.0.79：页面导航与记账删除紧急修复',
+    desc: '修复更换主题后，从搭子页打开头像设置、小屋、天气，以及从足迹进入时光海洋和彩蛋册、从学习页进入学习工具时，页面瞬间返回搭子首页的问题；导航容器现在保持稳定，不再因背景层切换而被重新创建。记账删除遇到版本冲突时会刷新并同步当前账单，再由用户重新确认，不会反复拿旧版本提交。本次为非强制修复更新。',
+  },
   {
     date: '2026-08-12',
     title: '知潮 3.0.78：全局主题、功能直达与潮汐信箱体验升级',
@@ -580,11 +585,11 @@ function App() {
         <section className="release-story" aria-labelledby="release-story-title">
           <div className="release-story-heading reveal">
             <div className="release-story-meta">
-              <span>知潮 3.0.78 正式更新</span>
+              <span>知潮 3.0.79 修复更新</span>
               <time dateTime={APP_RELEASED_AT}>最新更新 · {APP_RELEASED_AT_LABEL}</time>
             </div>
-            <h2 id="release-story-title">从看得清、找得到，到在潮汐里重新遇见自己的足迹</h2>
-            <p>本次更新统一多主题与深层页面，补齐功能入口和交互细节，并让海岸、深海与朵朵来信形成一条可收藏、可整理的回忆路径。</p>
+            <h2 id="release-story-title">常用页面重新稳定直达，记账删除也能顺利继续</h2>
+            <p>本次修复聚焦 3.0.78 出现的页面跳回首页和记账删除冲突：设置、小屋、天气、时光海洋、彩蛋册与学习工具均恢复正常入口。</p>
           </div>
           <div className="release-story-grid">
             {releaseHighlights.map((item, index) => (
