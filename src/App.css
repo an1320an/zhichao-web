@@ -1025,6 +1025,15 @@
   margin: 0 auto;
 }
 
+.changelog-note {
+  max-width: 640px;
+  margin: -18px auto 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: center;
+}
+
 .changelog-list li {
   display: flex;
   gap: 20px;
@@ -1053,31 +1062,6 @@
 .changelog-list p {
   font-size: 14px;
   line-height: 150%;
-}
-
-.changelog-toggle {
-  display: block;
-  margin: 22px auto 0;
-  padding: 11px 22px;
-  border: 1px solid var(--accent-border);
-  border-radius: 999px;
-  background: var(--accent-bg);
-  color: var(--accent);
-  font: inherit;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 160ms ease, background-color 160ms ease;
-}
-
-.changelog-toggle:hover {
-  transform: translateY(-1px);
-  background: rgba(47, 125, 97, 0.16);
-}
-
-.changelog-toggle:focus-visible {
-  outline: 3px solid rgba(47, 125, 97, 0.24);
-  outline-offset: 3px;
 }
 
 .architecture {

@@ -38,9 +38,9 @@ const philosophy = [
   },
 ]
 
-const APP_VERSION = '3.0.76'
-const APP_RELEASED_AT = '2026-08-12T17:00:00+08:00'
-const APP_RELEASED_AT_LABEL = '2026 年 8 月 12 日 17:00（北京时间）'
+const APP_VERSION = '3.0.77'
+const APP_RELEASED_AT = '2026-08-12T18:37:00+08:00'
+const APP_RELEASED_AT_LABEL = '2026 年 8 月 12 日 18:37（北京时间）'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
@@ -56,24 +56,24 @@ const features = [
 
 const releaseHighlights = [
   {
-    label: '海岸',
-    title: '沿潮线拾起旧日片段，回到记忆发生的原处',
-    desc: '贝壳和漂流瓶承载不同足迹入口，打开后仍回到原记录查看完整文字、图片、朵朵回应与当天上下文。',
+    label: '学习',
+    title: '从目标到练习再到复测，学习教练形成真实闭环',
+    desc: '下一步会直达推荐科目与题量，完成练习和短复测后，再按真实证据更新掌握度、今日安排和后续行动。',
   },
   {
-    label: '深海',
-    title: '下潜不是换名字，而是寻找跨时间的关联洋流',
-    desc: '不同深度对应不同时间跨度，声呐发现、下潜记录和关联洋流让零散足迹形成可以继续探索的联系。',
+    label: '整理',
+    title: '试用内容不再越积越乱，归档与删除有完整去向',
+    desc: '个人记忆卡组、知识树和遗忘曲线内容可归档、恢复或移入最近删除；删除前暂停提醒与复习，30 天内仍可找回。',
   },
   {
-    label: '底座',
-    title: '可替换渲染器与性能分档，保证现在能用、以后能演进',
-    desc: '场景清单、业务数据和渲染实现相互分离；动画按设备能力与减少动态效果设置降级，低性能设备也保留完整内容路径。',
+    label: '创作',
+    title: '笔记、批注和文档工坊一起补齐可读与可交付',
+    desc: '图片和 PDF 提高清晰度并可从原页面进入画笔；PPT、PDF、长图、流程图与图示加强分页、缩放和完整性检查。',
   },
   {
-    label: '主权',
-    title: '海洋世界不复制数据，管理仍回到原足迹',
-    desc: '编辑、删除、导出、置顶与回应管理只有一套真实来源，海岸和深海只是两种回看方式，不制造删不掉的副本。',
+    label: '回看',
+    title: '海岸负责重拾，深海负责发现记忆之间的洋流',
+    desc: '贝壳与漂流瓶回到原足迹，声呐、下潜和关联洋流提供另一种探索；场景会按设备能力降级，也不会复制删不掉的数据。',
   },
 ]
 
@@ -163,7 +163,7 @@ const platforms = [
   {
     name: 'Android 移动端',
     desc: `知潮 ${APP_VERSION} Android 安装包`,
-    status: '朵朵笔记书架、导入、手写与流畅度升级',
+    status: '学习闭环、内容整理、创作与海洋回看升级',
     downloadUrl: 'https://huaix.cn/download/index.html',
     downloadLabel: '下载知潮新包',
     qrCode: androidQrCode,
@@ -236,8 +236,13 @@ const faq = [
 const changelog = [
   {
     date: '2026-08-12',
-    title: '知潮 3.0.76：时光海岸与可下潜的海洋世界',
-    desc: '足迹的时光回看重做为彼此分工的“时光海岸”与“深海探索”：海岸负责捡起贝壳、漂流瓶般的往日片段，深海按透光层、暮光层与静谧层组织探索，通过声呐发现、下潜记录、关联洋流和潮汐册重新连接过去。海洋场景采用性能分档、动态降级和可替换渲染层，低性能设备与减少动态效果设置仍可完整读取内容；足迹原记录继续拥有编辑、删除、导出、置顶和回应管理权，不另造一份不可清理的数据。本次为非强制更新。',
+    title: '知潮 3.0.77：政策、功能导览与官网更新记录同步',
+    desc: '用户协议和隐私政策同步沟通大字板投稿、个人学习内容归档与最近删除、时光海洋本机潜水日志和云端私密回声等真实处理规则；隐私确认升级后会重新展示一次。新功能导览改为学习闭环、个人内容管理、笔记与文档、大字板、时光海洋五步直达。官网更新日志固定显示最近三次并移除失效的长历史入口，避免移动端展开后空白或卡顿。远程 Push 仍未开放，打开、回到或刷新 App 后的公告拉取与本机系统通知保持。本次为非强制更新。',
+  },
+  {
+    date: '2026-08-12',
+    title: '知潮 3.0.76：学习闭环、内容整理、创作与海洋回看升级',
+    desc: '学习教练会把目标、真实学习证据、推荐练习、短复测和动态重排连成闭环；个人记忆卡组、知识树与遗忘曲线内容新增归档、最近删除、恢复和永久清理。朵朵笔记提升图片与 PDF 清晰度并补齐从原页面进入画笔的路径，文档工坊加强 PPT、PDF、长图、流程图和图示的分页、缩放与完整性检查。关于页信件、全局主题、聊天表格、足迹图片、长通知和通知图片的交互同步优化；打开、回到或刷新 App 后可拉取新公告并按系统权限提示，杀进程后的远程 Push 尚未开放。新增沟通大字板及系统模板，个人模板投稿公共库前需另行授权并经过审核。足迹时光回看重做为彼此分工的时光海岸与深海探索，仍由原足迹统一编辑、删除和导出。本次为非强制更新。',
   },
   {
     date: '2026-08-12',
@@ -484,6 +489,22 @@ function useScrollReveal() {
   }, [])
 }
 
+function useHashNavigation() {
+  useEffect(() => {
+    const scrollToHash = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1))
+      if (!id) return
+      window.requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ block: 'start' })
+      })
+    }
+
+    scrollToHash()
+    window.addEventListener('hashchange', scrollToHash)
+    return () => window.removeEventListener('hashchange', scrollToHash)
+  }, [])
+}
+
 function handleCardTilt(e: React.MouseEvent<HTMLDivElement>) {
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
   const card = e.currentTarget
@@ -501,9 +522,9 @@ function resetCardTilt(e: React.MouseEvent<HTMLDivElement>) {
 
 function App() {
   const [platform] = useState(detectPlatform)
-  const [showAllChangelog, setShowAllChangelog] = useState(false)
   const platformNotice = platformNotices[platform]
   useScrollReveal()
+  useHashNavigation()
 
   return (
     <div className="page">
@@ -554,11 +575,11 @@ function App() {
         <section className="release-story" aria-labelledby="release-story-title">
           <div className="release-story-heading reveal">
             <div className="release-story-meta">
-              <span>知潮 3.0.76 正式更新</span>
+              <span>知潮 3.0.77 正式更新</span>
               <time dateTime={APP_RELEASED_AT}>最新更新 · {APP_RELEASED_AT_LABEL}</time>
             </div>
-            <h2 id="release-story-title">从海岸拾起片段，再向深海探索记忆之间的洋流</h2>
-            <p>时光海岸负责重拾，深海探索负责发现关联；两条路径共用原足迹，不复制一份删不掉的数据。</p>
+            <h2 id="release-story-title">让学习有下一步、内容有去处，创作与回忆也更顺手</h2>
+            <p>本次更新把学习闭环、个人内容整理、笔记与文档交付统一补齐，也带来彼此分工的时光海岸和深海探索。</p>
           </div>
           <div className="release-story-grid">
             {releaseHighlights.map((item, index) => (
@@ -756,10 +777,11 @@ function App() {
         </section>
 
         <section id="changelog" className="changelog">
-          <h2 className="section-title reveal">更新日志</h2>
+          <h2 className="section-title">更新日志</h2>
+          <p className="changelog-note">官网固定展示最近三次正式更新，避免长历史列表影响浏览；当前版本的完整说明可在上方更新专题与下载页查看。</p>
           <ul className="changelog-list">
-            {(showAllChangelog ? changelog : changelog.slice(0, 3)).map((entry) => (
-              <li key={`${entry.date}-${entry.title}`} className="reveal">
+            {changelog.slice(0, 3).map((entry) => (
+              <li key={`${entry.date}-${entry.title}`}>
                 <span className="changelog-date">{entry.date}</span>
                 <div>
                   <h3>{entry.title}</h3>
@@ -768,14 +790,6 @@ function App() {
               </li>
             ))}
           </ul>
-          <button
-            type="button"
-            className="changelog-toggle"
-            aria-expanded={showAllChangelog}
-            onClick={() => setShowAllChangelog((value) => !value)}
-          >
-            {showAllChangelog ? '收起历史更新' : `查看更多更新（${changelog.length - 3}）`}
-          </button>
         </section>
 
         <section id="faq" className="faq">
