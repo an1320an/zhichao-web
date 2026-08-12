@@ -38,9 +38,9 @@ const philosophy = [
   },
 ]
 
-const APP_VERSION = '3.0.79'
-const APP_RELEASED_AT = '2026-08-13T01:50:00+08:00'
-const APP_RELEASED_AT_LABEL = '2026 年 8 月 13 日 01:50（北京时间）'
+const APP_VERSION = '3.0.80'
+const APP_RELEASED_AT = '2026-08-13T06:10:00+08:00'
+const APP_RELEASED_AT_LABEL = '2026 年 8 月 13 日 06:10（北京时间）'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
@@ -56,24 +56,24 @@ const features = [
 
 const releaseHighlights = [
   {
-    label: '清晰',
-    title: '多主题从状态栏到深层页面统一可读',
-    desc: '一级到多级页面按主题统一状态栏过渡、文字对比与页面底色；减少重复背景和高成本装饰，让滚动与切页更稳。',
+    label: '保留',
+    title: '编辑旧账直接带回原分类和账户',
+    desc: '例如原来选择“餐饮”和“中国工商银行”，再次打开即可直接修改并保存，不需要重新选择。',
   },
   {
-    label: '直达',
-    title: '功能中心把五运六气等入口放到明处',
-    desc: '常用功能、五运六气、沟通大字板与文档工坊可从统一入口查找；问朵朵·找功能继续提供自然语言直达。',
-  },
-  {
-    label: '潮汐',
-    title: '朵朵会把足迹写成可收藏的潮汐来信',
-    desc: '符合条件时，漂流瓶或鲸歌会带来结合近期足迹生成的私密内容；来信可归档、删除并通过系统分享，由你决定是否发给朋友。',
+    label: '看清',
+    title: '备注改为完整的多行编辑区',
+    desc: '备注可见、可选中、可退格清空；获得焦点时金额键盘会主动让路，不再遮住正在输入的文字。',
   },
   {
     label: '顺手',
-    title: '更新、导览、通知与聊天手势各走各的路',
-    desc: '安装前看更新摘要，安装后看新功能导览；普通公告仍在打开、回到或刷新 App 后拉取，聊天表格横向拖动不再抢走纵向滚动。',
+    title: '金额键盘可以随时展开或折叠',
+    desc: '编辑旧账时默认先让你看清内容，需要改金额再点一下展开；折叠后保存和删除入口仍然保留。',
+  },
+  {
+    label: '完整',
+    title: '账单卡片不再把朵朵短评挤成半句话',
+    desc: '金额、账户、备注与朵朵短评各自拥有可换行区域，长一点的说明也能完整读完。',
   },
 ]
 
@@ -240,6 +240,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-08-13',
+    title: '知潮 3.0.80：旧账编辑与备注输入体验修复',
+    desc: '编辑以前记录的账单时，会保留原来的收支类型、分类和账户，不必重新选择即可保存。备注改为完整多行编辑区，支持选中、退格和清空；输入备注时金额键盘会自动折叠，也可按需重新展开。账单卡片重新分配文字空间，朵朵短评不再被金额列挤成半句话。本次不改变已有账目、金币、隐私授权或投票功能，为非强制修复更新。',
+  },
   {
     date: '2026-08-13',
     title: '知潮 3.0.79：页面导航与记账删除紧急修复',
@@ -591,11 +596,11 @@ function App() {
         <section className="release-story" aria-labelledby="release-story-title">
           <div className="release-story-heading reveal">
             <div className="release-story-meta">
-              <span>知潮 3.0.79 修复更新</span>
+              <span>知潮 3.0.80 记账修复更新</span>
               <time dateTime={APP_RELEASED_AT}>最新更新 · {APP_RELEASED_AT_LABEL}</time>
             </div>
-            <h2 id="release-story-title">常用页面重新稳定直达，记账删除也能顺利继续</h2>
-            <p>本次修复聚焦 3.0.78 出现的页面跳回首页和记账删除冲突：设置、小屋、天气、时光海洋、彩蛋册与学习工具均恢复正常入口。</p>
+            <h2 id="release-story-title">旧账打开就能改，备注输入也不再被挡住</h2>
+            <p>本次只聚焦记账编辑体验：保留原分类与账户，让金额键盘主动给备注让路，并完整展示朵朵短评。</p>
           </div>
           <div className="release-story-grid">
             {releaseHighlights.map((item, index) => (
