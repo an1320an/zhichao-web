@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "audit:copy": "node scripts/audit-public-copy.mjs",
-    "test:release-prep": "node --test scripts/freeze-release-3.0.81.test.mjs",
+    "test:release-prep": "node --test scripts/freeze-release-3.0.82.test.mjs",
     "test:maintenance-fallback": "node --test scripts/service-maintenance-fallback.test.mjs",
     "lint": "oxlint",
     "preview": "vite preview"

@@ -38,9 +38,9 @@ const philosophy = [
   },
 ]
 
-const APP_VERSION = '3.0.81'
-const APP_RELEASED_AT = '2026-08-13T11:28:00+08:00'
-const APP_RELEASED_AT_LABEL = '2026 年 8 月 13 日 11:28（北京时间）'
+const APP_VERSION = '3.0.82'
+const APP_RELEASED_AT = 'PENDING_3_0_82_RELEASED_AT'
+const APP_RELEASED_AT_LABEL = '正式发布后更新'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
@@ -56,52 +56,62 @@ const features = [
 
 const releaseHighlights = [
   {
-    label: '身份',
-    title: '特殊身份在搭子主页可见，投票结果也有长期入口',
-    desc: '已确认的共创等特殊身份会显示专属铭牌；参加改名投票后，可从功能中心回看当前票况，投票前不展示结果。',
+    label: '关怀',
+    title: '个人资料保持可选，周期关怀由你决定是否开启',
+    desc: '性别认同与生日不是注册必填；生理期关怀默认关闭，可自定提前天数、提醒时间和锁屏隐私。“关心重要的人”只做通用提醒，不记录对方身份或健康状态。',
   },
   {
-    label: '顺滑',
-    title: '主题状态栏、页面切换和输入交互继续收口',
-    desc: '减少从设置返回搭子页时的集中刷新与动画竞争，统一不同主题的系统栏过渡，并修复金额键盘与输入法争抢焦点。',
+    label: '对话',
+    title: '长按朵朵回复，局部复制并直达创作与练习',
+    desc: '回复文字支持选择部分内容复制，也可从有界对话创建流程图、文档、保存到笔记或生成练习题；直接说“出一道题”会优先进入结构化答题卡并明确单选或多选。',
   },
   {
-    label: '探索',
-    title: '时光海洋拥有更大的探索画布与更自然的分布',
-    desc: '海岸和深海扩展可拖动区域，贝壳不再集中堆叠，并加入被沙覆盖的层次；深海场景补充更多差异化生物与景物。',
+    label: '听背',
+    title: '朗读有明确反馈，听背可在系统播放面板控制',
+    desc: '单卡朗读和连续听背不再静默失败；后台听背由原生媒体服务承接，可暂停或继续。朗读设置可按设备已安装音色选择语言、音色、语速与停顿。',
   },
   {
-    label: '可控',
-    title: '更新弹窗按顺序出现，聊天记录也能明确删除',
-    desc: '安装后优先完成新功能导览，不再叠加旧更新说明；聊天长按可删除所选完整一轮及后续上下文，已确认的收藏、笔记和记忆仍单独管理。',
+    label: '整理',
+    title: '笔记额度和学习内容回收边界更清楚',
+    desc: '活跃笔记、归档只读和服务端展示的金币扩容形成闭环；自建记忆卡支持归档、最近删除、30 天内恢复或提前永久删除，公共来源不会被个人操作删除。',
+  },
+  {
+    label: '反馈',
+    title: '医学边界提示可以匿名评价是否有帮助',
+    desc: '医学提示下只提交随机反馈编号、页面、固定原因、处理结果和“有帮助/没帮助”，不提交聊天正文、邮箱、账号 ID、IP 或自由文本，匿名事件保存 180 天。',
+  },
+  {
+    label: '稳定',
+    title: '页面轮询、后台任务和服务器资源治理继续减负',
+    desc: '学习列表只在页面可见且 App 位于前台时轮询，并防止请求重叠；服务端清理任务采用有界批次，发布链保留资源熔断与失败闭锁，减少无意义刷新和重 I/O。',
   },
 ]
 
-const nextReleaseReadiness = [
+const releaseSchemaCapabilities = [
   {
     version: 'V79',
-    title: '笔记活跃额度与归档',
-    desc: '源码为每个账号保留免费活跃笔记位，并把归档定义为只读保留；金币扩容必须先展示服务端当时有效的档位、价格、期限与退款窗口。',
+    title: '笔记活跃额度、归档与扩容',
+    desc: '每个账号保留免费活跃笔记位，归档定义为只读保留；金币扩容必须先展示服务端当时有效的档位、价格、期限与退款窗口。',
   },
   {
     version: 'V80',
-    title: '可选资料与私密周期关怀',
+    title: '可选资料与本机周期关怀',
     desc: '性别认同与生日都不是注册必填，可只填年份或不提供；生理期关怀默认关闭，最近开始日期只在用户主动开启后处理，关心重要的人不记录对方身份或健康状态。',
   },
   {
     version: 'V81',
-    title: '自建卡片最近删除',
+    title: '学习内容归档与最近删除',
     desc: '自建卡组支持单卡移入最近删除、30 天内恢复或提前永久删除；公共卡、词书卡和内置医学卡不允许按个人操作删除公共来源。',
   },
   {
     version: 'V82–V83',
     title: '广播幂等与知识底座就绪检查',
-    desc: '这两项只收紧后台原子写入、重复提交防护和内容源变化检查，不新增面向用户的资料字段，也不代表远程 Push 已经开启。',
+    desc: '后台原子写入、重复提交防护和内容源变化检查继续收紧；它们不代表远程 Push 已经开启。',
   },
   {
     version: 'V84',
-    title: '匿名医学边界反馈底座',
-    desc: '服务端源码只接受页面、原因、处理结果和是否有帮助等固定选项，拒绝正文、邮箱和账号标识；移动端入口尚未完成，因此当前 3.0.81 不能提交这类反馈。',
+    title: '匿名医学边界反馈',
+    desc: '客户端只显示服务端给出的医学边界上下文并提交固定选项；持久记录不含正文、邮箱、账号 ID 或 IP，180 天后由有界任务清理，管理员只查看 7、30 或 90 天聚合。',
   },
 ]
 
@@ -268,6 +278,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-08-14',
+    title: '知潮 3.0.82：私密关怀、对话创作、听背与数据治理升级',
+    desc: '性别认同与生日改为可选资料，生理期关怀默认关闭并由用户自定提前天数、提醒时间和锁屏隐私；关心重要的人只做通用提醒，不记录对方身份或健康状态。长按朵朵回复可选择部分文字复制，并从有界对话创建流程图、文档、保存到笔记或生成练习题；聊天里直接出题会优先呈现结构化答题卡并标明单选或多选。刷卡朗读和听背补齐明确反馈，后台听背可在系统播放面板暂停或继续，朗读设置可选择设备已安装的语言、音色、语速与停顿。活跃笔记、归档只读与金币扩容形成闭环，自建记忆卡支持最近删除、30 天内恢复和提前永久删除。医学边界提示可匿名评价是否有帮助，只提交固定选项且不提交正文或账号标识，保存 180 天。页面轮询与服务器有界清理继续减负；远程 Push 仍未开放，COS 也未承接用户附件。本次为非强制更新。',
+  },
   {
     date: '2026-08-13',
     title: '知潮 3.0.81：身份、流畅度、时光海洋与内容管理升级',
@@ -629,11 +644,11 @@ function App() {
         <section className="release-story" aria-labelledby="release-story-title">
           <div className="release-story-heading reveal">
             <div className="release-story-meta">
-              <span>知潮 3.0.81 正式更新</span>
-              <time dateTime={APP_RELEASED_AT}>最新更新 · {APP_RELEASED_AT_LABEL}</time>
+              <span>知潮 3.0.82 候选更新</span>
+              <time dateTime={APP_RELEASED_AT}>候选发布时间 · {APP_RELEASED_AT_LABEL}</time>
             </div>
-            <h2 id="release-story-title">身份被看见，页面更顺滑，海洋也真正值得探索</h2>
-            <p>3.0.81 本版更新把特殊身份、投票回看、主题流畅度、时光海洋、更新弹窗与聊天删除收成可理解、可恢复的完整路径。</p>
+            <h2 id="release-story-title">更私密的关怀，更好用的对话与听背，也更克制地处理数据</h2>
+            <p>3.0.82 候选能力已经进入源码，但只有正式签名 APK、服务端迁移与发布链全部核验后，官网才会把它冻结为正式版本并切换下载目标。</p>
           </div>
           <div className="release-story-grid">
             {releaseHighlights.map((item, index) => (
@@ -651,7 +666,7 @@ function App() {
             <span>已上线能力回顾 · Android 桌面组件</span>
             <h2 id="widget-story-title">不用先打开 App，今天该做什么已经在桌面</h2>
             <p>
-              以下桌面组件在此前版本已经上线，本页保留为能力回顾，不列作 3.0.81 本版新增。六类组件会根据桌面空间自动增减信息；
+              以下桌面组件在此前版本已经上线，本页保留为能力回顾，不列作 3.0.82 本版新增。六类组件会根据桌面空间自动增减信息；
               天气可看当前、24 小时和 7 天，日程可切换计划、课程和值班，学习组件会把真实进度和下一步放在一起。
             </p>
             <div className="widget-story-tags" aria-label="桌面组件能力">
@@ -704,7 +719,7 @@ function App() {
 
         <section id="features" className="features">
           <h2 className="section-title reveal">功能亮点</h2>
-          <p className="section-lead reveal">以下是知潮长期已上线能力回顾，不列作 3.0.81 本版新增；九项能力各司其职，最后都落到一件事：让你更清楚自己学到哪、下一步先做什么。</p>
+          <p className="section-lead reveal">以下是知潮长期已上线能力回顾，不列作 3.0.82 本版新增；九项能力各司其职，最后都落到一件事：让你更清楚自己学到哪、下一步先做什么。</p>
           <div className="feature-grid">
             {features.map((item) => (
               <div
@@ -786,15 +801,15 @@ function App() {
 
         <section id="next-release" className="next-release" aria-labelledby="next-release-title">
           <div className="next-release-heading reveal">
-            <span>下一正式链源码透明说明 · 尚未上线</span>
-            <h2 id="next-release-title">已经写进源码，不等于你现在已经能用</h2>
+            <span>3.0.82 数据结构与边界 · 候选尚未发布</span>
+            <h2 id="next-release-title">V79–V84 随 3.0.82 候选进入同一条核验链</h2>
             <p>
-              当前公开版本仍是知潮 3.0.81、服务端 schema 78。下面的 V79–V84 只表示源码和自动门已准备，
-              仍需离机备份、连续迁移、正式 Android 构建和真机验收后，才能随一条新的正式版本链公开。
+              当前公开下载仍是知潮 3.0.81、生产服务端 schema 仍是 78。下面的 V79–V84 是 3.0.82 候选的真实能力，
+              仍需离机备份、连续迁移、正式 Android 构建和安装启动验收后，才能一并公开。
             </p>
           </div>
           <div className="next-release-grid">
-            {nextReleaseReadiness.map((item) => (
+            {releaseSchemaCapabilities.map((item) => (
               <article className="next-release-card reveal" key={item.version}>
                 <span>{item.version}</span>
                 <h3>{item.title}</h3>
@@ -803,7 +818,7 @@ function App() {
             ))}
           </div>
           <p className="next-release-boundary reveal">
-            50 GB COS 私有桶已在北京创建并启用 SSE-COS 与版本控制，但生命周期规则尚未提交、上传专用最小权限凭据尚未创建，也没有真实上传或恢复收据，当前不会把它写成已启用的用户文件存储或已验证备份目的地；
+            50 GB COS 私有桶已在北京创建并启用 SSE-COS 与版本控制，但生命周期规则尚未提交、上传专用最小权限凭据尚未创建，也没有真实上传、对象核账或恢复收据，因此没有承接用户附件，也不是已经验证的离机备份目的地；
             远程 Push 也仍未启用。具体数据处理、上传限制与删除规则见
             <a href="/legal/privacy.html">《知潮隐私政策》</a>。
           </p>
