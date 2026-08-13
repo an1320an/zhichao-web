@@ -16,6 +16,12 @@ const sources = Object.fromEntries(
 );
 const publicCopy = Object.values(sources).join("\n");
 const hiddenServiceTerms = /DeepSeek|system prompt|featureType|模型密钥|AI 中央清单|内部模型路由/;
+const staleCurrentReleasePhrases = [
+  "知潮 3.0.81 候选更新",
+  "本次候选",
+  "待正式安装包核验",
+  "<small>候选版本</small>",
+];
 const removedAppAgreementFiles = [
   "public/legal/privacy.html",
   "public/legal/terms.html",
@@ -60,7 +66,9 @@ const checks = [
   ["3.0.71 朵朵笔记更新日志已保留", ["知潮 3.0.71：朵朵笔记的纸面体验再升级", "GoodNotes 式", "书架", "PDF 和图片", "手写工具", "长笔记渲染"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["3.0.70 统一更新日志保留", ["知潮 3.0.70：刷卡学习、找功能与学习体验升级", "内建键盘缺字补全", "问朵朵·找功能"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["未公开的 3.0.68/3.0.69 不再作为独立日志", !["知潮 3.0.68：", "知潮 3.0.69："].some((phrase) => sources["src/App.tsx"].includes(phrase))],
-  ["3.0.81 首页候选身份与功能摘要一致", ["const APP_VERSION = '3.0.81'", "知潮 3.0.81 候选更新", "特殊身份", "时光海洋", "更新弹窗", "聊天长按"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
+  ["3.0.81 首页使用正式更新身份并保留本版摘要", ["const APP_VERSION = '3.0.81'", "知潮 3.0.81 正式更新", "3.0.81 本版更新", "本次为已正式发布的非强制更新", "特殊身份", "时光海洋", "更新弹窗", "聊天长按"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
+  ["3.0.81 本版更新与已上线能力回顾明确分栏", sources["src/App.tsx"].includes("已上线能力回顾 · Android 桌面组件") && sources["src/App.tsx"].match(/不列作 3\.0\.81 本版新增/gu)?.length === 2],
+  ["3.0.81 正式发布后不再出现候选身份", staleCurrentReleasePhrases.every((phrase) => !publicCopy.includes(phrase))],
   ["提醒体系更新文案不作送达绝对承诺", !["一定会提醒", "保证送达", "已经同步成功"].some((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["笔记升级文案不作数据零风险绝对承诺", !["百分之百迁移", "数据绝不会丢失", "完整迁移所有旧笔记"].some((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["公开站不复制 App 协议或 App 隐私政策", removedAppAgreementFiles.every((name) => !fs.existsSync(path.join(root, name)))],
@@ -74,7 +82,7 @@ const checks = [
   ["下载确认页使用清晰的品牌标题", sources["public/download/index.html"].includes("<title>知潮官方下载</title>")],
   ["下载确认页提供清晰可见的官网入口", sources["public/download/index.html"].includes('<a class="website-link" href="/" aria-label="访问知潮官网首页">') && sources["public/download/index.html"].includes("访问知潮官网")],
   ["下载确认页提供键盘焦点与减少动态效果支持", sources["public/download/index.html"].includes("a:focus-visible") && sources["public/download/index.html"].includes("prefers-reduced-motion: reduce")],
-  ["下载确认页保留 3.0.81 正式包身份、非强制更新与备案", ["3.0.81", "versionCode 118", "234819464", "232BF6AACEAD3A564BA3F58F4A10CEEC299F45DF7FF726E099F9278AA7A17818", "223.9 MB", "官方已核验", "签名与公网文件一致", "非强制更新", "特殊身份", "时光海洋", "聊天长按删除", "2026 年 8 月 13 日 11:28（北京时间）", "访问知潮官网", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => publicCopy.includes(phrase))],
+  ["下载确认页保留 3.0.81 正式包身份、非强制更新与备案", ["<small>正式版本</small>", "3.0.81", "versionCode 118", "234819464", "232BF6AACEAD3A564BA3F58F4A10CEEC299F45DF7FF726E099F9278AA7A17818", "223.9 MB", "官方已核验", "签名与公网文件一致", "非强制更新", "特殊身份", "时光海洋", "聊天长按删除", "2026 年 8 月 13 日 11:28（北京时间）", "访问知潮官网", "陕ICP备2026019822号", "陕公网安备61092802000137号"].every((phrase) => publicCopy.includes(phrase))],
   ["3.0.81 正式包与发布时间占位已清除", !["PENDING_3_0_81_APK_SIZE_BYTES", "PENDING_3_0_81_APK_SHA256", "PENDING_3_0_81_APK_SIZE_MB", "PENDING_3_0_81_RELEASED_AT", "正式发布后更新"].some((phrase) => publicCopy.includes(phrase))],
   ["3.0.81 正式下载目标已切换", sources["public/download/index.html"].includes('href="/download/zhichao-mobile-release.apk?v=3.0.81"') && sources["public/download/index.html"].includes("开始下载 APK") && !sources["public/download/index.html"].includes("下载上一版已核验 APK")],
   ["下载确认页不向普通用户显示安装包哈希", !/<(?:code|details)[^>]*>[^<]*(?:SHA-?256|[a-f0-9]{64})/iu.test(sources["public/download/index.html"])],
