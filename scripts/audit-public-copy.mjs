@@ -8,6 +8,8 @@ const publicCopyFiles = [
   "public/invite/index.html",
   "public/404.html",
   "public/website-privacy.html",
+  "public/legal/terms.html",
+  "public/legal/privacy.html",
   "public/download/index.html",
 ];
 
@@ -23,8 +25,6 @@ const staleCurrentReleasePhrases = [
   "<small>候选版本</small>",
 ];
 const removedAppAgreementFiles = [
-  "public/legal/privacy.html",
-  "public/legal/terms.html",
   "public/legal/disclaimer.html",
   "public/legal/complaints.html",
 ];
@@ -54,7 +54,7 @@ const checks = [
   ["官网统一登记运营主体", sources["src/App.tsx"].includes("旬阳市槐序软件工作室")],
   ["公开联系邮箱已统一", publicCopy.includes("2014302010@qq.com") && !publicCopy.includes("an1320an@gmail.com")],
   ["双抖音入口保持可点击且职责分开", ["https://v.douyin.com/4Tl7oRzN9KM/", "槐序学长", "https://v.douyin.com/fs6MHFOU5q4/", "槐序工坊", "用户支持", "工作室与合作"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
-  ["网站隐私说明同步双联系渠道", ["2026 年 8 月 8 日", "https://v.douyin.com/4Tl7oRzN9KM/", "https://v.douyin.com/fs6MHFOU5q4/"].every((phrase) => sources["public/website-privacy.html"].includes(phrase))],
+  ["网站隐私说明同步双联系渠道", ["2026 年 8 月 14 日", "https://v.douyin.com/4Tl7oRzN9KM/", "https://v.douyin.com/fs6MHFOU5q4/"].every((phrase) => sources["public/website-privacy.html"].includes(phrase))],
   ["更新日志固定显示 3.0.81/3.0.80/3.0.79 且无失效历史入口", sources["src/App.tsx"].includes("changelog.slice(0, 3)") && sources["src/App.tsx"].includes("官网固定展示最近三次正式更新") && sources["public/download/index.html"].includes('<meta name="zhichao-recent-releases" content="3.0.81,3.0.80,3.0.79" />') && ["知潮 3.0.81：", "知潮 3.0.80：", "知潮 3.0.79："].every((title, index, titles) => index === 0 || sources["src/App.tsx"].indexOf(titles[index - 1], sources["src/App.tsx"].indexOf("const changelog =")) < sources["src/App.tsx"].indexOf(title, sources["src/App.tsx"].indexOf("const changelog ="))) && sources["src/App.tsx"].includes("useHashNavigation()") && sources["src/App.tsx"].includes("scrollIntoView") && !sources["src/App.tsx"].includes("showAllChangelog") && !sources["src/App.tsx"].includes("查看更多更新")],
   ["3.0.78 本轮体验说明与通知能力边界一致", ["知潮 3.0.78：全局主题、功能直达与潮汐信箱体验升级", "五运六气", "每周最多三封", "鲸歌保持更稀有", "远程 Push 仍未开放", "非强制更新"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["3.0.66 记账专题更新日志已准备", ["知潮 3.0.66：记账界面与长期账本能力升级", "分类层级与分类预算", "24 个月趋势", "归档账户恢复", "跨设备快捷模板"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
@@ -71,8 +71,10 @@ const checks = [
   ["3.0.81 正式发布后不再出现候选身份", staleCurrentReleasePhrases.every((phrase) => !publicCopy.includes(phrase))],
   ["提醒体系更新文案不作送达绝对承诺", !["一定会提醒", "保证送达", "已经同步成功"].some((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["笔记升级文案不作数据零风险绝对承诺", !["百分之百迁移", "数据绝不会丢失", "完整迁移所有旧笔记"].some((phrase) => sources["src/App.tsx"].includes(phrase))],
-  ["公开站不复制 App 协议或 App 隐私政策", removedAppAgreementFiles.every((name) => !fs.existsSync(path.join(root, name)))],
-  ["公开页面不再链接 App 协议或隐私页面", !/\/legal\/(?:privacy|terms|disclaimer|complaints)\.html/.test(publicCopy)],
+  ["公开站只保留已审计的用户协议与 App 隐私政策", fs.existsSync(path.join(root, "public/legal/terms.html")) && fs.existsSync(path.join(root, "public/legal/privacy.html")) && removedAppAgreementFiles.every((name) => !fs.existsSync(path.join(root, name)))],
+  ["公开页面可访问用户协议与 App 隐私政策", ["/legal/terms.html", "/legal/privacy.html"].every((path) => sources["src/App.tsx"].includes(path) && sources["public/download/index.html"].includes(path))],
+  ["下一正式链只按尚未上线披露", ["下一正式链源码透明说明 · 尚未上线", "当前公开版本仍是知潮 3.0.81、服务端 schema 78", "V79–V84", "50 GB COS 已购买但尚未完成"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
+  ["用户协议与 App 隐私政策覆盖下一链最小边界", ["不代表当前 3.0.81 已提供", "归档表示保留", "金币只用于产品内学习激励"].every((phrase) => sources["public/legal/terms.html"].includes(phrase)) && ["可选资料", "可选周期关怀", "单张输入最大 5 MB", "笔记 PDF 最大 64 MiB、500 页", "V84 服务端源码", "当前 Android 3.0.81 没有该入口", "COS 尚未完成"].every((phrase) => sources["public/legal/privacy.html"].includes(phrase))],
   ["网站隐私说明仅覆盖当前网站实际处理", sources["public/website-privacy.html"].includes("网站服务器访问日志") && sources["public/website-privacy.html"].includes("不适用于知潮 Android 客户端")],
   ["主页与邀请页均可访问网站隐私说明", sources["src/App.tsx"].includes("/website-privacy.html") && sources["public/invite/index.html"].includes("/website-privacy.html")],
   ["九项功能使用九张独立生成配图", featureAssets.every((name) => fs.existsSync(path.join(root, "public", "features", name)))],

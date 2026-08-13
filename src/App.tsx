@@ -77,6 +77,34 @@ const releaseHighlights = [
   },
 ]
 
+const nextReleaseReadiness = [
+  {
+    version: 'V79',
+    title: '笔记活跃额度与归档',
+    desc: '源码为每个账号保留免费活跃笔记位，并把归档定义为只读保留；金币扩容必须先展示服务端当时有效的档位、价格、期限与退款窗口。',
+  },
+  {
+    version: 'V80',
+    title: '可选资料与私密周期关怀',
+    desc: '性别认同与生日都不是注册必填，可只填年份或不提供；生理期关怀默认关闭，最近开始日期只在用户主动开启后处理，关心重要的人不记录对方身份或健康状态。',
+  },
+  {
+    version: 'V81',
+    title: '自建卡片最近删除',
+    desc: '自建卡组支持单卡移入最近删除、30 天内恢复或提前永久删除；公共卡、词书卡和内置医学卡不允许按个人操作删除公共来源。',
+  },
+  {
+    version: 'V82–V83',
+    title: '广播幂等与知识底座就绪检查',
+    desc: '这两项只收紧后台原子写入、重复提交防护和内容源变化检查，不新增面向用户的资料字段，也不代表远程 Push 已经开启。',
+  },
+  {
+    version: 'V84',
+    title: '匿名医学边界反馈底座',
+    desc: '服务端源码只接受页面、原因、处理结果和是否有帮助等固定选项，拒绝正文、邮箱和账号标识；移动端入口尚未完成，因此当前 3.0.81 不能提交这类反馈。',
+  },
+]
+
 const widgetHighlights = [
   {
     kind: 'weather',
@@ -756,6 +784,31 @@ function App() {
           </p>
         </section>
 
+        <section id="next-release" className="next-release" aria-labelledby="next-release-title">
+          <div className="next-release-heading reveal">
+            <span>下一正式链源码透明说明 · 尚未上线</span>
+            <h2 id="next-release-title">已经写进源码，不等于你现在已经能用</h2>
+            <p>
+              当前公开版本仍是知潮 3.0.81、服务端 schema 78。下面的 V79–V84 只表示源码和自动门已准备，
+              仍需离机备份、连续迁移、正式 Android 构建和真机验收后，才能随一条新的正式版本链公开。
+            </p>
+          </div>
+          <div className="next-release-grid">
+            {nextReleaseReadiness.map((item) => (
+              <article className="next-release-card reveal" key={item.version}>
+                <span>{item.version}</span>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </article>
+            ))}
+          </div>
+          <p className="next-release-boundary reveal">
+            50 GB COS 已购买但尚未完成私有 bucket、权限、生命周期和恢复演练，当前不会把它写成已启用的用户文件存储或备份目的地；
+            远程 Push 也仍未启用。具体数据处理、上传限制与删除规则见
+            <a href="/legal/privacy.html">《知潮隐私政策》</a>。
+          </p>
+        </section>
+
         <section id="cocreate" className="cocreate-band">
           <div className="cocreate">
             <h2 className="section-title reveal">招募共创</h2>
@@ -918,6 +971,8 @@ function App() {
         <nav className="legal-links">
           <a href="#faq">常见问题</a>
           <a href="#architecture">数据与规则</a>
+          <a href="/legal/terms.html">用户协议</a>
+          <a href="/legal/privacy.html">App 隐私政策</a>
           <a href="/website-privacy.html">网站隐私说明</a>
           <a href={`mailto:${CONTACT_EMAIL}`}>联系我们</a>
         </nav>
