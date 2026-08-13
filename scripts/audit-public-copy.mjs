@@ -11,6 +11,7 @@ const publicCopyFiles = [
   "public/legal/terms.html",
   "public/legal/privacy.html",
   "public/download/index.html",
+  "public/sitemap.xml",
 ];
 
 const sources = Object.fromEntries(
@@ -73,8 +74,10 @@ const checks = [
   ["笔记升级文案不作数据零风险绝对承诺", !["百分之百迁移", "数据绝不会丢失", "完整迁移所有旧笔记"].some((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["公开站只保留已审计的用户协议与 App 隐私政策", fs.existsSync(path.join(root, "public/legal/terms.html")) && fs.existsSync(path.join(root, "public/legal/privacy.html")) && removedAppAgreementFiles.every((name) => !fs.existsSync(path.join(root, name)))],
   ["公开页面可访问用户协议与 App 隐私政策", ["/legal/terms.html", "/legal/privacy.html"].every((path) => sources["src/App.tsx"].includes(path) && sources["public/download/index.html"].includes(path))],
-  ["下一正式链只按尚未上线披露", ["下一正式链源码透明说明 · 尚未上线", "当前公开版本仍是知潮 3.0.81、服务端 schema 78", "V79–V84", "50 GB COS 已购买但尚未完成"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
-  ["用户协议与 App 隐私政策覆盖下一链最小边界", ["不代表当前 3.0.81 已提供", "归档表示保留", "金币只用于产品内学习激励"].every((phrase) => sources["public/legal/terms.html"].includes(phrase)) && ["可选资料", "可选周期关怀", "单张输入最大 5 MB", "笔记 PDF 最大 64 MiB、500 页", "V84 服务端源码", "当前 Android 3.0.81 没有该入口", "COS 尚未完成"].every((phrase) => sources["public/legal/privacy.html"].includes(phrase))],
+  ["下一正式链只按尚未上线披露", ["下一正式链源码透明说明 · 尚未上线", "当前公开版本仍是知潮 3.0.81、服务端 schema 78", "V79–V84", "COS 私有桶已在北京创建", "没有真实上传或恢复收据"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
+  ["用户协议与 App 隐私政策覆盖下一链最小边界", ["不代表当前 3.0.81 已提供", "归档表示保留", "金币只用于产品内学习激励"].every((phrase) => sources["public/legal/terms.html"].includes(phrase)) && ["可选资料", "可选周期关怀", "单张输入最大 5 MB", "笔记 PDF 最大 64 MiB、500 页", "V84 服务端源码", "当前 Android 3.0.81 没有该入口", "生命周期规则尚未提交", "上传专用最小权限凭据尚未创建", "没有真实上传、对象核账或恢复收据"].every((phrase) => sources["public/legal/privacy.html"].includes(phrase))],
+  ["公开站点索引边界明确", ["https://huaix.cn/", "https://huaix.cn/download/", "https://huaix.cn/website-privacy.html", "https://huaix.cn/legal/terms.html", "https://huaix.cn/legal/privacy.html"].every((url) => sources["public/sitemap.xml"].includes(url)) && sources["public/invite/index.html"].includes('name="robots" content="noindex,follow"')],
+  ["公开静态页 canonical 与互链完整", ["https://huaix.cn/download/", "https://huaix.cn/website-privacy.html", "https://huaix.cn/legal/terms.html", "https://huaix.cn/legal/privacy.html"].every((url) => publicCopy.includes(url)) && sources["public/legal/terms.html"].includes('href="/legal/privacy.html"') && sources["public/legal/privacy.html"].includes('href="/website-privacy.html"')],
   ["网站隐私说明仅覆盖当前网站实际处理", sources["public/website-privacy.html"].includes("网站服务器访问日志") && sources["public/website-privacy.html"].includes("不适用于知潮 Android 客户端")],
   ["主页与邀请页均可访问网站隐私说明", sources["src/App.tsx"].includes("/website-privacy.html") && sources["public/invite/index.html"].includes("/website-privacy.html")],
   ["九项功能使用九张独立生成配图", featureAssets.every((name) => fs.existsSync(path.join(root, "public", "features", name)))],

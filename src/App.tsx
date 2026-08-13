@@ -803,7 +803,7 @@ function App() {
             ))}
           </div>
           <p className="next-release-boundary reveal">
-            50 GB COS 已购买但尚未完成私有 bucket、权限、生命周期和恢复演练，当前不会把它写成已启用的用户文件存储或备份目的地；
+            50 GB COS 私有桶已在北京创建并启用 SSE-COS 与版本控制，但生命周期规则尚未提交、上传专用最小权限凭据尚未创建，也没有真实上传或恢复收据，当前不会把它写成已启用的用户文件存储或已验证备份目的地；
             远程 Push 也仍未启用。具体数据处理、上传限制与删除规则见
             <a href="/legal/privacy.html">《知潮隐私政策》</a>。
           </p>
