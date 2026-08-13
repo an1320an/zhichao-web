@@ -39,8 +39,8 @@ const philosophy = [
 ]
 
 const APP_VERSION = '3.0.82'
-const APP_RELEASED_AT = 'PENDING_3_0_82_RELEASED_AT'
-const APP_RELEASED_AT_LABEL = '正式发布后更新'
+const APP_RELEASED_AT = '2026-08-14T02:30:00+08:00'
+const APP_RELEASED_AT_LABEL = '2026 年 8 月 14 日 02:30（北京时间）'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
@@ -644,11 +644,11 @@ function App() {
         <section className="release-story" aria-labelledby="release-story-title">
           <div className="release-story-heading reveal">
             <div className="release-story-meta">
-              <span>知潮 3.0.82 候选更新</span>
-              <time dateTime={APP_RELEASED_AT}>候选发布时间 · {APP_RELEASED_AT_LABEL}</time>
+              <span>知潮 3.0.82 正式更新</span>
+              <time dateTime={APP_RELEASED_AT}>最新更新 · {APP_RELEASED_AT_LABEL}</time>
             </div>
             <h2 id="release-story-title">更私密的关怀，更好用的对话与听背，也更克制地处理数据</h2>
-            <p>3.0.82 候选能力已经进入源码，但只有正式签名 APK、服务端迁移与发布链全部核验后，官网才会把它冻结为正式版本并切换下载目标。</p>
+            <p>3.0.82 已通过正式签名 APK、服务端迁移与发布链核验，本次为非强制更新，可按自己的时间安装。</p>
           </div>
           <div className="release-story-grid">
             {releaseHighlights.map((item, index) => (
@@ -801,11 +801,11 @@ function App() {
 
         <section id="next-release" className="next-release" aria-labelledby="next-release-title">
           <div className="next-release-heading reveal">
-            <span>3.0.82 数据结构与边界 · 候选尚未发布</span>
-            <h2 id="next-release-title">V79–V84 随 3.0.82 候选进入同一条核验链</h2>
+            <span>3.0.82 数据结构与边界 · 已正式发布</span>
+            <h2 id="next-release-title">V79–V84 已随 3.0.82 进入同一条正式链</h2>
             <p>
-              当前公开下载仍是知潮 3.0.81、生产服务端 schema 仍是 78。下面的 V79–V84 是 3.0.82 候选的真实能力，
-              仍需离机备份、连续迁移、正式 Android 构建和安装启动验收后，才能一并公开。
+              当前公开下载是知潮 3.0.82，生产服务端已连续迁移至 schema 84。下面按 V79–V84 说明本版数据结构，
+              发布前已经过离机备份、连续迁移、正式 Android 构建和安装启动验收。
             </p>
           </div>
           <div className="next-release-grid">
