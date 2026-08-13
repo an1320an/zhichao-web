@@ -41,6 +41,7 @@ const inviteWelcomeAsset = path.join(
 );
 
 const checks = [
+  ["官网共创成员黄晨晨与专属寄语已公开呈现", ["黄晨晨", "知潮共创成员", "产品体验共创、功能反馈", "每一次反馈都像替潮汐点亮一盏岸灯"].every((phrase) => sources["src/App.tsx"].includes(phrase))],
   ["公开网页不泄露内部模型与服务实现术语", !hiddenServiceTerms.test(publicCopy)],
   ["官网主域统一为 huaix.cn", sources["index.html"].includes('href="https://huaix.cn/"') && sources["src/App.tsx"].includes("https://huaix.cn/download/index.html")],
   ["官网展示真实 ICP 备案号", sources["src/App.tsx"].includes("陕ICP备2026019822号") && sources["public/404.html"].includes("陕ICP备2026019822号")],
