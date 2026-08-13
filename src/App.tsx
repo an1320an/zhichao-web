@@ -38,9 +38,9 @@ const philosophy = [
   },
 ]
 
-const APP_VERSION = '3.0.80'
-const APP_RELEASED_AT = '2026-08-13T06:10:00+08:00'
-const APP_RELEASED_AT_LABEL = '2026 年 8 月 13 日 06:10（北京时间）'
+const APP_VERSION = '3.0.81'
+const APP_RELEASED_AT = 'PENDING_3_0_81_RELEASED_AT'
+const APP_RELEASED_AT_LABEL = '正式发布后更新'
 
 const features = [
   { icon: studyCoachIcon, title: '学习教练与动态下一步', desc: '主目标由你确定，刷题、模考、错题和复习形成真实证据。掌握情况变了，下一步也会跟着更新。' },
@@ -56,24 +56,24 @@ const features = [
 
 const releaseHighlights = [
   {
-    label: '保留',
-    title: '编辑旧账直接带回原分类和账户',
-    desc: '例如原来选择“餐饮”和“中国工商银行”，再次打开即可直接修改并保存，不需要重新选择。',
+    label: '身份',
+    title: '特殊身份在搭子主页可见，投票结果也有长期入口',
+    desc: '已确认的共创等特殊身份会显示专属铭牌；参加改名投票后，可从功能中心回看当前票况，投票前不展示结果。',
   },
   {
-    label: '看清',
-    title: '备注改为完整的多行编辑区',
-    desc: '备注可见、可选中、可退格清空；获得焦点时金额键盘会主动让路，不再遮住正在输入的文字。',
+    label: '顺滑',
+    title: '主题状态栏、页面切换和输入交互继续收口',
+    desc: '减少从设置返回搭子页时的集中刷新与动画竞争，统一不同主题的系统栏过渡，并修复金额键盘与输入法争抢焦点。',
   },
   {
-    label: '顺手',
-    title: '金额键盘可以随时展开或折叠',
-    desc: '编辑旧账时默认先让你看清内容，需要改金额再点一下展开；折叠后保存和删除入口仍然保留。',
+    label: '探索',
+    title: '时光海洋拥有更大的探索画布与更自然的分布',
+    desc: '海岸和深海扩展可拖动区域，贝壳不再集中堆叠，并加入被沙覆盖的层次；深海场景补充更多差异化生物与景物。',
   },
   {
-    label: '完整',
-    title: '账单卡片不再把朵朵短评挤成半句话',
-    desc: '金额、账户、备注与朵朵短评各自拥有可换行区域，长一点的说明也能完整读完。',
+    label: '可控',
+    title: '更新弹窗按顺序出现，聊天记录也能明确删除',
+    desc: '安装后优先完成新功能导览，不再叠加旧更新说明；聊天长按可删除所选完整一轮及后续上下文，已确认的收藏、笔记和记忆仍单独管理。',
   },
 ]
 
@@ -240,6 +240,11 @@ const faq = [
 ]
 
 const changelog = [
+  {
+    date: '2026-08-13',
+    title: '知潮 3.0.81：身份、流畅度、时光海洋与内容管理升级',
+    desc: '特殊身份在搭子主页显示专属铭牌；改名投票在提交后可查看当前票况，并保留长期回看入口。主题状态栏与页面过渡继续统一，头像进入设置及返回后的刷新改在切页动画完成后执行，金额键盘与输入法切换更稳定。时光海岸和深海探索扩大可拖动画布，优化贝壳分布、沙埋层次与差异化海洋生物。安装后弹窗按新功能导览、后续活动提示的确定顺序出现，维护结束会主动刷新。已解锁的成就、主题和套装继续展示解锁原因；聊天支持长按删除所选完整一轮及其后续上下文，已确认收藏、笔记和记忆不会随聊天自动删除。本次为待正式安装包核验的非强制候选更新。',
+  },
   {
     date: '2026-08-13',
     title: '知潮 3.0.80：旧账编辑与备注输入体验修复',
@@ -596,11 +601,11 @@ function App() {
         <section className="release-story" aria-labelledby="release-story-title">
           <div className="release-story-heading reveal">
             <div className="release-story-meta">
-              <span>知潮 3.0.80 记账修复更新</span>
+              <span>知潮 3.0.81 候选更新</span>
               <time dateTime={APP_RELEASED_AT}>最新更新 · {APP_RELEASED_AT_LABEL}</time>
             </div>
-            <h2 id="release-story-title">旧账打开就能改，备注输入也不再被挡住</h2>
-            <p>本次只聚焦记账编辑体验：保留原分类与账户，让金额键盘主动给备注让路，并完整展示朵朵短评。</p>
+            <h2 id="release-story-title">身份被看见，页面更顺滑，海洋也真正值得探索</h2>
+            <p>本次候选把特殊身份、投票回看、主题流畅度、时光海洋、更新弹窗与聊天删除收成可理解、可恢复的完整路径。</p>
           </div>
           <div className="release-story-grid">
             {releaseHighlights.map((item, index) => (
