@@ -141,13 +141,40 @@ export function freezeSources(sources, metadata) {
     ['<div class="fact"><small>候选版本</small><strong>3.0.82</strong><span>versionCode 119</span></div>', '<div class="fact"><small>正式版本</small><strong>3.0.82</strong><span>versionCode 119</span></div>', "download version state"],
     ['<div class="fact"><small>发布状态</small><strong>待正式安装包核验</strong><span>签名、ABI 与公网文件一致后发布</span></div>', '<div class="fact"><small>发布状态</small><strong>官方已核验</strong><span>签名、ABI 与公网文件一致</span></div>', "download verification state"],
   ]) download = replaceOnce(download, pending, frozen, label);
-  return { app, download };
+
+  let privacy = replaceOnce(
+    sources.privacy,
+    "更新日期：2026 年 8 月 14 日 · 适用版本：3.0.82（正式发布后生效）",
+    "更新日期：2026 年 8 月 14 日 · 当前公开版本：3.0.82",
+    "privacy release label",
+  );
+  privacy = replaceOnce(
+    privacy,
+    "当前公网下载仍为 3.0.81，生产服务端 schema 仍为 78；本政策随 3.0.82 正式发布及 V79–V84 连续迁移一并生效。正式发布前，官网继续提供 3.0.81 已核验 APK，不把候选入口表述成当前已处理。",
+    "当前公网 Android 为 3.0.82，生产服务端已连续迁移至 schema 84；本政策已经生效。官网和 App 仍按真实状态披露远程 Push 与 COS 边界，不把未启用能力表述成已经处理。",
+    "privacy release boundary",
+  );
+  let terms = replaceOnce(
+    sources.terms,
+    "更新日期：2026 年 8 月 14 日 · 适用版本：3.0.82（正式发布后生效）",
+    "更新日期：2026 年 8 月 14 日 · 当前公开版本：3.0.82",
+    "terms release label",
+  );
+  terms = replaceOnce(
+    terms,
+    "本协议随 3.0.82 正式发布及 V79–V84 连续迁移一并生效。正式发布前，当前 3.0.81 不提供笔记额度、可选资料/周期关怀、单卡回收或匿名医学反馈入口。",
+    "本协议已随 3.0.82 正式发布及 V79–V84 连续迁移生效；笔记额度、可选资料/周期关怀、单卡回收和匿名医学反馈按 App 当前入口与本协议提供。",
+    "terms release boundary",
+  );
+  return { app, download, privacy, terms };
 }
 
 function readSources() {
   return {
     app: fs.readFileSync(path.join(root, "src", "App.tsx"), "utf8"),
     download: fs.readFileSync(path.join(root, "public", "download", "index.html"), "utf8"),
+    privacy: fs.readFileSync(path.join(root, "public", "legal", "privacy.html"), "utf8"),
+    terms: fs.readFileSync(path.join(root, "public", "legal", "terms.html"), "utf8"),
   };
 }
 
@@ -155,11 +182,14 @@ function writeAtomically(prepared) {
   const targets = {
     app: path.join(root, "src", "App.tsx"),
     download: path.join(root, "public", "download", "index.html"),
+    privacy: path.join(root, "public", "legal", "privacy.html"),
+    terms: path.join(root, "public", "legal", "terms.html"),
   };
   const nonce = `.3082-freeze-${process.pid}-${Date.now()}`;
   const temps = Object.fromEntries(Object.entries(targets).map(([key, target]) => [key, `${target}${nonce}.tmp`]));
   const backups = Object.fromEntries(Object.entries(targets).map(([key, target]) => [key, `${target}${nonce}.bak`]));
   const moved = [];
+  let committed = false;
   try {
     for (const key of Object.keys(targets)) fs.writeFileSync(temps[key], prepared[key], { flag: "wx" });
     for (const key of Object.keys(targets)) {
@@ -167,16 +197,23 @@ function writeAtomically(prepared) {
       moved.push(key);
       fs.renameSync(temps[key], targets[key]);
     }
-    for (const key of moved) fs.unlinkSync(backups[key]);
+    committed = true;
   } catch (error) {
-    for (const key of [...moved].reverse()) {
-      if (fs.existsSync(targets[key])) fs.unlinkSync(targets[key]);
-      if (fs.existsSync(backups[key])) fs.renameSync(backups[key], targets[key]);
+    if (!committed) {
+      for (const key of [...moved].reverse()) {
+        if (fs.existsSync(targets[key])) fs.unlinkSync(targets[key]);
+        if (fs.existsSync(backups[key])) fs.renameSync(backups[key], targets[key]);
+      }
     }
     throw error;
   } finally {
-    for (const file of [...Object.values(temps), ...Object.values(backups)]) {
+    for (const file of Object.values(temps)) {
       if (fs.existsSync(file)) fs.unlinkSync(file);
+    }
+    if (committed) {
+      for (const file of Object.values(backups)) {
+        try { if (fs.existsSync(file)) fs.unlinkSync(file); } catch { /* committed sources stay authoritative */ }
+      }
     }
   }
 }

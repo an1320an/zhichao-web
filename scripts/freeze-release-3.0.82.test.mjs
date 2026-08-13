@@ -31,6 +31,12 @@ const pendingDownload = `<meta content="PENDING_3_0_82_APK_SIZE_BYTES PENDING_3_
 <div class="fact"><small>候选版本</small><strong>3.0.82</strong><span>versionCode 119</span></div>
 <div class="fact"><small>发布状态</small><strong>待正式安装包核验</strong><span>签名、ABI 与公网文件一致后发布</span></div>`;
 
+const pendingPrivacy = `更新日期：2026 年 8 月 14 日 · 适用版本：3.0.82（正式发布后生效）
+当前公网下载仍为 3.0.81，生产服务端 schema 仍为 78；本政策随 3.0.82 正式发布及 V79–V84 连续迁移一并生效。正式发布前，官网继续提供 3.0.81 已核验 APK，不把候选入口表述成当前已处理。`;
+
+const pendingTerms = `更新日期：2026 年 8 月 14 日 · 适用版本：3.0.82（正式发布后生效）
+本协议随 3.0.82 正式发布及 V79–V84 连续迁移一并生效。正式发布前，当前 3.0.81 不提供笔记额度、可选资料/周期关怀、单卡回收或匿名医学反馈入口。`;
+
 test("freezes the exact 3.0.82 candidate only after metadata verification", () => {
   const metadata = {
     apkBytes: 123456789,
@@ -38,13 +44,15 @@ test("freezes the exact 3.0.82 candidate only after metadata verification", () =
     apkMegabytes: "117.7",
     releasedAt: { iso: "2026-08-14T12:34:00+08:00", label: "2026 年 8 月 14 日 12:34（北京时间）" },
   };
-  const frozen = freezeSources({ app: pendingApp, download: pendingDownload }, metadata);
-  assert.doesNotMatch(`${frozen.app}\n${frozen.download}`, /PENDING_3_0_82|候选尚未发布|下载上一版/u);
+  const frozen = freezeSources({ app: pendingApp, download: pendingDownload, privacy: pendingPrivacy, terms: pendingTerms }, metadata);
+  assert.doesNotMatch(Object.values(frozen).join("\n"), /PENDING_3_0_82|候选尚未发布|下载上一版|正式发布后生效|当前 3\.0\.81/u);
   assert.match(frozen.app, /知潮 3\.0\.82 正式更新/u);
   assert.match(frozen.app, /生产服务端已连续迁移至 schema 84/u);
   assert.match(frozen.download, /v=3\.0\.82/u);
   assert.match(frozen.download, /官方已核验/u);
   assert.match(frozen.download, /123456789/u);
+  assert.match(frozen.privacy, /当前公网 Android 为 3\.0\.82/u);
+  assert.match(frozen.terms, /本协议已随 3\.0\.82 正式发布/u);
   assert.deepEqual(freezeSources(frozen, metadata), frozen);
   assert.equal(RELEASE_VERSION, "3.0.82");
   assert.equal(RELEASE_BUILD, 119);
@@ -61,11 +69,11 @@ test("candidate shape drift fails closed before any source mutation", () => {
     releasedAt: { iso: "2026-08-14T12:34:00+08:00", label: "2026 年 8 月 14 日 12:34（北京时间）" },
   };
   assert.throws(
-    () => freezeSources({ app: pendingApp.replace("候选更新", "候选预览"), download: pendingDownload }, metadata),
+    () => freezeSources({ app: pendingApp.replace("候选更新", "候选预览"), download: pendingDownload, privacy: pendingPrivacy, terms: pendingTerms }, metadata),
     /App release label expected exactly one candidate or frozen value/u,
   );
   assert.throws(
-    () => freezeSources({ app: pendingApp, download: pendingDownload.replace("v=3.0.81", "v=3.0.80").replaceAll("PENDING_3_0_82_APK_SIZE_BYTES", "123456789").replaceAll("PENDING_3_0_82_APK_SHA256", "A".repeat(64)).replaceAll("PENDING_3_0_82_APK_SIZE_MB", "117.7 MB") }, metadata),
+    () => freezeSources({ app: pendingApp, download: pendingDownload.replace("v=3.0.81", "v=3.0.80").replaceAll("PENDING_3_0_82_APK_SIZE_BYTES", "123456789").replaceAll("PENDING_3_0_82_APK_SHA256", "A".repeat(64)).replaceAll("PENDING_3_0_82_APK_SIZE_MB", "117.7 MB"), privacy: pendingPrivacy, terms: pendingTerms }, metadata),
     /download target expected exactly one candidate or frozen value/u,
   );
 });
