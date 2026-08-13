@@ -1,0 +1,38 @@
+name: Emergency recover 3.0.81 pre-apply preview
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: emergency-recover-3081
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deployment key
+        shell: bash
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' '82.156.43.145 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIEPWxpI5iQJTvR+A56vi+Pw+aFucShDAOzkkWxT8Mus' > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+      - name: Abort only the proven pre-apply preview and restore service
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 600 ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes \
+            -o BatchMode=yes -o ConnectTimeout=480 \
+            -o ServerAliveInterval=10 -o ServerAliveCountMax=12 \
+            ubuntu@82.156.43.145 'bash -s' \
+            < scripts/ops/emergency-abort-3081-preapply-preview.sh
